@@ -1,0 +1,38 @@
+package cl.bcs.plataforma;
+
+import org.apache.log4j.Logger;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.PageFactory;
+
+import cl.bcs.application.constantes.util.ConstantesSpot;
+import cl.bcs.application.factory.util.ExtentReport;
+import cl.bcs.application.factory.util.Session;
+import cl.bcs.application.file.util.Log4jFactory;
+import cl.bcs.application.utiles.UtilesSelenium;
+/**
+ * 
+ * @author dnarvaez_EXT
+ *
+ */
+public class Login {
+	private static WebDriver webDriver = null;	
+	
+	public Login(WebDriver driver) {
+		webDriver = driver;
+		PageFactory.initElements(webDriver, this);
+	}
+	private static final Logger LOGGER = Log4jFactory.getLogger(Login.class);
+	
+	public static boolean login() {
+		boolean isLogin = false;
+			Session.getConfigDriver().waitForLoad();
+			UtilesSelenium.findElement(By.id(ConstantesSpot.ID_USUARIO)).sendKeys("fmettroz");
+			UtilesSelenium.findElement(By.id(ConstantesSpot.ID_PASSWORD)).sendKeys("1");
+			ExtentReport.Captura("Ingreso de Usuario");
+			UtilesSelenium.findElement(By.id(ConstantesSpot.ID_BTN_LOGIN)).click();
+			LOGGER.info("Login Exitoso");
+			isLogin = true;
+		return isLogin;
+	}
+}
