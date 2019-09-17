@@ -38,7 +38,7 @@ public class UtilesSelenium {
 	 */
 	public static Map<String, WebElement> getListaFromElements(
 			List<WebElement> listaElementos) {
-		Map<String, WebElement> hashMap = new HashMap<String, WebElement>();
+		Map<String, WebElement> hashMap = new HashMap<>();
 		if (listaElementos.isEmpty() || listaElementos != null) {
 			for (int i = 0; i < listaElementos.size(); i++) {
 				LOGGER.debug("Key : " + listaElementos.get(i).getText());

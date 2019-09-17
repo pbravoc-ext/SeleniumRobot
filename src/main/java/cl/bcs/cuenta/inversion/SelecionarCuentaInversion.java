@@ -18,7 +18,7 @@ import cl.bcs.spot.SeleccionarSpot;
 
 
 public class SelecionarCuentaInversion {
-	private static WebDriver webDriver = null;	
+	private WebDriver webDriver = null;	
 	
 	public SelecionarCuentaInversion(WebDriver driver) {
 		webDriver = driver;

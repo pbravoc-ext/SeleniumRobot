@@ -10,21 +10,36 @@ import cl.bcs.spot.MantenedorPuntas;
 import cl.bcs.spot.SeleccionarSpot;
 
 public class Spot {
-	public static boolean Suite_Spot(SpotExcel usu) {
+	public static boolean suiteSpot(SpotExcel usu) {
 		boolean result = false;
 		result = SeleccionarSpot.seleccionarMantenedorPuntas();
+		if(!result) {
+			cerrar();
+		}
 		result = MantenedorPuntas.mantenedorPuntas();
+		if(!result) {
+			cerrar();
+		}
 		result = SeleccionarSpot.seleccionarIngresoOperacionSpot();
+		if(!result) {
+			cerrar();
+		}
 		result = IngresoOperacionSpot.datosOperacion(usu);
+		if(!result) {
+			cerrar();
+		}
 		result = IngresoOperacionSpot.formadePago(usu);
+		if(!result) {
+			cerrar();
+		}
 		result = IngresoOperacionSpot.otros();
-//			result = ConfirmacionOperacionesSpot.init();
-		// result = SeleccionarFacturacion.init();
-		// Cerrar();
+		if(!result) {
+			cerrar();
+		}
 		return result;
 	}
 
-	private static void Cerrar() {
+	private static void cerrar() {
 
 		Session.getConfigDriver().getWebDriver().quit();
 	}
