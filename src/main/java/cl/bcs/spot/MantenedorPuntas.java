@@ -2,27 +2,17 @@ package cl.bcs.spot;
 
 import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.PageFactory;
 
 import cl.bcs.application.constantes.util.ConstantesMantenedorPuntas;
-import cl.bcs.application.constantes.util.ConstantesSpot;
 import cl.bcs.application.constantes.util.ConstantesSpotTags;
 import cl.bcs.application.factory.util.Session;
 import cl.bcs.application.file.util.Log4jFactory;
+import cl.bcs.application.file.util.UtilesSelenium;
 import cl.bcs.application.spot.util.MantenedorUtil;
 import cl.bcs.application.spot.util.VariablesUtil;
-import cl.bcs.application.utiles.UtilesSelenium;
 import cl.bcs.plataforma.CerrarVentana;
 
 public class MantenedorPuntas extends MantenedorUtil {
-	private static WebDriver webDriver = null;
-
-	public MantenedorPuntas(WebDriver driver) {
-		webDriver = driver;
-		PageFactory.initElements(webDriver, this);
-	}
-
 	private static final Logger LOGGER = Log4jFactory.getLogger(MantenedorPuntas.class);
 
 	public static boolean mantenedorPuntas() {

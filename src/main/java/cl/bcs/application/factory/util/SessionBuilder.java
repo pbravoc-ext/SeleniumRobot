@@ -12,12 +12,6 @@ public class SessionBuilder {
 	protected String navegador;
 	protected ExtentReports extent;
 	protected ExtentTest logger;
-	protected String folio;
-	protected String abono;
-	protected String cargo;
-	protected String comprobante;	
-	protected String movimientoEgreso;
-	protected String movimientoIngreso;
 	/**
 	 * 
 	 * @param browser

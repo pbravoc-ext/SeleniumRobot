@@ -33,20 +33,10 @@ public class Session {
 	 * @param builder
 	 */
 	public Session(SessionBuilder builder) {
-		// utiliza dato ambientales
 		navegador = builder.navegador;
 		extent = builder.extent;
 		logger = builder.logger;
-		folio = builder.folio;
-		abono = builder.abono;
-		cargo = builder.cargo;
-		comprobante = builder.comprobante;
-		movimientoEgreso = builder.movimientoEgreso;
-		movimientoIngreso = builder.movimientoIngreso;
-		
-		
 
-		// config webDriver Selenium
 		configDriver = new FactoryWebDriver(navegador,
 				Resource.getProperty("url.optimus"));
 	}
@@ -72,7 +62,7 @@ public class Session {
 		return spotinfo;
 	}
 
-	public void setSpot(SpotExcel spot) {
+	public static void setSpot(SpotExcel spot) {
 		spotinfo = spot;
 	}
 

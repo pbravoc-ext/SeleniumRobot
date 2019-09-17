@@ -4,7 +4,6 @@ package cl.bcs.application.suite;
 
 import cl.bcs.application.factory.util.Session;
 import cl.bcs.application.factory.util.SpotExcel;
-import cl.bcs.application.spot.util.VariablesUtil;
 import cl.bcs.plataforma.Login;
 import cl.bcs.spot.IngresoOperacionSpot;
 import cl.bcs.spot.MantenedorPuntas;

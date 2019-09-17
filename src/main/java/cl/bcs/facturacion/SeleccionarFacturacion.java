@@ -3,50 +3,26 @@ package cl.bcs.facturacion;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.PageFactory;
 
 import cl.bcs.application.constantes.util.ConstantesFacturacion;
 import cl.bcs.application.constantes.util.ConstantesSpot;
 import cl.bcs.application.factory.util.Session;
 import cl.bcs.application.factory.util.SpotExcel;
 import cl.bcs.application.file.util.Log4jFactory;
-import cl.bcs.application.utiles.UtilesSelenium;
+import cl.bcs.application.file.util.SpotUtiles;
+import cl.bcs.application.file.util.UtilesSelenium;
 import cl.bcs.plataforma.CerrarVentana;
 import cl.bcs.spot.SeleccionarSpot;
 
 public class SeleccionarFacturacion {
-	private static WebDriver webDriver = null;	
-	
-	public SeleccionarFacturacion(WebDriver driver) {
-		webDriver = driver;
-		PageFactory.initElements(webDriver, this);
-	}
-
 	private static final Logger LOGGER = Log4jFactory.getLogger(SeleccionarSpot.class);
 	
 	public static boolean gestionFacturacion(SpotExcel datos){
-
 		String cliente = datos.getRut()+" "+datos.getNombre()+" ("+datos.getPortafolio()+")";
-		String subFolio = "0000";
+		
 		//Datos Movimientos a Facturar
 		
-		
-		
-		boolean isLogin = false;
-		
-		//Cerrar Spot
-		Session.getConfigDriver().waitForLoad();
-		UtilesSelenium.findElement(By.id(ConstantesSpot.ID_MENU_SPOT)).click();
-		
-		//Abrir Facturación
-		Session.getConfigDriver().waitForLoad();
-		UtilesSelenium.findElement(By.id(ConstantesFacturacion.ID_MODULOGESTIONFACTURACION)).click();
-		Session.getConfigDriver().waitForLoad();
-		
-		//Abrir Gestión de Facturación
-		UtilesSelenium.findElement(By.id(ConstantesFacturacion.ID_GESTIONFACTURACION)).click();
-		Session.getConfigDriver().waitForLoad();
+		boolean result = false;
 		
 		//Movimientos a Facturar
 //		UtilesSelenium.findElement(By.xpath("//*[@id='blotterFacturacion']/div/div/div/ul/li[1]")).click();
@@ -60,7 +36,7 @@ public class SeleccionarFacturacion {
 		LOGGER.info("====================");
 
 	;	
-		UtilesSelenium.findElement(By.xpath(ConstantesFacturacion.XPATH_FOLIOINPUT)).sendKeys(subFolio+Session.getFolio(), Keys.ENTER);
+		UtilesSelenium.findElement(By.xpath(ConstantesFacturacion.XPATH_FOLIOINPUT)).sendKeys(ConstantesSpot.SUB_ZEROS+Session.getFolio(), Keys.ENTER);
 		LOGGER.info("====================");
 		UtilesSelenium.findElement(By.xpath(ConstantesFacturacion.XPATHERE)).click();
 //		LOGGER.info("Folio: ");
@@ -81,9 +57,9 @@ public class SeleccionarFacturacion {
 		String abono = UtilesSelenium.findElement(By.xpath(ConstantesFacturacion.XPATH_LABEL1)).getText();
 		String cargo = UtilesSelenium.findElement(By.xpath(ConstantesFacturacion.XPATH_LABEL2)).getText();
 		String comprobante = UtilesSelenium.findElement(By.xpath(ConstantesFacturacion.XPATH_LABEL3)).getText();
-		String abonoOp = folios(abono);
-		String cargoOp = folios(cargo);	
-		String comprobanteOp = folios(comprobante);
+		String abonoOp = SpotUtiles.folio(abono);
+		String cargoOp = SpotUtiles.folio(cargo);	
+		String comprobanteOp = SpotUtiles.folio(comprobante);
 		LOGGER.info("Abono: " + abonoOp);
 		LOGGER.info("Cargo: " + cargoOp);
 		LOGGER.info("Comprobante: " + comprobanteOp);	
@@ -107,7 +83,7 @@ public class SeleccionarFacturacion {
 		Session.getConfigDriver().waitForLoad();
 
 		
-		UtilesSelenium.findElement(By.xpath(ConstantesFacturacion.XPATH_SECUENCIA)).sendKeys(subFolio+comprobanteOp+Keys.ENTER);
+		UtilesSelenium.findElement(By.xpath(ConstantesFacturacion.XPATH_SECUENCIA)).sendKeys(ConstantesSpot.SUB_ZEROS+comprobanteOp+Keys.ENTER);
 		Session.getConfigDriver().waitForLoad();
 		
 		UtilesSelenium.findElement(By.xpath(ConstantesFacturacion.XPATH_COMPARARFOLIOFAC+comprobanteOp+ConstantesFacturacion.XPATH_COMPARARFOLIOFA2C)).click();
@@ -157,13 +133,8 @@ public class SeleccionarFacturacion {
 //		LOGGER.info("Enter Folio");
 		
 		Session.getConfigDriver().waitForLoad();
-		return isLogin;
+		return result;
 	}
 
 	
-	public static String folios(String label) {
-		String example = label.replaceAll("[^0-9]", "");
-		return example;
-	}
-
 }

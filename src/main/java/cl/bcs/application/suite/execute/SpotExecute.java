@@ -11,20 +11,20 @@ import org.testng.annotations.Test;
 
 import com.relevantcodes.extentreports.LogStatus;
 
-import cl.bcs.application.factory.util.ExtentReport;
+import cl.bcs.application.driver.factory.FactoryExtentReport;
 import cl.bcs.application.factory.util.ReadExcelImpl;
 import cl.bcs.application.factory.util.Session;
 import cl.bcs.application.factory.util.SpotExcel;
+import cl.bcs.application.file.util.UtilesSelenium;
 import cl.bcs.application.suite.Spot;
-import cl.bcs.application.utiles.UtilesSelenium;
 
 public class SpotExecute {
-	public static class ExtentReportsClass extends ExtentReport{
+	public static class ExtentReportsClass extends FactoryExtentReport{
 		List<SpotExcel> usuario = null;
 		@BeforeTest
 		public void startReport() {
 			UtilesSelenium.executeTest();
-			ConfiguracionInicialER();
+			configuracionInicialER();
 			Spot.inicio();
 			usuario = ReadExcelImpl.leerExcel();
 			

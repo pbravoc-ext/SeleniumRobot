@@ -7,11 +7,11 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
 
 import cl.bcs.application.constantes.util.ConstantesCuentaInversion;
-import cl.bcs.application.factory.util.ExtentReport;
 import cl.bcs.application.factory.util.Session;
 import cl.bcs.application.factory.util.SpotExcel;
 import cl.bcs.application.file.util.Log4jFactory;
-import cl.bcs.application.utiles.UtilesSelenium;
+import cl.bcs.application.file.util.UtilesExtentReport;
+import cl.bcs.application.file.util.UtilesSelenium;
 import cl.bcs.plataforma.CerrarVentana;
 import cl.bcs.spot.SeleccionarSpot;
 
@@ -63,9 +63,9 @@ public class SelecionarCuentaInversion {
 		UtilesSelenium.findElement(By.xpath(ConstantesCuentaInversion.XPATH_FOLIO_COMPROBANTE)).sendKeys(Session.getComprobante()+Keys.ENTER);
 		
 		UtilesSelenium.findElement(By.xpath(ConstantesCuentaInversion.XPATH_FECHA)).click();
-		ExtentReport.Captura("Concepto: Compra Mesa Spot");
+		UtilesExtentReport.captura("Concepto: Compra Mesa Spot");
 		UtilesSelenium.findElement(By.xpath(ConstantesCuentaInversion.XPATH_TIPO_COMPROBANTE)).sendKeys(Keys.TAB);
-		ExtentReport.Captura("Folio comprobante");
+		UtilesExtentReport.captura("Folio comprobante");
 		LOGGER.info("CUENTA INVERSION COMPLETADA");
 		CerrarVentana.init();
 		

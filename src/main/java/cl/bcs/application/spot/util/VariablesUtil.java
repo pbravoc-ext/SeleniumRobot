@@ -1,5 +1,9 @@
 package cl.bcs.application.spot.util;
-
+/**
+ * 
+ * @author Narveider
+ *
+ */
 public class VariablesUtil {
 	private String puntaCompra;
 	private String puntaVenta;
@@ -10,6 +14,10 @@ public class VariablesUtil {
 	private String compraMil;
 	private String ventaMil;
 	
+	/**
+	 * 
+	 * @return
+	 */
 	
 	public String getPuntaCompra() {
 		return puntaCompra;

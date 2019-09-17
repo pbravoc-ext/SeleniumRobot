@@ -10,9 +10,6 @@ import java.io.Serializable;
 
 public class SpotExcel implements Serializable {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	private String variacion; 
 	private String rut;
@@ -26,7 +23,7 @@ public class SpotExcel implements Serializable {
 	private String tipoComprobante;
 	private String agente;
 	private String paridadCierre;
-	
+	private String operacion;
 	
 	public String getRut() {
 		return rut;
@@ -99,5 +96,11 @@ public class SpotExcel implements Serializable {
 	}
 	public void setAgente(String agente) {
 		this.agente = agente;
+	}
+	public String getOperacion() {
+		return operacion;
+	}
+	public void setOperacion(String operacion) {
+		this.operacion = operacion;
 	}
 }

@@ -2,21 +2,13 @@ package cl.bcs.application.factory.util;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-import org.apache.poi.ss.usermodel.Sheet;
-import org.apache.poi.ss.usermodel.Cell;
-import org.apache.poi.ss.usermodel.CellType;
-import org.apache.poi.ss.usermodel.DateUtil;
 import org.apache.poi.ss.usermodel.Row;
-import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-
-import com.monitorjbl.xlsx.StreamingReader;
 
 /**
  * 
@@ -55,6 +47,7 @@ public class ReadExcelImpl {
 				u.setTipoComprobante(validacion(row.getCell(9).toString()));
 				u.setAgente(validacion(row.getCell(10).toString()));
 				u.setParidadCierre(validacion(row.getCell(11).toString()));
+				u.setOperacion(validacion(row.getCell(12).toString()));
 				usuario.add(u);
 			}
 

@@ -8,9 +8,13 @@ import org.openqa.selenium.WebElement;
 import cl.bcs.application.constantes.util.ConstantesMantenedorPuntas;
 import cl.bcs.application.constantes.util.ConstantesSpot;
 import cl.bcs.application.file.util.Log4jFactory;
-import cl.bcs.application.utiles.UtilesSelenium;
+import cl.bcs.application.file.util.UtilesSelenium;
 import cl.bcs.spot.MantenedorPuntas;
-
+/**
+ * 
+ * @author Narveider
+ *
+ */
 public class MantenedorUtil {
 	
 	private static final Logger LOGGER = Log4jFactory.getLogger(MantenedorPuntas.class);
@@ -19,7 +23,6 @@ public class MantenedorUtil {
 	 * 
 	 * @return
 	 */
-
 	protected static String validarmoneda() {
 		String moneda = "usd";
 		if (moneda.equalsIgnoreCase(ConstantesSpot.MONEDA_EUR)) {
@@ -31,11 +34,11 @@ public class MantenedorUtil {
 			return null;
 		}
 	}
+	
 	/**
 	 * 
 	 * @return
 	 */
-
 	protected static boolean findEUR() {
 		boolean result = false;
 		try {
