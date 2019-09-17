@@ -1,4 +1,4 @@
-package cl.bcs.application.factory.util;
+package cl.bcs.application.constantes.util;
 
 /**
  * 
