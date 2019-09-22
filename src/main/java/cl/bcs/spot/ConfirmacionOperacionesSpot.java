@@ -9,6 +9,7 @@ import cl.bcs.application.constantes.util.ConstantesConfirmacionOperacionSpot;
 import cl.bcs.application.factory.util.Session;
 import cl.bcs.application.factory.util.SpotExcel;
 import cl.bcs.application.file.util.Log4jFactory;
+import cl.bcs.application.file.util.UtilesExtentReport;
 import cl.bcs.application.file.util.UtilesSelenium;
 import cl.bcs.plataforma.CerrarVentana;
 
@@ -37,8 +38,8 @@ public class ConfirmacionOperacionesSpot {
 		
 		UtilesSelenium.findElement(By.xpath(ConstantesConfirmacionOperacionSpot.XPATH_FOLIO_INPUT)).sendKeys(Session.getFolio()+Keys.ENTER);
 		UtilesSelenium.findElement(By.xpath(ConstantesConfirmacionOperacionSpot.XPATH_THERE)).click();
-		
-		LOGGER.info("Folio: "+Session.getFolio());
+
+		UtilesExtentReport.captura("Confirmacion operacion spot - Buscar folio - Spot");
 		
 		//Confirmar
 		UtilesSelenium.findElement(By.xpath(ConstantesConfirmacionOperacionSpot.XPATH_BOTON_CONFIRMAR)).click();

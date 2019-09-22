@@ -5,7 +5,6 @@ import java.util.List;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 import com.relevantcodes.extentreports.LogStatus;
@@ -23,7 +22,6 @@ import cl.bcs.application.spot.util.IngresoOperacionSpotUtil;
 import cl.bcs.plataforma.CerrarVentana;
 
 public class IngresoOperacionSpot extends IngresoOperacionSpotUtil {
-	private static WebDriver webDriver = Session.getConfigDriver().getWebDriver();
 
 	private static final Logger LOGGER = Log4jFactory.getLogger(IngresoOperacionSpot.class);
 	private static String operacion = Session.getSpot().getOperacion();
@@ -53,7 +51,7 @@ public class IngresoOperacionSpot extends IngresoOperacionSpotUtil {
 			UtilesSelenium.findElement(By.xpath(ConstantesIngresoOperacionSpot.XPATH_BTN_LIMPIAR)).click();
 
 			Session.getConfigDriver().waitForLoad();
-			List<WebElement> bcsComboboxBase = webDriver
+			List<WebElement> bcsComboboxBase = Session.getConfigDriver().getWebDriver()
 					.findElements(By.id(ConstantesIngresoOperacionSpot.ID_BCSCOMBO_MONEDAPRINCIPAL));
 			for (WebElement webElement : bcsComboboxBase) {
 				WebElement inputEntregamos = webElement
@@ -66,7 +64,7 @@ public class IngresoOperacionSpot extends IngresoOperacionSpotUtil {
 			LOGGER.info("Moneda Principal Seleccionada");
 
 			Session.getConfigDriver().waitForLoad();
-			List<WebElement> bcsComboboxBase2 = webDriver
+			List<WebElement> bcsComboboxBase2 = Session.getConfigDriver().getWebDriver()
 					.findElements(By.id(ConstantesIngresoOperacionSpot.ID_BCSCOMBO_MONEDASECUNDARIA));
 			for (WebElement webElement2 : bcsComboboxBase2) {
 				WebElement inputEntregamos2 = webElement2
@@ -231,6 +229,9 @@ public class IngresoOperacionSpot extends IngresoOperacionSpotUtil {
 			UtilesSelenium.findElement(By.xpath(ConstantesIngresoOperacionSpot.XPATH_INPUT_RECIBIMOS))
 					.sendKeys(Keys.CLEAR, ConstantesSpot.SUB_ZEROS, Keys.ENTER);
 			Session.getConfigDriver().waitForLoad();
+			
+			UtilesExtentReport.captura("Ingresar operacion spot - Limpieza forma de pago - Spot");
+			
 			String pago = "";
 			switch (datos.getPortafolio()) {
 			case "0":
@@ -281,6 +282,8 @@ public class IngresoOperacionSpot extends IngresoOperacionSpotUtil {
 			UtilesSelenium.findElement(By.xpath(ConstantesIngresoOperacionSpot.XPATH_SELECCIONAR_OTROS)).click();
 			Session.getConfigDriver().waitForLoad();
 
+			UtilesExtentReport.captura("Ingresar operacion spot - Otros - Spot");
+			
 			String agenteSpot = UtilesSelenium.findElement(By.xpath(ConstantesIngresoOperacionSpot.XPATH_AGENTE))
 					.getAttribute(ConstantesSpotTags.TAG_VALUE);
 			LOGGER.info("Agente Spot: " + agenteSpot);
@@ -306,10 +309,13 @@ public class IngresoOperacionSpot extends IngresoOperacionSpotUtil {
 						"Tipo de Comprobante no es Factura Electronica Exenta, por lo que se ingresó el Tipo de Comprobante correcto");
 			}
 
+			UtilesExtentReport.captura("Ingresar operacion spot - Informacion lista para enviar - Otros - Spot");
+			
 			// Aceptar
 			UtilesSelenium.findElement(By.xpath(ConstantesIngresoOperacionSpot.XPATH_BTN_ACEPTAR)).click();
 			Session.getConfigDriver().waitForLoad();
 
+			UtilesExtentReport.captura("Ingresar operacion spot - Folio Otros - Spot");
 			// Generar Folio
 			String informacion = UtilesSelenium.findElement(By.xpath(ConstantesIngresoOperacionSpot.XPATH_LABEL_FOLIO)).getText();
 			LOGGER.info("Dato Label: " + informacion);
@@ -317,16 +323,17 @@ public class IngresoOperacionSpot extends IngresoOperacionSpotUtil {
 			String rescatarFolioOp = SpotUtiles.folio(informacion);
 			Session.getConfigDriver().waitForLoad();
 			Session.setFolio(rescatarFolioOp);
+			Session.getConfigDriver().logger.log(LogStatus.INFO, "Folio ","Datos: "+Session.getFolio());
 			LOGGER.info("FOLIO SESION: " + Session.getFolio());
-			UtilesExtentReport.captura("Ingresar operacion spot - Otros Seleccion folio - Spot");
 			// Botón Acpetar información..
 			UtilesSelenium.findElement(By.xpath(ConstantesIngresoOperacionSpot.XPATH_BTN_ACEPTARINFO)).click();
 			Session.getConfigDriver().waitForLoad();
 			UtilesExtentReport.captura("Ingresar operacion spot - Otros - Spot");
 			CerrarVentana.init();
-			UtilesExtentReport.captura("Ingresar operacion spot - Otros - Spot");
 			return true;
 		} catch (Exception e) {
+			Session.getConfigDriver().logger.log(LogStatus.ERROR, "Forma de pago", "Datos: " + e.getMessage());
+			LOGGER.error(e.getMessage());
 			UtilesExtentReport.capturaError("Error : Ingresar operacion spot - Otros - Spot ");
 			return false;
 		}
