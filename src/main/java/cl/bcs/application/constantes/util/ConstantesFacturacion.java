@@ -46,5 +46,7 @@ public class ConstantesFacturacion {
 	public static final String XPATH_COMPARARFOLIOFA2C = ")]";
 	public static final String XPATHERE = "//*[@id='grid-movimientos-facturar']/span/div[2]/div[4]/table//span[@ng-bind='dataItem.FolioTransaccion' and contains(text(),"
 			+ Session.getFolio() + ")]";
+	
+	public static final String XPATH_BTN_ERROR = "/html/body/div[133]/div[1]/div/a[2]";
 
 }

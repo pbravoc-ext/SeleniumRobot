@@ -3,14 +3,25 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test name="Default test(failed)">
     <classes>
-      <class name="cl.bcs.optimus.application.suite.execute.SpotExecute$ExtentReportsClass">
+      <class name="cl.bcs.application.suite.execute.SpotExecute$ExtentReportsClass">
         <methods>
-          <include name="getResult"/>
-          <include name="variacion1"/>
-          <include name="startReport"/>
+          <include name="variacion3"/>
+          <include name="variacion2"/>
           <include name="endReport"/>
+          <include name="startReport"/>
+          <include name="variacion10"/>
+          <include name="variacion11"/>
+          <include name="variacion9"/>
+          <include name="variacion8"/>
+          <include name="variacion12"/>
+          <include name="variacion5"/>
+          <include name="variacion7"/>
+          <include name="variacion4"/>
+          <include name="variacion1"/>
+          <include name="variacion6"/>
+          <include name="getResult"/>
         </methods>
-      </class> <!-- cl.bcs.optimus.application.suite.execute.SpotExecute$ExtentReportsClass -->
+      </class> <!-- cl.bcs.application.suite.execute.SpotExecute$ExtentReportsClass -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

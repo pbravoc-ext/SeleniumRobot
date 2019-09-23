@@ -17,7 +17,7 @@ public class MantenedorPuntas extends MantenedorUtil {
 
 	public static boolean mantenedorPuntas() {
 		LOGGER.info("Mantenedor de puntas -  Spot");
-		Session.getConfigDriver().waitForLoad();
+		Session.getConfigDriver().waitForLoad(8000);
 		VariablesUtil m = new VariablesUtil();
 		try {
 			switch (validarmoneda()) {

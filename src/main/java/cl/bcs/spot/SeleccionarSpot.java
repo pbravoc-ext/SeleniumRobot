@@ -33,11 +33,13 @@ public class SeleccionarSpot {
 		}
 		return false;
 	}
+	
 
 	/**
 	 * 
 	 * @return
 	 */
+	
 	public static boolean seleccionarMantenedorPuntas() {
 		try {
 			Session.getConfigDriver().waitForLoad();
@@ -49,6 +51,7 @@ public class SeleccionarSpot {
 		}
 		return false;
 	}
+	
 	public static boolean seleccionarIngresoOperacionSpot() {
 		try {
 			UtilesSelenium.findElement(By.id(ConstantesSpot.ID_SPOT_INGRESO_OPERACION_SPOT)).click();
@@ -84,6 +87,7 @@ public class SeleccionarSpot {
 		}
 		return false;
 	}
+	
 	public static boolean seleccionarMenuFacturacion() {
 		try {
 			Session.getConfigDriver().waitForLoad();
