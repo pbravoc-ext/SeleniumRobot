@@ -111,5 +111,29 @@ public class SeleccionarSpot {
 		}
 		return false;
 	}
+	
+	public static boolean seleccionarMenuTesoreria() {
+		try {
+			Session.getConfigDriver().waitForLoad();
+			UtilesSelenium.findElement(By.id(ConstantesSpot.ID_SPOT_FORM_MODULO_FACTURACION_SPOT)).click();
+			LOGGER.info("Seleccion Modulo Gestión Facturación - Spot");
+			return true;
+		} catch (Exception e) {
+			LOGGER.error(e.getMessage() + " - Spot");
+		}
+		return false;
+	}
+	
+	public static boolean seleccionarGestionTesoreria() {
+		try {
+			Session.getConfigDriver().waitForLoad();
+			UtilesSelenium.findElement(By.id(ConstantesSpot.ID_SPOT_FORM_MODULO_FACTURACION_SPOT)).click();
+			LOGGER.info("Seleccion Modulo Gestión Facturación - Spot");
+			return true;
+		} catch (Exception e) {
+			LOGGER.error(e.getMessage() + " - Spot");
+		}
+		return false;
+	}
 
 }

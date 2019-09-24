@@ -46,7 +46,7 @@ public class IngresoOperacionSpotUtil {
 			Date date2 = sdf.parse(fecha2);
 			int valor = date1.compareTo(date2);
 			if (valor >= 0) {
-				UtilesExtentReport.captura("Fecha Correcta");
+				UtilesExtentReport.captura("Validacion de fecha es correcta");
 				LOGGER.info("Fecha Correcta ");
 			} else {
 				UtilesExtentReport.capturaError("Fecha forma de pago 'Recibimos' es mayor a 'Entregamos'");

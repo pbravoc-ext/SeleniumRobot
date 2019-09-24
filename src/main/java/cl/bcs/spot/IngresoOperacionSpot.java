@@ -1,5 +1,8 @@
 package cl.bcs.spot;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import org.apache.log4j.Logger;
@@ -273,6 +276,22 @@ public class IngresoOperacionSpot extends IngresoOperacionSpotUtil {
 			}
 			Session.getConfigDriver().waitForLoad();
 			UtilesExtentReport.captura("Ingresar operacion spot - Forma de pago - Spot");
+			
+			
+			
+			//
+			//*[@id="FORM_MesaSpot"]/div[2]/div/form/div[1]/div[3]/div/div[2]/div/div/div/bcs-forma-pago-mesa/div/div[3]/table/tbody/tr/td[3]
+//			/html/body/div[6]/div[2]/div[2]/div/form/div[1]/div[3]/div/div[2]/div/div/div/bcs-forma-pago-mesa/div/div[3]/table/tbody/tr/td[3]
+			System.out.println("=====================================");
+			String fechaEntregamos = UtilesSelenium.findElement(By.xpath("//*[@id='FORM_MesaSpot']/div[2]/div/form/div[1]/div[3]/div/div[2]/div/div/div/bcs-forma-pago-mesa/div/div[3]/table/tbody/tr/td[3]"))
+					.getText();
+			System.out.println(fechaEntregamos);	
+			String fechaRecibimos = UtilesSelenium.findElement(By.xpath("//*[@id='FORM_MesaSpot']/div[2]/div/form/div[1]/div[3]/div/div[2]/div/div/div/bcs-forma-pago-mesa/div/div[4]/table/tbody/tr/td[3]"))
+					.getText();
+			comparar(fechaEntregamos,fechaRecibimos);
+			System.out.println("=====================================");
+			
+			
 			return true;
 		} catch (Exception e) {
 			Session.getConfigDriver().logger.log(LogStatus.ERROR, "Forma de pago", "Datos: " + e.getMessage());
@@ -345,5 +364,7 @@ public class IngresoOperacionSpot extends IngresoOperacionSpotUtil {
 			UtilesExtentReport.capturaError("Error : Ingresar operacion spot - Otros - Spot ");
 			return false;
 		}
+				
 	}
+
 }

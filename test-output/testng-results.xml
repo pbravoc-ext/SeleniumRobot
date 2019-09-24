@@ -2,16 +2,16 @@
 <testng-results total="12" passed="0" failed="12" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2019-09-23T16:15:43Z" name="Default suite" finished-at="2019-09-23T16:23:09Z" duration-ms="445564">
+  <suite started-at="2019-09-23T17:36:31Z" name="Default suite" finished-at="2019-09-23T17:49:13Z" duration-ms="762390">
     <groups>
     </groups>
-    <test started-at="2019-09-23T16:15:43Z" name="Default test" finished-at="2019-09-23T16:23:09Z" duration-ms="445564">
+    <test started-at="2019-09-23T17:36:31Z" name="Default test" finished-at="2019-09-23T17:49:13Z" duration-ms="762390">
       <class name="cl.bcs.application.suite.execute.SpotExecute$ExtentReportsClass">
-        <test-method is-config="true" signature="startReport()[pri:0, instance:cl.bcs.application.suite.execute.SpotExecute$ExtentReportsClass@6ff29830]" started-at="2019-09-23T12:15:43Z" name="startReport" finished-at="2019-09-23T12:16:01Z" duration-ms="17703" status="PASS">
+        <test-method is-config="true" signature="startReport()[pri:0, instance:cl.bcs.application.suite.execute.SpotExecute$ExtentReportsClass@6ff29830]" started-at="2019-09-23T13:36:31Z" name="startReport" finished-at="2019-09-23T13:36:48Z" duration-ms="17319" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- startReport -->
-        <test-method signature="variacion1()[pri:1, instance:cl.bcs.application.suite.execute.SpotExecute$ExtentReportsClass@6ff29830]" started-at="2019-09-23T12:16:01Z" name="variacion1" finished-at="2019-09-23T12:20:02Z" duration-ms="241236" status="FAIL">
+        <test-method signature="variacion1()[pri:1, instance:cl.bcs.application.suite.execute.SpotExecute$ExtentReportsClass@6ff29830]" started-at="2019-09-23T13:36:48Z" name="variacion1" finished-at="2019-09-23T13:40:52Z" duration-ms="243505" status="FAIL">
           <exception class="java.lang.AssertionError">
             <message>
               <![CDATA[expected [true] but found [false]]]>
@@ -53,7 +53,7 @@
           <reporter-output>
           </reporter-output>
         </test-method> <!-- variacion1 -->
-        <test-method is-config="true" signature="getResult(org.testng.ITestResult)[pri:0, instance:cl.bcs.application.suite.execute.SpotExecute$ExtentReportsClass@6ff29830]" started-at="2019-09-23T12:20:02Z" name="getResult" finished-at="2019-09-23T12:20:03Z" duration-ms="684" status="PASS">
+        <test-method is-config="true" signature="getResult(org.testng.ITestResult)[pri:0, instance:cl.bcs.application.suite.execute.SpotExecute$ExtentReportsClass@6ff29830]" started-at="2019-09-23T13:40:52Z" name="getResult" finished-at="2019-09-23T13:40:52Z" duration-ms="460" status="PASS">
           <params>
             <param index="0">
               <value>
@@ -64,7 +64,7 @@
           <reporter-output>
           </reporter-output>
         </test-method> <!-- getResult -->
-        <test-method signature="variacion2()[pri:2, instance:cl.bcs.application.suite.execute.SpotExecute$ExtentReportsClass@6ff29830]" started-at="2019-09-23T12:20:03Z" name="variacion2" finished-at="2019-09-23T12:22:28Z" duration-ms="144683" status="FAIL">
+        <test-method signature="variacion2()[pri:2, instance:cl.bcs.application.suite.execute.SpotExecute$ExtentReportsClass@6ff29830]" started-at="2019-09-23T13:40:52Z" name="variacion2" finished-at="2019-09-23T13:43:46Z" duration-ms="174102" status="FAIL">
           <exception class="java.lang.AssertionError">
             <message>
               <![CDATA[expected [true] but found [false]]]>
@@ -106,7 +106,7 @@
           <reporter-output>
           </reporter-output>
         </test-method> <!-- variacion2 -->
-        <test-method is-config="true" signature="getResult(org.testng.ITestResult)[pri:0, instance:cl.bcs.application.suite.execute.SpotExecute$ExtentReportsClass@6ff29830]" started-at="2019-09-23T12:22:28Z" name="getResult" finished-at="2019-09-23T12:22:28Z" duration-ms="434" status="PASS">
+        <test-method is-config="true" signature="getResult(org.testng.ITestResult)[pri:0, instance:cl.bcs.application.suite.execute.SpotExecute$ExtentReportsClass@6ff29830]" started-at="2019-09-23T13:43:46Z" name="getResult" finished-at="2019-09-23T13:43:47Z" duration-ms="480" status="PASS">
           <params>
             <param index="0">
               <value>
@@ -117,7 +117,7 @@
           <reporter-output>
           </reporter-output>
         </test-method> <!-- getResult -->
-        <test-method signature="variacion3()[pri:3, instance:cl.bcs.application.suite.execute.SpotExecute$ExtentReportsClass@6ff29830]" started-at="2019-09-23T12:22:28Z" name="variacion3" finished-at="2019-09-23T12:22:32Z" duration-ms="3602" status="FAIL">
+        <test-method signature="variacion3()[pri:3, instance:cl.bcs.application.suite.execute.SpotExecute$ExtentReportsClass@6ff29830]" started-at="2019-09-23T13:43:47Z" name="variacion3" finished-at="2019-09-23T13:43:54Z" duration-ms="7307" status="FAIL">
           <exception class="java.lang.AssertionError">
             <message>
               <![CDATA[expected [true] but found [false]]]>
@@ -159,7 +159,7 @@
           <reporter-output>
           </reporter-output>
         </test-method> <!-- variacion3 -->
-        <test-method is-config="true" signature="getResult(org.testng.ITestResult)[pri:0, instance:cl.bcs.application.suite.execute.SpotExecute$ExtentReportsClass@6ff29830]" started-at="2019-09-23T12:22:32Z" name="getResult" finished-at="2019-09-23T12:22:32Z" duration-ms="461" status="PASS">
+        <test-method is-config="true" signature="getResult(org.testng.ITestResult)[pri:0, instance:cl.bcs.application.suite.execute.SpotExecute$ExtentReportsClass@6ff29830]" started-at="2019-09-23T13:43:54Z" name="getResult" finished-at="2019-09-23T13:43:54Z" duration-ms="411" status="PASS">
           <params>
             <param index="0">
               <value>
@@ -170,7 +170,7 @@
           <reporter-output>
           </reporter-output>
         </test-method> <!-- getResult -->
-        <test-method signature="variacion4()[pri:4, instance:cl.bcs.application.suite.execute.SpotExecute$ExtentReportsClass@6ff29830]" started-at="2019-09-23T12:22:32Z" name="variacion4" finished-at="2019-09-23T12:22:36Z" duration-ms="3594" status="FAIL">
+        <test-method signature="variacion4()[pri:4, instance:cl.bcs.application.suite.execute.SpotExecute$ExtentReportsClass@6ff29830]" started-at="2019-09-23T13:43:54Z" name="variacion4" finished-at="2019-09-23T13:44:42Z" duration-ms="47465" status="FAIL">
           <exception class="java.lang.AssertionError">
             <message>
               <![CDATA[expected [true] but found [false]]]>
@@ -212,7 +212,7 @@
           <reporter-output>
           </reporter-output>
         </test-method> <!-- variacion4 -->
-        <test-method is-config="true" signature="getResult(org.testng.ITestResult)[pri:0, instance:cl.bcs.application.suite.execute.SpotExecute$ExtentReportsClass@6ff29830]" started-at="2019-09-23T12:22:36Z" name="getResult" finished-at="2019-09-23T12:22:36Z" duration-ms="434" status="PASS">
+        <test-method is-config="true" signature="getResult(org.testng.ITestResult)[pri:0, instance:cl.bcs.application.suite.execute.SpotExecute$ExtentReportsClass@6ff29830]" started-at="2019-09-23T13:44:42Z" name="getResult" finished-at="2019-09-23T13:44:42Z" duration-ms="398" status="PASS">
           <params>
             <param index="0">
               <value>
@@ -223,7 +223,7 @@
           <reporter-output>
           </reporter-output>
         </test-method> <!-- getResult -->
-        <test-method signature="variacion5()[pri:5, instance:cl.bcs.application.suite.execute.SpotExecute$ExtentReportsClass@6ff29830]" started-at="2019-09-23T12:22:36Z" name="variacion5" finished-at="2019-09-23T12:22:40Z" duration-ms="3606" status="FAIL">
+        <test-method signature="variacion5()[pri:5, instance:cl.bcs.application.suite.execute.SpotExecute$ExtentReportsClass@6ff29830]" started-at="2019-09-23T13:44:42Z" name="variacion5" finished-at="2019-09-23T13:44:49Z" duration-ms="7254" status="FAIL">
           <exception class="java.lang.AssertionError">
             <message>
               <![CDATA[expected [true] but found [false]]]>
@@ -265,7 +265,7 @@
           <reporter-output>
           </reporter-output>
         </test-method> <!-- variacion5 -->
-        <test-method is-config="true" signature="getResult(org.testng.ITestResult)[pri:0, instance:cl.bcs.application.suite.execute.SpotExecute$ExtentReportsClass@6ff29830]" started-at="2019-09-23T12:22:40Z" name="getResult" finished-at="2019-09-23T12:22:40Z" duration-ms="440" status="PASS">
+        <test-method is-config="true" signature="getResult(org.testng.ITestResult)[pri:0, instance:cl.bcs.application.suite.execute.SpotExecute$ExtentReportsClass@6ff29830]" started-at="2019-09-23T13:44:49Z" name="getResult" finished-at="2019-09-23T13:44:50Z" duration-ms="432" status="PASS">
           <params>
             <param index="0">
               <value>
@@ -276,7 +276,7 @@
           <reporter-output>
           </reporter-output>
         </test-method> <!-- getResult -->
-        <test-method signature="variacion6()[pri:6, instance:cl.bcs.application.suite.execute.SpotExecute$ExtentReportsClass@6ff29830]" started-at="2019-09-23T12:22:40Z" name="variacion6" finished-at="2019-09-23T12:22:44Z" duration-ms="3587" status="FAIL">
+        <test-method signature="variacion6()[pri:6, instance:cl.bcs.application.suite.execute.SpotExecute$ExtentReportsClass@6ff29830]" started-at="2019-09-23T13:44:50Z" name="variacion6" finished-at="2019-09-23T13:45:37Z" duration-ms="46881" status="FAIL">
           <exception class="java.lang.AssertionError">
             <message>
               <![CDATA[expected [true] but found [false]]]>
@@ -318,7 +318,7 @@
           <reporter-output>
           </reporter-output>
         </test-method> <!-- variacion6 -->
-        <test-method is-config="true" signature="getResult(org.testng.ITestResult)[pri:0, instance:cl.bcs.application.suite.execute.SpotExecute$ExtentReportsClass@6ff29830]" started-at="2019-09-23T12:22:44Z" name="getResult" finished-at="2019-09-23T12:22:44Z" duration-ms="442" status="PASS">
+        <test-method is-config="true" signature="getResult(org.testng.ITestResult)[pri:0, instance:cl.bcs.application.suite.execute.SpotExecute$ExtentReportsClass@6ff29830]" started-at="2019-09-23T13:45:37Z" name="getResult" finished-at="2019-09-23T13:45:37Z" duration-ms="430" status="PASS">
           <params>
             <param index="0">
               <value>
@@ -329,7 +329,7 @@
           <reporter-output>
           </reporter-output>
         </test-method> <!-- getResult -->
-        <test-method signature="variacion7()[pri:7, instance:cl.bcs.application.suite.execute.SpotExecute$ExtentReportsClass@6ff29830]" started-at="2019-09-23T12:22:44Z" name="variacion7" finished-at="2019-09-23T12:22:48Z" duration-ms="3616" status="FAIL">
+        <test-method signature="variacion7()[pri:7, instance:cl.bcs.application.suite.execute.SpotExecute$ExtentReportsClass@6ff29830]" started-at="2019-09-23T13:45:37Z" name="variacion7" finished-at="2019-09-23T13:45:44Z" duration-ms="7246" status="FAIL">
           <exception class="java.lang.AssertionError">
             <message>
               <![CDATA[expected [true] but found [false]]]>
@@ -371,7 +371,7 @@
           <reporter-output>
           </reporter-output>
         </test-method> <!-- variacion7 -->
-        <test-method is-config="true" signature="getResult(org.testng.ITestResult)[pri:0, instance:cl.bcs.application.suite.execute.SpotExecute$ExtentReportsClass@6ff29830]" started-at="2019-09-23T12:22:48Z" name="getResult" finished-at="2019-09-23T12:22:48Z" duration-ms="455" status="PASS">
+        <test-method is-config="true" signature="getResult(org.testng.ITestResult)[pri:0, instance:cl.bcs.application.suite.execute.SpotExecute$ExtentReportsClass@6ff29830]" started-at="2019-09-23T13:45:44Z" name="getResult" finished-at="2019-09-23T13:45:45Z" duration-ms="439" status="PASS">
           <params>
             <param index="0">
               <value>
@@ -382,7 +382,7 @@
           <reporter-output>
           </reporter-output>
         </test-method> <!-- getResult -->
-        <test-method signature="variacion8()[pri:8, instance:cl.bcs.application.suite.execute.SpotExecute$ExtentReportsClass@6ff29830]" started-at="2019-09-23T12:22:48Z" name="variacion8" finished-at="2019-09-23T12:22:52Z" duration-ms="3617" status="FAIL">
+        <test-method signature="variacion8()[pri:8, instance:cl.bcs.application.suite.execute.SpotExecute$ExtentReportsClass@6ff29830]" started-at="2019-09-23T13:45:45Z" name="variacion8" finished-at="2019-09-23T13:46:32Z" duration-ms="47542" status="FAIL">
           <exception class="java.lang.AssertionError">
             <message>
               <![CDATA[expected [true] but found [false]]]>
@@ -424,7 +424,7 @@
           <reporter-output>
           </reporter-output>
         </test-method> <!-- variacion8 -->
-        <test-method is-config="true" signature="getResult(org.testng.ITestResult)[pri:0, instance:cl.bcs.application.suite.execute.SpotExecute$ExtentReportsClass@6ff29830]" started-at="2019-09-23T12:22:52Z" name="getResult" finished-at="2019-09-23T12:22:52Z" duration-ms="468" status="PASS">
+        <test-method is-config="true" signature="getResult(org.testng.ITestResult)[pri:0, instance:cl.bcs.application.suite.execute.SpotExecute$ExtentReportsClass@6ff29830]" started-at="2019-09-23T13:46:32Z" name="getResult" finished-at="2019-09-23T13:46:33Z" duration-ms="478" status="PASS">
           <params>
             <param index="0">
               <value>
@@ -435,7 +435,7 @@
           <reporter-output>
           </reporter-output>
         </test-method> <!-- getResult -->
-        <test-method signature="variacion9()[pri:9, instance:cl.bcs.application.suite.execute.SpotExecute$ExtentReportsClass@6ff29830]" started-at="2019-09-23T12:22:52Z" name="variacion9" finished-at="2019-09-23T12:22:56Z" duration-ms="3617" status="FAIL">
+        <test-method signature="variacion9()[pri:9, instance:cl.bcs.application.suite.execute.SpotExecute$ExtentReportsClass@6ff29830]" started-at="2019-09-23T13:46:33Z" name="variacion9" finished-at="2019-09-23T13:46:40Z" duration-ms="7365" status="FAIL">
           <exception class="java.lang.AssertionError">
             <message>
               <![CDATA[expected [true] but found [false]]]>
@@ -477,7 +477,7 @@
           <reporter-output>
           </reporter-output>
         </test-method> <!-- variacion9 -->
-        <test-method is-config="true" signature="getResult(org.testng.ITestResult)[pri:0, instance:cl.bcs.application.suite.execute.SpotExecute$ExtentReportsClass@6ff29830]" started-at="2019-09-23T12:22:56Z" name="getResult" finished-at="2019-09-23T12:22:57Z" duration-ms="422" status="PASS">
+        <test-method is-config="true" signature="getResult(org.testng.ITestResult)[pri:0, instance:cl.bcs.application.suite.execute.SpotExecute$ExtentReportsClass@6ff29830]" started-at="2019-09-23T13:46:40Z" name="getResult" finished-at="2019-09-23T13:46:41Z" duration-ms="401" status="PASS">
           <params>
             <param index="0">
               <value>
@@ -488,7 +488,7 @@
           <reporter-output>
           </reporter-output>
         </test-method> <!-- getResult -->
-        <test-method signature="variacion10()[pri:10, instance:cl.bcs.application.suite.execute.SpotExecute$ExtentReportsClass@6ff29830]" started-at="2019-09-23T12:22:57Z" name="variacion10" finished-at="2019-09-23T12:23:00Z" duration-ms="3600" status="FAIL">
+        <test-method signature="variacion10()[pri:10, instance:cl.bcs.application.suite.execute.SpotExecute$ExtentReportsClass@6ff29830]" started-at="2019-09-23T13:46:41Z" name="variacion10" finished-at="2019-09-23T13:48:17Z" duration-ms="95867" status="FAIL">
           <exception class="java.lang.AssertionError">
             <message>
               <![CDATA[expected [true] but found [false]]]>
@@ -530,7 +530,7 @@
           <reporter-output>
           </reporter-output>
         </test-method> <!-- variacion10 -->
-        <test-method is-config="true" signature="getResult(org.testng.ITestResult)[pri:0, instance:cl.bcs.application.suite.execute.SpotExecute$ExtentReportsClass@6ff29830]" started-at="2019-09-23T12:23:00Z" name="getResult" finished-at="2019-09-23T12:23:01Z" duration-ms="462" status="PASS">
+        <test-method is-config="true" signature="getResult(org.testng.ITestResult)[pri:0, instance:cl.bcs.application.suite.execute.SpotExecute$ExtentReportsClass@6ff29830]" started-at="2019-09-23T13:48:17Z" name="getResult" finished-at="2019-09-23T13:48:17Z" duration-ms="466" status="PASS">
           <params>
             <param index="0">
               <value>
@@ -541,7 +541,7 @@
           <reporter-output>
           </reporter-output>
         </test-method> <!-- getResult -->
-        <test-method signature="variacion11()[pri:11, instance:cl.bcs.application.suite.execute.SpotExecute$ExtentReportsClass@6ff29830]" started-at="2019-09-23T12:23:01Z" name="variacion11" finished-at="2019-09-23T12:23:04Z" duration-ms="3620" status="FAIL">
+        <test-method signature="variacion11()[pri:11, instance:cl.bcs.application.suite.execute.SpotExecute$ExtentReportsClass@6ff29830]" started-at="2019-09-23T13:48:17Z" name="variacion11" finished-at="2019-09-23T13:48:24Z" duration-ms="7398" status="FAIL">
           <exception class="java.lang.AssertionError">
             <message>
               <![CDATA[expected [true] but found [false]]]>
@@ -583,7 +583,7 @@
           <reporter-output>
           </reporter-output>
         </test-method> <!-- variacion11 -->
-        <test-method is-config="true" signature="getResult(org.testng.ITestResult)[pri:0, instance:cl.bcs.application.suite.execute.SpotExecute$ExtentReportsClass@6ff29830]" started-at="2019-09-23T12:23:04Z" name="getResult" finished-at="2019-09-23T12:23:05Z" duration-ms="475" status="PASS">
+        <test-method is-config="true" signature="getResult(org.testng.ITestResult)[pri:0, instance:cl.bcs.application.suite.execute.SpotExecute$ExtentReportsClass@6ff29830]" started-at="2019-09-23T13:48:24Z" name="getResult" finished-at="2019-09-23T13:48:25Z" duration-ms="474" status="PASS">
           <params>
             <param index="0">
               <value>
@@ -594,7 +594,7 @@
           <reporter-output>
           </reporter-output>
         </test-method> <!-- getResult -->
-        <test-method signature="variacion12()[pri:12, instance:cl.bcs.application.suite.execute.SpotExecute$ExtentReportsClass@6ff29830]" started-at="2019-09-23T12:23:05Z" name="variacion12" finished-at="2019-09-23T12:23:08Z" duration-ms="3586" status="FAIL">
+        <test-method signature="variacion12()[pri:12, instance:cl.bcs.application.suite.execute.SpotExecute$ExtentReportsClass@6ff29830]" started-at="2019-09-23T13:48:25Z" name="variacion12" finished-at="2019-09-23T13:49:12Z" duration-ms="47583" status="FAIL">
           <exception class="java.lang.AssertionError">
             <message>
               <![CDATA[expected [true] but found [false]]]>
@@ -636,7 +636,7 @@
           <reporter-output>
           </reporter-output>
         </test-method> <!-- variacion12 -->
-        <test-method is-config="true" signature="getResult(org.testng.ITestResult)[pri:0, instance:cl.bcs.application.suite.execute.SpotExecute$ExtentReportsClass@6ff29830]" started-at="2019-09-23T12:23:08Z" name="getResult" finished-at="2019-09-23T12:23:09Z" duration-ms="464" status="PASS">
+        <test-method is-config="true" signature="getResult(org.testng.ITestResult)[pri:0, instance:cl.bcs.application.suite.execute.SpotExecute$ExtentReportsClass@6ff29830]" started-at="2019-09-23T13:49:12Z" name="getResult" finished-at="2019-09-23T13:49:13Z" duration-ms="403" status="PASS">
           <params>
             <param index="0">
               <value>
@@ -647,7 +647,7 @@
           <reporter-output>
           </reporter-output>
         </test-method> <!-- getResult -->
-        <test-method is-config="true" signature="endReport()[pri:0, instance:cl.bcs.application.suite.execute.SpotExecute$ExtentReportsClass@6ff29830]" started-at="2019-09-23T12:23:09Z" name="endReport" finished-at="2019-09-23T12:23:09Z" duration-ms="228" status="PASS">
+        <test-method is-config="true" signature="endReport()[pri:0, instance:cl.bcs.application.suite.execute.SpotExecute$ExtentReportsClass@6ff29830]" started-at="2019-09-23T13:49:13Z" name="endReport" finished-at="2019-09-23T13:49:13Z" duration-ms="209" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- endReport -->
