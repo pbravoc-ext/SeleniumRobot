@@ -30,6 +30,8 @@ public class ConstantesIngresoOperacionSpot {
 	public static final String XPATH_AGENTE = "//*[@id='UI_AGENTE']/input";
 
 	public static final String XPATH_PARIDAD_CIERRE = "//*[@id='UI_PARIDAD_CIERRE']/span/span/input[1]";
+	
+	public static final String XPATH_PARIDAD_COSTO = "//*[@id='UI_PARIDAD_COSTO']/span/span/input[1]";
 
 	public static final String XPATH_TC_COSTO = "//*[@id='UI_TC_COSTO']/span/span/input[1]";
 

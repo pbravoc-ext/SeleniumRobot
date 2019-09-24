@@ -1,5 +1,6 @@
 package cl.bcs.spot;
 
+import java.math.MathContext;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -24,6 +25,7 @@ import cl.bcs.application.file.util.SpotUtiles;
 import cl.bcs.application.file.util.UtilesExtentReport;
 import cl.bcs.application.file.util.UtilesSelenium;
 import cl.bcs.application.spot.util.IngresoOperacionSpotUtil;
+import cl.bcs.application.spot.util.VariablesUtil;
 import cl.bcs.plataforma.CerrarVentana;
 
 public class IngresoOperacionSpot extends IngresoOperacionSpotUtil {
@@ -44,6 +46,7 @@ public class IngresoOperacionSpot extends IngresoOperacionSpotUtil {
 		String tcCierre = datos.getMontoSecundario();
 		String paridadCierre = datos.getParidadCierre();
 		try {
+			// Ingreso cliente
 			UtilesSelenium.findElement(By.xpath(ConstantesIngresoOperacionSpot.XPATH_CLIENTE_PORTAFOLIO))
 					.sendKeys(cliente);
 			Session.getConfigDriver().waitForLoad();
@@ -54,23 +57,30 @@ public class IngresoOperacionSpot extends IngresoOperacionSpotUtil {
 			Session.getConfigDriver().waitForLoad();
 			UtilesSelenium.findElement(By.xpath(ConstantesIngresoOperacionSpot.XPATH_CLIENTE_PORTAFOLIO_SELECT))
 					.click();
+
 			Session.getConfigDriver().waitForLoad();
 			Session.getConfigDriver().waitForLoad(6000);
 			Session.getConfigDriver().logger.log(LogStatus.INFO, "Ingreso cliente", "Datos: " + cliente);
 			Session.getConfigDriver().waitForLoad();
+
+			// Boton limpiar
 			UtilesSelenium.findElement(By.xpath(ConstantesIngresoOperacionSpot.XPATH_BTN_LIMPIAR)).click();
 
+			// Seleccion moneda principal
 			Session.getConfigDriver().waitForLoad();
-			List<WebElement> bcsComboboxBase = Session.getConfigDriver().getWebDriver().findElements(By.id(ConstantesIngresoOperacionSpot.ID_BCSCOMBO_MONEDAPRINCIPAL));
+			List<WebElement> bcsComboboxBase = Session.getConfigDriver().getWebDriver()
+					.findElements(By.id(ConstantesIngresoOperacionSpot.ID_BCSCOMBO_MONEDAPRINCIPAL));
 			for (WebElement webElement : bcsComboboxBase) {
-				WebElement inputEntregamos = webElement.findElement(By.xpath(ConstantesIngresoOperacionSpot.XPATH_MONEDAPRINCIPAL));
+				WebElement inputEntregamos = webElement
+						.findElement(By.xpath(ConstantesIngresoOperacionSpot.XPATH_MONEDAPRINCIPAL));
 				inputEntregamos.clear();
-				inputEntregamos.sendKeys(datos.getMonedaPrincipal());			
+				inputEntregamos.sendKeys(datos.getMonedaPrincipal());
 			}
 			Session.getConfigDriver().logger.log(LogStatus.INFO, "Seleccion moneda principal",
 					"Datos: " + datos.getMonedaPrincipal());
 			LOGGER.info("Moneda Principal Seleccionada");
 
+			// selecion moneda sceundaria
 			Session.getConfigDriver().waitForLoad();
 			List<WebElement> bcsComboboxBase2 = Session.getConfigDriver().getWebDriver()
 					.findElements(By.id(ConstantesIngresoOperacionSpot.ID_BCSCOMBO_MONEDASECUNDARIA));
@@ -84,6 +94,7 @@ public class IngresoOperacionSpot extends IngresoOperacionSpotUtil {
 					"Datos: " + datos.getMonedaSecundaria());
 			LOGGER.info("Moneda Secundaria Seleccionada");
 
+			// Valores punta compra/venta
 			String iosPuntaCompra = UtilesSelenium
 					.findElement(By.xpath(ConstantesIngresoOperacionSpot.XPATH_PUNTA_COMPRA))
 					.getAttribute(ConstantesSpotTags.TAG_TITLE);
@@ -96,9 +107,12 @@ public class IngresoOperacionSpot extends IngresoOperacionSpotUtil {
 			Session.getConfigDriver().waitForLoad();
 			LOGGER.info("PuntaCompra: " + Session.getVariables().getPuntaCompra());
 			LOGGER.info("PuntaVenta: " + Session.getVariables().getPuntaVenta());
+
+			// Validacion valores punta compra/venta
 			validacionValoresPunta(Session.getVariables().getPuntaCompra(), Session.getVariables().getPuntaVenta(),
 					iosPuntaCompra, iosPuntaVenta);
 
+			// Ingreso operacion
 			UtilesSelenium.findElement(By.xpath(ConstantesIngresoOperacionSpot.XPATH_OPERACION)).clear();
 			Session.getConfigDriver().waitForLoad();
 			UtilesSelenium.findElement(By.xpath(ConstantesIngresoOperacionSpot.XPATH_OPERACION)).sendKeys(operacion);
@@ -107,6 +121,8 @@ public class IngresoOperacionSpot extends IngresoOperacionSpotUtil {
 			Session.getConfigDriver().waitForLoad();
 
 			if (datos.getMonedaPrincipal().equals(ConstantesSpot.MONEDA_EUR)) {
+
+				// Ingreso instrumento
 				UtilesSelenium.findElement(By.xpath(ConstantesIngresoOperacionSpot.XPATH_INSTRUMENTO)).click();
 				Session.getConfigDriver().waitForLoad();
 				UtilesSelenium.findElement(By.xpath(ConstantesIngresoOperacionSpot.XPATH_INSTRUMENTO)).clear();
@@ -117,21 +133,45 @@ public class IngresoOperacionSpot extends IngresoOperacionSpotUtil {
 				LOGGER.info("Instrumento Seleccionado" + instrumento);
 				Session.getConfigDriver().waitForLoad();
 
+				// Ingreso monto moneda principal
 				UtilesSelenium.findElement(By.xpath(ConstantesIngresoOperacionSpot.XPATH_MONEDA_PRINCIPAL_MONTO))
 						.sendKeys(ConstantesSpot.SUB_ZEROS + monedaPrincipal);
 				Session.getConfigDriver().logger.log(LogStatus.INFO, "Ingreso monto principal",
 						"Datos: " + ConstantesSpot.SUB_ZEROS + monedaPrincipal);
 				LOGGER.info("Ingreso monto principal: " + ConstantesSpot.SUB_ZEROS + monedaPrincipal);
 
+				// Ingreso monto paridad de cierre
 				UtilesSelenium.findElement(By.xpath(ConstantesIngresoOperacionSpot.XPATH_PARIDAD_CIERRE))
 						.sendKeys(ConstantesSpot.SUB_ZEROS + paridadCierre);
 				Session.getConfigDriver().logger.log(LogStatus.INFO, "Ingreso monto Paridad cierre",
 						"Datos: " + ConstantesSpot.SUB_ZEROS + paridadCierre);
 				LOGGER.info("Ingreso Paridad Cierre: " + ConstantesSpot.SUB_ZEROS + paridadCierre);
-				// String paridadCierre =
-				// UtilesSelenium.findElement(By.xpath(ConstantesIngresoOperacionSpot.XPATH_PARIDAD_CIERRE)).getAttribute("title");
+
+				// Rescatando datos
+				String margen = UtilesSelenium.findElement(By.xpath(ConstantesIngresoOperacionSpot.XPATH_MARGEN))
+						.getAttribute(ConstantesSpotTags.TAG_TITLE);
+				String montoEquivalente = UtilesSelenium
+						.findElement(By.xpath(ConstantesIngresoOperacionSpot.XPATH_MONTO_EQUIVALENTE))
+						.getAttribute(ConstantesSpotTags.TAG_TITLE);
+				String montoFinal = UtilesSelenium
+						.findElement(By.xpath(ConstantesIngresoOperacionSpot.XPATH_MONEDA_PRINCIPAL_MONTO))
+						.getAttribute(ConstantesSpotTags.TAG_TITLE);
+				String valorParidadCierre = UtilesSelenium
+						.findElement(By.xpath(ConstantesIngresoOperacionSpot.XPATH_PARIDAD_CIERRE))
+						.getAttribute(ConstantesSpotTags.TAG_TITLE);
+				String valorParidadCosto = UtilesSelenium
+						.findElement(By.xpath(ConstantesIngresoOperacionSpot.XPATH_PARIDAD_COSTO))
+						.getAttribute(ConstantesSpotTags.TAG_TITLE);
+
+				// Mostrando datos
+
+				validacionMargen_A(montoFinal, margen, valorParidadCosto, valorParidadCierre);
+
+				validacionMontoEquivalente_A(montoEquivalente, montoFinal, valorParidadCierre);
 
 			} else {
+
+				// Ingreso instrumento
 				UtilesSelenium.findElement(By.xpath(ConstantesIngresoOperacionSpot.XPATH_INSTRUMENTO)).click();
 				Session.getConfigDriver().waitForLoad();
 				UtilesSelenium.findElement(By.xpath(ConstantesIngresoOperacionSpot.XPATH_INSTRUMENTO)).clear();
@@ -142,67 +182,56 @@ public class IngresoOperacionSpot extends IngresoOperacionSpotUtil {
 				LOGGER.info("Instrumento Seleccionado: " + instrumento);
 				Session.getConfigDriver().waitForLoad();
 
+				// Ingreso monto moneda principal
 				UtilesSelenium.findElement(By.xpath(ConstantesIngresoOperacionSpot.XPATH_MONEDA_PRINCIPAL_MONTO))
 						.sendKeys(ConstantesSpot.SUB_ZEROS + monedaPrincipal + Keys.ENTER);
-
 				Session.getConfigDriver().logger.log(LogStatus.INFO, "Ingreso monto principal",
 						"Datos: " + ConstantesSpot.SUB_ZEROS + monedaPrincipal);
-
 				LOGGER.info("Ingreso monto principal: " + ConstantesSpot.SUB_ZEROS + monedaPrincipal);
 
+				// Ingreso monto TC cierre
 				UtilesSelenium.findElement(By.xpath(ConstantesIngresoOperacionSpot.XPATH_TC_CIERRE))
 						.sendKeys(ConstantesSpot.SUB_ZEROS + tcCierre + Keys.ENTER);
-
 				Session.getConfigDriver().logger.log(LogStatus.INFO, "Ingreso monto T/C cierre",
 						"Datos: " + ConstantesSpot.SUB_ZEROS + tcCierre);
-
 				LOGGER.info("Ingreso T/C Cierre: " + ConstantesSpot.SUB_ZEROS + tcCierre);
 
+				// Rescatando datos
 				String montoFinal = UtilesSelenium
 						.findElement(By.xpath(ConstantesIngresoOperacionSpot.XPATH_MONEDA_PRINCIPAL_MONTO))
 						.getAttribute(ConstantesSpotTags.TAG_TITLE);
-				LOGGER.info("Monto: " + montoFinal);
 				String valorTcCierre = UtilesSelenium
 						.findElement(By.xpath(ConstantesIngresoOperacionSpot.XPATH_TC_CIERRE))
 						.getAttribute(ConstantesSpotTags.TAG_TITLE);
-				LOGGER.info("T/C Cierre: " + valorTcCierre);
 				String valotTcCosto = UtilesSelenium
 						.findElement(By.xpath(ConstantesIngresoOperacionSpot.XPATH_TC_COSTO))
 						.getAttribute(ConstantesSpotTags.TAG_TITLE);
-				LOGGER.info("T/C Costo: " + valotTcCosto);
 				String montoEquivalente = UtilesSelenium
 						.findElement(By.xpath(ConstantesIngresoOperacionSpot.XPATH_MONTO_EQUIVALENTE))
 						.getAttribute(ConstantesSpotTags.TAG_TITLE);
-				LOGGER.info("Monto Equivalente: " + montoEquivalente);
-				float valor = formato(montoFinal) * formato(valorTcCierre);
-
-				if (Float.compare(formato(SpotUtiles.folio(montoEquivalente)), valor) == 0) {
-					Session.getConfigDriver().logger.log(LogStatus.INFO, "Monto Equivalente Valido",
-							"Datos: " + montoEquivalente);
-				} else {
-					Session.getConfigDriver().logger.log(LogStatus.WARNING, "Monto Equivalente no Valido",
-							"CLP " + valor + " debe ser igual a " + montoEquivalente);
-				}
-
 				String margen = UtilesSelenium.findElement(By.xpath(ConstantesIngresoOperacionSpot.XPATH_MARGEN))
-						.getAttribute("title");
-				float valor2 = (formato(montoFinal) * (formato(valotTcCosto) - formato(valorTcCierre)));
-				LOGGER.info("MARGEN RESCATADO: " + formato(SpotUtiles.folio(margen)));
-				LOGGER.info("MARGEN CALCULADO: " + valor);
-				if (Float.compare(formato(SpotUtiles.folio(margen)), valor2) == 0) {
-					Session.getConfigDriver().logger.log(LogStatus.INFO, "Margen Valido", "Datos: " + margen);
-				} else {
-					Session.getConfigDriver().logger.log(LogStatus.WARNING, "Margen no Valido",
-							"Margen debe ser igual a " + formato(montoFinal) + " por (" + formato(valorTcCierre) + " - "
-									+ formato(valotTcCosto) + ")");
-				}
+						.getAttribute(ConstantesSpotTags.TAG_TITLE);
+
+				// Mostrando datos
+				LOGGER.info("Monto: " + montoFinal);
+				LOGGER.info("T/C Cierre: " + valorTcCierre);
+				LOGGER.info("T/C Costo: " + valotTcCosto);
+				LOGGER.info("Monto Equivalente: " + montoEquivalente);
+//				float valor = formato(montoFinal) * formato(valorTcCierre);
+//
+//				validacionMontoEquivalente(montoEquivalente, valor);
+
+				validacionMargen_NA(montoFinal, margen, valotTcCosto, valorTcCierre);
+
+				validacionMontoEquivalente_NA(montoEquivalente, montoFinal, valorTcCierre);
 			}
 
 			/**
 			 * 
-			 * 6 ok 7 no arbitraje - ok 8 no arbitraje - margen=montoPpal*(tcCierre -
-			 * tcCosto) 7 arbitraje - montoEquivalente=montoPpal*paridadCierre 8 arbitraje -
-			 * verificar montoEquivalente sea calculado monto ppal * (paridad
+			 * 6 OK 7 no arbitraje - OK 8 no arbitraje - margen=montoPpal*(tcCierre
+			 * -tcCosto) OK 7 arbitraje - montoEquivalente=montoPpal*paridadCierre
+			 * 
+			 * 8 arbitraje - verificar Margen sea calculado monto ppal * (paridad
 			 * cierre-paridadCosto)
 			 * 
 			 * 
@@ -276,22 +305,21 @@ public class IngresoOperacionSpot extends IngresoOperacionSpotUtil {
 			}
 			Session.getConfigDriver().waitForLoad();
 			UtilesExtentReport.captura("Ingresar operacion spot - Forma de pago - Spot");
-			
-			
-			
+
 			//
-			//*[@id="FORM_MesaSpot"]/div[2]/div/form/div[1]/div[3]/div/div[2]/div/div/div/bcs-forma-pago-mesa/div/div[3]/table/tbody/tr/td[3]
+			// *[@id="FORM_MesaSpot"]/div[2]/div/form/div[1]/div[3]/div/div[2]/div/div/div/bcs-forma-pago-mesa/div/div[3]/table/tbody/tr/td[3]
 //			/html/body/div[6]/div[2]/div[2]/div/form/div[1]/div[3]/div/div[2]/div/div/div/bcs-forma-pago-mesa/div/div[3]/table/tbody/tr/td[3]
 			System.out.println("=====================================");
-			String fechaEntregamos = UtilesSelenium.findElement(By.xpath("//*[@id='FORM_MesaSpot']/div[2]/div/form/div[1]/div[3]/div/div[2]/div/div/div/bcs-forma-pago-mesa/div/div[3]/table/tbody/tr/td[3]"))
+			String fechaEntregamos = UtilesSelenium.findElement(By.xpath(
+					"//*[@id='FORM_MesaSpot']/div[2]/div/form/div[1]/div[3]/div/div[2]/div/div/div/bcs-forma-pago-mesa/div/div[3]/table/tbody/tr/td[3]"))
 					.getText();
-			System.out.println(fechaEntregamos);	
-			String fechaRecibimos = UtilesSelenium.findElement(By.xpath("//*[@id='FORM_MesaSpot']/div[2]/div/form/div[1]/div[3]/div/div[2]/div/div/div/bcs-forma-pago-mesa/div/div[4]/table/tbody/tr/td[3]"))
+			System.out.println(fechaEntregamos);
+			String fechaRecibimos = UtilesSelenium.findElement(By.xpath(
+					"//*[@id='FORM_MesaSpot']/div[2]/div/form/div[1]/div[3]/div/div[2]/div/div/div/bcs-forma-pago-mesa/div/div[4]/table/tbody/tr/td[3]"))
 					.getText();
-			comparar(fechaEntregamos,fechaRecibimos);
+			comparar(fechaEntregamos, fechaRecibimos);
 			System.out.println("=====================================");
-			
-			
+
 			return true;
 		} catch (Exception e) {
 			Session.getConfigDriver().logger.log(LogStatus.ERROR, "Forma de pago", "Datos: " + e.getMessage());
@@ -364,7 +392,7 @@ public class IngresoOperacionSpot extends IngresoOperacionSpotUtil {
 			UtilesExtentReport.capturaError("Error : Ingresar operacion spot - Otros - Spot ");
 			return false;
 		}
-				
+
 	}
 
 }

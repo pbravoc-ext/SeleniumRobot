@@ -10,8 +10,10 @@ import com.relevantcodes.extentreports.LogStatus;
 
 import cl.bcs.application.factory.util.Session;
 import cl.bcs.application.file.util.Log4jFactory;
+import cl.bcs.application.file.util.SpotUtiles;
 import cl.bcs.application.file.util.UtilesExtentReport;
 import cl.bcs.spot.MantenedorPuntas;
+
 /**
  * 
  * @author Narveider
@@ -30,6 +32,14 @@ public class IngresoOperacionSpotUtil {
 		cantidad = cantidad.replace(".", "");
 		cantidad = cantidad.replace(",", ".");
 		return Float.parseFloat(cantidad);
+	}
+
+	protected static String formatoBigDeciaml(String valor) {
+		valor = valor.replaceAll(" ", "");
+		valor = valor.replaceAll("[a-zA-Z]", "");
+		valor = valor.replace(".", "");
+		valor = valor.replace(",", ".");
+		return valor;
 	}
 
 	/**
@@ -89,4 +99,87 @@ public class IngresoOperacionSpotUtil {
 		}
 		Session.getConfigDriver().waitForLoad();
 	}
+
+	protected static void validacionMontoEquivalente(String montoEquivalente, float valor) {
+		if (Float.compare(formato(SpotUtiles.folio(montoEquivalente)), valor) == 0) {
+			Session.getConfigDriver().logger.log(LogStatus.INFO, "Monto Equivalente Valido",
+					"Datos: " + montoEquivalente);
+		} else {
+			Session.getConfigDriver().logger.log(LogStatus.WARNING, "Monto Equivalente no Valido",
+					"CLP " + valor + " debe ser igual a " + montoEquivalente);
+		}
+
+	}
+
+	protected static float formatoMontoMargen(String margen) {
+		margen = margen.replaceAll(" ", "");
+		margen = margen.replaceAll("[a-zA-Z]", "");
+		return formato(margen);
+	}
+
+	protected static void validacionMargen_NA(String montoFinal, String margen, String valotTcCosto,
+			String valorTcCierre) {
+		java.math.BigDecimal MontoBD = new java.math.BigDecimal(formatoBigDeciaml(montoFinal));
+		java.math.BigDecimal Costo = new java.math.BigDecimal(formatoBigDeciaml(valotTcCosto));
+		java.math.BigDecimal Cierre = new java.math.BigDecimal(formatoBigDeciaml(valorTcCierre));
+		java.math.BigDecimal Resta = Costo.subtract(Cierre);
+		java.math.BigDecimal MargenCalc = MontoBD.multiply(Resta);
+		java.math.BigDecimal MARGEN = new java.math.BigDecimal(formatoBigDeciaml(margen));
+		if (MargenCalc.compareTo(MARGEN) == 0) {
+			LOGGER.info("Validacion exitosa de Margene para no arbitraje: " + MARGEN);
+		} else {
+			LOGGER.info("Margen no valido a margen calculado");
+		}
+	}
+
+	protected static void validacionMargen_A(String montoFinal, String margen, String valorParidadCosto,
+			String valorParidadCierre) {
+		java.math.BigDecimal MontoBD = new java.math.BigDecimal(formatoBigDeciaml(montoFinal));
+		java.math.BigDecimal Costo = new java.math.BigDecimal(formatoBigDeciaml(valorParidadCosto));
+		java.math.BigDecimal Cierre = new java.math.BigDecimal(formatoBigDeciaml(valorParidadCierre));
+		java.math.BigDecimal Resta = Costo.subtract(Cierre);
+		java.math.BigDecimal MargenCalc = MontoBD.multiply(Resta);
+		java.math.BigDecimal MARGEN = new java.math.BigDecimal(formatoBigDeciaml(margen));
+		if (MargenCalc.compareTo(MARGEN) == 0) {
+			LOGGER.info("Validacion exitosa de Margen para arbitraje: " + MARGEN);
+		} else {
+			LOGGER.info("Margen no valido a margen calculado");
+		}
+	}
+
+	protected static void validacionMontoEquivalente_NA(String montoEquivalente, String montoFinal,
+			String valorTcCierre) {
+		java.math.BigDecimal nuevoMontoEquivalente = new java.math.BigDecimal(formatoBigDeciaml(montoEquivalente));
+		java.math.BigDecimal nuevoMontoFinal = new java.math.BigDecimal(formatoBigDeciaml(montoFinal));
+		java.math.BigDecimal nuevoValorTcCierre = new java.math.BigDecimal(formatoBigDeciaml(valorTcCierre));
+		java.math.BigDecimal montoCalculado = nuevoMontoFinal.multiply(nuevoValorTcCierre);
+		if (montoCalculado.compareTo(nuevoMontoEquivalente) == 0) {
+			Session.getConfigDriver().logger.log(LogStatus.INFO, "Monto Equivalente Valido para no arbitraje",
+					"Datos: " + nuevoMontoEquivalente);
+			LOGGER.info("Validacion exitosa de Monto Equivalente para arbitraje: " + nuevoMontoEquivalente);
+		}else {
+			Session.getConfigDriver().logger.log(LogStatus.WARNING, "Monto Equivalente no Valido para no arbitraje",
+					"CLP " + montoCalculado + " debe ser igual a " + nuevoMontoEquivalente);
+			LOGGER.info("Monto equivalente no valido para no arbitraje a monto calculado");
+		}
+
+	}
+
+	protected static void validacionMontoEquivalente_A(String montoEquivalente, String montoFinal,
+			String valorParidadCierre) {
+		java.math.BigDecimal nuevoMontoEquivalente = new java.math.BigDecimal(formatoBigDeciaml(montoEquivalente));
+		java.math.BigDecimal nuevoMontoFinal = new java.math.BigDecimal(formatoBigDeciaml(montoFinal));
+		java.math.BigDecimal nuevoValorParidadCierre = new java.math.BigDecimal(formatoBigDeciaml(valorParidadCierre));
+		java.math.BigDecimal montoCalculado = nuevoMontoFinal.multiply(nuevoValorParidadCierre);
+		if (montoCalculado.compareTo(nuevoMontoFinal) == 0) {
+			Session.getConfigDriver().logger.log(LogStatus.INFO, "Monto Equivalente Valido para arbitraje",
+					"Datos: " + nuevoMontoEquivalente);
+			LOGGER.info("Validacion exitosa de Monto Equivalente para arbitraje: " + nuevoMontoEquivalente);
+		}else {
+			Session.getConfigDriver().logger.log(LogStatus.WARNING, "Monto Equivalente no Valido para arbitraje",
+					"CLP " + montoCalculado + " debe ser igual a " + nuevoMontoEquivalente);
+			LOGGER.info("Monto equivalente no valido para arbitraje a monto calculado");
+		}
+	}
+
 }
