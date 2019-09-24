@@ -8,7 +8,7 @@ package cl.bcs.application.constantes.util;
 public class ConstantesIngresoOperacionSpot {
 
 	public static final String XPATH_CLIENTE_PORTAFOLIO = "//*[@id='UI_SOCIO_NEGOCIO']/span/span/span/input";
-
+	
 	public static final String XPATH_CLIENTE_PORTAFOLIO_ARROW = "//*[@id='UI_SOCIO_NEGOCIO']/span/span/span/span";
 
 	public static final String XPATH_CLIENTE_PORTAFOLIO_SELECT = "/html/body/div[8]/div/div[2]/ul/li/span";

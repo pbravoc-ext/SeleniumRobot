@@ -136,5 +136,29 @@ public class SeleccionarSpot {
 		}
 		return false;
 	}
+	
+	public static boolean seleccionarMenuCuentaInversion() {
+		try {
+			Session.getConfigDriver().waitForLoad();
+			UtilesSelenium.findElement(By.id(ConstantesSpot.ID_SPOT_MENU_CUENTA_INVERSION)).click();
+			LOGGER.info("Seleccion Menu Cuenta Inversion - Spot");
+			return true;
+		} catch (Exception e) {
+			LOGGER.error(e.getMessage() + " - Spot");
+		}
+		return false;
+	}
+	
+	public static boolean seleccionarCuentaInversionCliente() {
+		try {
+			Session.getConfigDriver().waitForLoad();
+			UtilesSelenium.findElement(By.id(ConstantesSpot.ID_SPOT_FORM_CUENTA_INVERSION_CLIENTE)).click();
+			LOGGER.info("Seleccion Cuenta Inversion Cliente - Spot");
+			return true;
+		} catch (Exception e) {
+			LOGGER.error(e.getMessage() + " - Spot");
+		}
+		return false;
+	}
 
 }

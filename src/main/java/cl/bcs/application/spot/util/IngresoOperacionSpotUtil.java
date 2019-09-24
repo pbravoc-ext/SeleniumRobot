@@ -100,21 +100,24 @@ public class IngresoOperacionSpotUtil {
 		Session.getConfigDriver().waitForLoad();
 	}
 
-	protected static void validacionMontoEquivalente(String montoEquivalente, float valor) {
-		if (Float.compare(formato(SpotUtiles.folio(montoEquivalente)), valor) == 0) {
-			Session.getConfigDriver().logger.log(LogStatus.INFO, "Monto Equivalente Valido",
-					"Datos: " + montoEquivalente);
-		} else {
-			Session.getConfigDriver().logger.log(LogStatus.WARNING, "Monto Equivalente no Valido",
-					"CLP " + valor + " debe ser igual a " + montoEquivalente);
-		}
-
-	}
-
 	protected static float formatoMontoMargen(String margen) {
 		margen = margen.replaceAll(" ", "");
 		margen = margen.replaceAll("[a-zA-Z]", "");
 		return formato(margen);
+	}
+	
+	protected static boolean validacionInputCosto(String Dato) {		
+		if(Dato.equals("true")) {
+			Session.getConfigDriver().logger.log(LogStatus.INFO, "Validacion de campo T/C Costo",
+					"T/C Costo no esta disponible");
+			LOGGER.info("T/C Costo no esta disponible");
+			return true;
+		}else {
+			Session.getConfigDriver().logger.log(LogStatus.INFO, "Validacion de campo T/C Costo",
+					"T/C Costo esta disponible");
+			LOGGER.info("T/C Costo esta disponible");
+			return false;
+		}
 	}
 
 	protected static void validacionMargen_NA(String montoFinal, String margen, String valotTcCosto,
@@ -126,9 +129,13 @@ public class IngresoOperacionSpotUtil {
 		java.math.BigDecimal MargenCalc = MontoBD.multiply(Resta);
 		java.math.BigDecimal MARGEN = new java.math.BigDecimal(formatoBigDeciaml(margen));
 		if (MargenCalc.compareTo(MARGEN) == 0) {
-			LOGGER.info("Validacion exitosa de Margene para no arbitraje: " + MARGEN);
+			Session.getConfigDriver().logger.log(LogStatus.INFO, "Validacion exitosa de Margen para no arbitraje",
+					"Datos: " + MARGEN);
+			LOGGER.info("Validacion exitosa de Margen para no arbitraje: " + MARGEN);
 		} else {
-			LOGGER.info("Margen no valido a margen calculado");
+			Session.getConfigDriver().logger.log(LogStatus.WARNING, "Margen no Valido para no arbitraje",
+					"CLP " + MargenCalc + " debe ser igual a " + MARGEN);
+			LOGGER.info("Margen no valido para no arbitraje a margen calculado");
 		}
 	}
 
@@ -141,9 +148,13 @@ public class IngresoOperacionSpotUtil {
 		java.math.BigDecimal MargenCalc = MontoBD.multiply(Resta);
 		java.math.BigDecimal MARGEN = new java.math.BigDecimal(formatoBigDeciaml(margen));
 		if (MargenCalc.compareTo(MARGEN) == 0) {
+			Session.getConfigDriver().logger.log(LogStatus.INFO, "Validacion exitosa de Margen para arbitraje",
+					"Datos: " + MARGEN);
 			LOGGER.info("Validacion exitosa de Margen para arbitraje: " + MARGEN);
 		} else {
-			LOGGER.info("Margen no valido a margen calculado");
+			Session.getConfigDriver().logger.log(LogStatus.WARNING, "Margen no Valido para arbitraje",
+					"CLP " + MargenCalc + " debe ser igual a " + MARGEN);
+			LOGGER.info("Margen no valido para arbitraje a margen calculado");
 		}
 	}
 
@@ -171,7 +182,7 @@ public class IngresoOperacionSpotUtil {
 		java.math.BigDecimal nuevoMontoFinal = new java.math.BigDecimal(formatoBigDeciaml(montoFinal));
 		java.math.BigDecimal nuevoValorParidadCierre = new java.math.BigDecimal(formatoBigDeciaml(valorParidadCierre));
 		java.math.BigDecimal montoCalculado = nuevoMontoFinal.multiply(nuevoValorParidadCierre);
-		if (montoCalculado.compareTo(nuevoMontoFinal) == 0) {
+		if (montoCalculado.compareTo(nuevoMontoEquivalente) == 0) {
 			Session.getConfigDriver().logger.log(LogStatus.INFO, "Monto Equivalente Valido para arbitraje",
 					"Datos: " + nuevoMontoEquivalente);
 			LOGGER.info("Validacion exitosa de Monto Equivalente para arbitraje: " + nuevoMontoEquivalente);

@@ -6,7 +6,10 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
 
+import com.relevantcodes.extentreports.LogStatus;
+
 import cl.bcs.application.constantes.util.ConstantesCuentaInversion;
+import cl.bcs.application.constantes.util.ConstantesSpot;
 import cl.bcs.application.factory.util.Session;
 import cl.bcs.application.factory.util.SpotExcel;
 import cl.bcs.application.file.util.Log4jFactory;
@@ -25,81 +28,56 @@ public class SelecionarCuentaInversion {
 		PageFactory.initElements(webDriver, this);
 	}
 
-	private static final Logger LOGGER = Log4jFactory.getLogger(SeleccionarSpot.class);
+	private static final Logger LOGGER = Log4jFactory.getLogger(SelecionarCuentaInversion.class);
 	
 	public static boolean cuentaInversionCliente(SpotExcel datos){
+		try {
+			
+			//Datos Generales
+			String cliente = datos.getRut()+" "+datos.getNombre()+" ("+datos.getPortafolio()+")";			
+			
+//			//Abrir Cuenta Inversión
+//			Session.getConfigDriver().waitForLoad();
+//			UtilesSelenium.findElement(By.id(ConstantesCuentaInversion.ID_MODULOCUENTAINVERSION)).click();
+//			Session.getConfigDriver().waitForLoad();
+//			
+//			//Abrir Cuenta Inversión Cliente
+//			UtilesSelenium.findElement(By.id(ConstantesCuentaInversion.ID_CUENTAINVERSION)).click();
+//			Session.getConfigDriver().waitForLoad();
+			
+			//Ir a pestañana Certificar / Anular Movimientos
+			UtilesSelenium.findElement(By.xpath(ConstantesCuentaInversion.XPATH_TAB_CERT_ANULAR)).click();
+			Session.getConfigDriver().waitForLoad();
 
-//		String cd = ConstantesSelecionarCuentaInversion.XPATH_PARIDAD_CIERRE;
-		//Datos Generales
-		String cliente = datos.getRut()+" "+datos.getNombre()+" ("+datos.getPortafolio()+")";
-		
-		//Cerrar Facturación
-		Session.getConfigDriver().waitForLoad();
-		UtilesSelenium.findElement(By.id(ConstantesCuentaInversion.ID_MODULOFACTURACION)).click();
-		
-		
-		//Abrir Cuenta Inversión
-		Session.getConfigDriver().waitForLoad();
-		UtilesSelenium.findElement(By.id(ConstantesCuentaInversion.ID_MODULOCUENTAINVERSION)).click();
-		Session.getConfigDriver().waitForLoad();
-		
-		//Abrir Cuenta Inversión Cliente
-		UtilesSelenium.findElement(By.id(ConstantesCuentaInversion.ID_CUENTAINVERSION)).click();
-		Session.getConfigDriver().waitForLoad();
-		
-		//Ir a pestañana Certificar / Anular Movimientos
-		UtilesSelenium.findElement(By.xpath(ConstantesCuentaInversion.XPATH_TAB_CERT_ANULAR)).click();
-		Session.getConfigDriver().waitForLoad();
+			//Buscar Cliente
+			UtilesSelenium.findElement(By.xpath(ConstantesCuentaInversion.XPATH_CLIENTE_INVERSION)).clear();
+			UtilesSelenium.findElement(By.xpath(ConstantesCuentaInversion.XPATH_CLIENTE_INVERSION)).sendKeys(cliente+Keys.ENTER);
+			Session.getConfigDriver().waitForLoad();
+			
+			UtilesSelenium.findElement(By.xpath(ConstantesCuentaInversion.XPATH_BOTON_BUSCAR)).click();
+			Session.getConfigDriver().waitForLoad();
 
-		//Buscar Cliente
-		UtilesSelenium.findElement(By.xpath(ConstantesCuentaInversion.XPATH_CLIENTE_INVERSION)).clear();
-		UtilesSelenium.findElement(By.xpath(ConstantesCuentaInversion.XPATH_CLIENTE_INVERSION)).sendKeys(cliente+Keys.ENTER);
-		Session.getConfigDriver().waitForLoad();
-		
-		UtilesSelenium.findElement(By.xpath(ConstantesCuentaInversion.XPATH_BOTON_BUSCAR)).click();
-		Session.getConfigDriver().waitForLoad();
-
-		UtilesSelenium.findElement(By.xpath(ConstantesCuentaInversion.XPATH_TIPO_COMPROBANTE)).sendKeys(Keys.TAB);
-		UtilesSelenium.findElement(By.xpath(ConstantesCuentaInversion.XPATH_FOLIO_COMPROBANTE)).sendKeys(Session.getComprobante()+Keys.ENTER);
-		
-		UtilesSelenium.findElement(By.xpath(ConstantesCuentaInversion.XPATH_FECHA)).click();
-		UtilesExtentReport.captura("Concepto: Compra Mesa Spot");
-		UtilesSelenium.findElement(By.xpath(ConstantesCuentaInversion.XPATH_TIPO_COMPROBANTE)).sendKeys(Keys.TAB);
-		UtilesExtentReport.captura("Folio comprobante");
-		LOGGER.info("CUENTA INVERSION COMPLETADA");
-		CerrarVentana.init();
-		
-		
-		
-//		UtilesSelenium.findElement(By.xpath(xpathfolio)).clear();
-//		LOGGER.info("Limpiar Folio");
-		
-//		UtilesSelenium.findElement(By.xpath("//*[@id='frmCtaCliente_gridMovimientosCuentaInversion']/span/div[2]/div[3]/div/table/thead/tr[2]/th[8]/span/span/span[1]/input")).sendKeys(Keys.TAB);
-//		LOGGER.info("Ingresar Folio");
-//		
-//		UtilesSelenium.findElement(By.xpath(xpathfolio1)).sendKeys(folioComprobante1+Keys.ENTER);
-//		LOGGER.info("Ingresar Folio");
-		
-		Session.getConfigDriver().waitForLoad();
-//		UtilesSelenium.findElement(By.xpath(xpathfolio1)).sendKeys(Keys.ENTER);
-//		LOGGER.info("Enter Folio");
-
-
-//		WebElement barra = UtilesSelenium.findElement(By.className("TabCertificarMovimientos"));
-//		WebElement horizontalbar = UtilesSelenium.findElement(By.xpath("//*[@id='frmCtaCliente_gridMovimientosCuentaInversion']/span/div[2]/div[4]/table"));
-//		Actions action = new Actions(webDriver);
-//
-//		Actions moveToElement = action.moveToElement(horizontalbar);
-//		for (int i = 0; i < 5; i++) {
-//		    moveToElement.sendKeys(Keys.RIGHT).build().perform();
-//		}
-//		
-//		WebElement webElement = webDriver.findElement(By.xpath("//*[@id='frmCtaCliente_gridMovimientosCuentaInversion']/span/div[2]/div[4]/table"));
-//		((JavascriptExecutor)webDriver).executeScript("arguments[0].scrollIntoView();", webElement);
-		
-		
-		
-		return true;
+			UtilesSelenium.findElement(By.xpath(ConstantesCuentaInversion.XPATH_TIPO_COMPROBANTE)).sendKeys(Keys.TAB);
+			UtilesSelenium.findElement(By.xpath(ConstantesCuentaInversion.XPATH_FOLIO_COMPROBANTE)).sendKeys(ConstantesSpot.SUB_ZEROS+Session.getComprobante()+Keys.ENTER);
+			Session.getConfigDriver().waitForLoad();
+			UtilesExtentReport.captura("Folio comprobante"+ Session.getComprobante());
+			
+			UtilesSelenium.findElement(By.xpath(ConstantesCuentaInversion.XPATH_ESTADO)).click();
+			Session.getConfigDriver().waitForLoad();
+			UtilesExtentReport.captura("Concepto: " + datos.getOperacion());
+			Session.getConfigDriver().waitForLoad();
+			
+			LOGGER.info("CUENTA INVERSION COMPLETADA");
+			CerrarVentana.init();
+			return true;
+			
+		} catch (Exception e) {
+			LOGGER.error(e.getMessage());
+			UtilesExtentReport.capturaError("Error: Gestion cuenta inversion - Spot");
+			Session.getConfigDriver().logger.log(LogStatus.ERROR, "Error: Gestion cuenta inversion",
+					"Datos: " + e.getMessage());
+			return false;
+		}
 	}
 
 }

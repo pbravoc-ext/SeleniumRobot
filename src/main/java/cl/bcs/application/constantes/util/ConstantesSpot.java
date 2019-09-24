@@ -19,6 +19,8 @@ public class ConstantesSpot {
 	public static final String ID_SPOT_FORM_CONFIRMAR_OPERACION_SPOT= "FORM_LiquidarSpot";
 	public static final String ID_SPOT_MODULO_FACTURACION_SPOT = "MENU_MODULO_FACTURACION";
 	public static final String ID_SPOT_FORM_MODULO_FACTURACION_SPOT = "MENU_BlotterFacturacion";
+	public static final String ID_SPOT_MENU_CUENTA_INVERSION = "MENU_MODULO_CUENTA_INVERSION";
+	public static final String ID_SPOT_FORM_CUENTA_INVERSION_CLIENTE = "MENU_CuentaInversionCliente";
 	
 	public static final String SUB_ZEROS = "000000";
 	

@@ -70,7 +70,19 @@ public class Spot {
 		if(result == false) {
 			return result;
 		}
+		result = SeleccionarSpot.seleccionarMenuCuentaInversion();
+		if(result == false) {
+			return result;
+		}
+		result = SeleccionarSpot.seleccionarCuentaInversionCliente();
+		if(result == false) {
+			return result;
+		}
 		result = SelecionarCuentaInversion.cuentaInversionCliente(usu);
+		if(result == false) {
+			return result;
+		}
+		result = SeleccionarSpot.seleccionarMenuCuentaInversion();
 		if(result == false) {
 			return result;
 		}
