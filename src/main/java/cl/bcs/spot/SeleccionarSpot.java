@@ -5,6 +5,7 @@ import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 
 import cl.bcs.application.constantes.util.ConstantesSpot;
+import cl.bcs.application.constantes.util.ConstantesTesoreria;
 import cl.bcs.application.factory.util.Session;
 import cl.bcs.application.file.util.Log4jFactory;
 import cl.bcs.application.file.util.UtilesSelenium;
@@ -115,8 +116,8 @@ public class SeleccionarSpot {
 	public static boolean seleccionarMenuTesoreria() {
 		try {
 			Session.getConfigDriver().waitForLoad();
-			UtilesSelenium.findElement(By.id(ConstantesSpot.ID_SPOT_FORM_MODULO_FACTURACION_SPOT)).click();
-			LOGGER.info("Seleccion Modulo Gestión Facturación - Spot");
+			UtilesSelenium.findElement(By.id(ConstantesTesoreria.ID_MENU_TESORERIA)).click();
+			LOGGER.info("Seleccion Menu Tesoreria - Spot");
 			return true;
 		} catch (Exception e) {
 			LOGGER.error(e.getMessage() + " - Spot");
@@ -127,8 +128,8 @@ public class SeleccionarSpot {
 	public static boolean seleccionarGestionTesoreria() {
 		try {
 			Session.getConfigDriver().waitForLoad();
-			UtilesSelenium.findElement(By.id(ConstantesSpot.ID_SPOT_FORM_MODULO_FACTURACION_SPOT)).click();
-			LOGGER.info("Seleccion Modulo Gestión Facturación - Spot");
+			UtilesSelenium.findElement(By.id(ConstantesTesoreria.ID_GESTION_TESORERIA)).click();
+			LOGGER.info("Seleccion Modulo Gestion de Tesoreria - Spot");
 			return true;
 		} catch (Exception e) {
 			LOGGER.error(e.getMessage() + " - Spot");

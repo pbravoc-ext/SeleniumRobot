@@ -20,7 +20,7 @@ public class ConstantesSpot {
 	public static final String ID_SPOT_MODULO_FACTURACION_SPOT = "MENU_MODULO_FACTURACION";
 	public static final String ID_SPOT_FORM_MODULO_FACTURACION_SPOT = "MENU_BlotterFacturacion";
 	
-	public static final String SUB_ZEROS = "00000";
+	public static final String SUB_ZEROS = "000000";
 	
 	public static final String MONEDA_EUR= "EUR";
 	public static final String MONEDA_USD= "USD";

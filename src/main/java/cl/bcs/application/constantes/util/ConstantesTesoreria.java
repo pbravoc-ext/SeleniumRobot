@@ -19,5 +19,12 @@ public class ConstantesTesoreria {
 	public static final String XPATH_SOCIO_NEGOCIO_INPUT = "//*[@id='frmConsultarIngresoEgreso_SocioNegocio']/span/span/span/input";
 	public static final String XPATH_FECHA_DESDE_INPUT = "//*[@id='frmConsultarIngresoEgreso_fechaLiquidacionDesde']/span/span/span/input";
 	public static final String XPATH_FECHA_HASTA_INPUT = "//*[@id='frmConsultarIngresoEgreso_fechaLiquidacionHasta']/span/span/span/input";
+	public static final String XPATH_PORTAFOLIO_INTPUT = "//*[@id='frmConsultarIngresoEgreso_Portafolio']/span/span/span/input";
+	
+	public static final String XPATH_ESTADO_INTPUT = "//*[@id='frmConsultarIngresoEgreso_Estado']/span/span/span/input";
+	public static final String XPATH_BTN_BUSCAR = "//*[@id='ConsultarIngresoEgreso']/div[1]/div[1]/div[2]/div[1]/bcs-button/button";
+	public static final String XPATH_GRILLA_SECUENCIA_INPUT = "//*[@id='grid-ingreso-egreso']/span/div[2]/div[3]/div/table/thead/tr[3]/th[2]/span/span/span[1]/span/input[1]";
+	public static final String XPATH_BTN_SCN = "//*[@id='grid-ingreso-egreso']/span/div[2]/div[3]/div/table/thead/tr[3]/th[2]/span/span/button";
+	
 	
 }
