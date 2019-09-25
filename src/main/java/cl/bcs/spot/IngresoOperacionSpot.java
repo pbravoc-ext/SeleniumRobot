@@ -106,10 +106,6 @@ public class IngresoOperacionSpot extends IngresoOperacionSpotUtil {
 			LOGGER.info("PuntaCompra: " + Session.getVariables().getPuntaCompra());
 			LOGGER.info("PuntaVenta: " + Session.getVariables().getPuntaVenta());
 
-			// Validacion valores punta compra/venta
-			validacionValoresPunta(Session.getVariables().getPuntaCompra(), Session.getVariables().getPuntaVenta(),
-					iosPuntaCompra, iosPuntaVenta);
-
 			// Ingreso operacion
 			UtilesSelenium.findElement(By.xpath(ConstantesIngresoOperacionSpot.XPATH_OPERACION)).clear();
 			Session.getConfigDriver().waitForLoad();
@@ -117,6 +113,10 @@ public class IngresoOperacionSpot extends IngresoOperacionSpotUtil {
 			Session.getConfigDriver().logger.log(LogStatus.INFO, "Ingreso operacion", "Datos: " + operacion);
 			LOGGER.info("Operacion Seleccionada");
 			Session.getConfigDriver().waitForLoad();
+
+			// Validacion valores punta compra/venta
+			validacionValoresPunta(Session.getVariables().getPuntaCompra(), Session.getVariables().getPuntaVenta(),
+					iosPuntaCompra, iosPuntaVenta);
 
 			if (datos.getMonedaPrincipal().equals(ConstantesSpot.MONEDA_EUR)) {
 
@@ -130,7 +130,6 @@ public class IngresoOperacionSpot extends IngresoOperacionSpotUtil {
 				Session.getConfigDriver().logger.log(LogStatus.INFO, "Ingreso instrumento", "Datos: " + instrumento);
 				LOGGER.info("Instrumento Seleccionado" + instrumento);
 				Session.getConfigDriver().waitForLoad();
-				validacionInputCosto(validacionTcCosto);
 
 				// Ingreso monto moneda principal
 				UtilesSelenium.findElement(By.xpath(ConstantesIngresoOperacionSpot.XPATH_MONEDA_PRINCIPAL_MONTO))
@@ -138,6 +137,10 @@ public class IngresoOperacionSpot extends IngresoOperacionSpotUtil {
 				Session.getConfigDriver().logger.log(LogStatus.INFO, "Ingreso monto principal",
 						"Datos: " + ConstantesSpot.SUB_ZEROS + monedaPrincipal);
 				LOGGER.info("Ingreso monto principal: " + ConstantesSpot.SUB_ZEROS + monedaPrincipal);
+				Session.getConfigDriver().waitForLoad();
+				
+				// Validacion campo T/C Costo
+				validacionInputCosto(validacionTcCosto);
 
 				// Ingreso monto paridad de cierre
 				UtilesSelenium.findElement(By.xpath(ConstantesIngresoOperacionSpot.XPATH_PARIDAD_CIERRE))
