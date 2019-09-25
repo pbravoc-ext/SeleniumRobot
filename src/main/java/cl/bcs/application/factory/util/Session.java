@@ -23,6 +23,8 @@ public class Session {
 	private static String comprobante;	
 	private static String movimientoEgreso;
 	private static String movimientoIngreso;
+	private static String fechaDesde;
+	private static String fechaHasta;
 
 	private static FactoryWebDriver configDriver;
 	private static SpotExcel spotinfo;
@@ -128,6 +130,22 @@ public class Session {
 
 	public static void setMovimientoIngreso(String movimientoIngreso) {
 		Session.movimientoIngreso = movimientoIngreso;
+	}
+
+	public static String getFechaDesde() {
+		return fechaDesde;
+	}
+
+	public static void setFechaDesde(String fechaDesde) {
+		Session.fechaDesde = fechaDesde;
+	}
+
+	public static String getFechaHasta() {
+		return fechaHasta;
+	}
+
+	public static void setFechaHasta(String fechaHasta) {
+		Session.fechaHasta = fechaHasta;
 	}
 
 	public ExtentTest getLogger() {

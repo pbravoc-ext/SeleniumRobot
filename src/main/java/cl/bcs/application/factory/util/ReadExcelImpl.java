@@ -48,6 +48,7 @@ public class ReadExcelImpl {
 				u.setAgente(validacion(row.getCell(10).toString()));
 				u.setParidadCierre(validacion(row.getCell(11).toString()));
 				u.setOperacion(validacion(row.getCell(12).toString()));
+				u.setCuentaInversion(validacion(row.getCell(13).toString()));
 				usuario.add(u);
 			}
 

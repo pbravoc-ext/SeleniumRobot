@@ -57,20 +57,32 @@ public class Facturacion {
 			// Rescatar Datos
 			String movimientoEgreso = null;
 			String movimientoIngreso = null;
-			String abono = UtilesSelenium.findElement(By.xpath(ConstantesFacturacion.XPATH_LABEL1)).getText();
-			String cargo = UtilesSelenium.findElement(By.xpath(ConstantesFacturacion.XPATH_LABEL2)).getText();
-			String comprobante = UtilesSelenium.findElement(By.xpath(ConstantesFacturacion.XPATH_LABEL3)).getText();
+			String movimientoIngresoOp = null;
+			String movimientoEgresoOp = null;
+			String abono = UtilesSelenium.findElement(By.xpath(ConstantesFacturacion.XPATH_LABEL_ABONO)).getText();
+			String cargo = UtilesSelenium.findElement(By.xpath(ConstantesFacturacion.XPATH_LABEL_CARGO)).getText();
+			String comprobante = UtilesSelenium.findElement(By.xpath(ConstantesFacturacion.XPATH_LABEL_COMPROBANTE_CCI)).getText();
 			String abonoOp = SpotUtiles.folio(abono);
 			String cargoOp = SpotUtiles.folio(cargo);
 			String comprobanteOp = SpotUtiles.folio(comprobante);
 			LOGGER.info("Abono: " + abonoOp);
 			LOGGER.info("Cargo: " + cargoOp);
+			if(datos.getCuentaInversion().equals("NO")) {
+				movimientoIngreso = UtilesSelenium.findElement(By.xpath(ConstantesFacturacion.XPATH_LABEL_INGRESO)).getText();
+				movimientoEgreso = UtilesSelenium.findElement(By.xpath(ConstantesFacturacion.XPATH_LABEL_EGRESO)).getText();
+				comprobante = UtilesSelenium.findElement(By.xpath(ConstantesFacturacion.XPATH_LABEL_COMPROBANTE_SCI)).getText();
+				comprobanteOp = SpotUtiles.folio(comprobante);
+				movimientoIngresoOp = SpotUtiles.folio(movimientoIngreso);
+				movimientoEgresoOp = SpotUtiles.folio(movimientoEgreso);
+				LOGGER.info("Movimiento Ingreso: " + movimientoIngresoOp);
+				LOGGER.info("Movimiento Egreso: " + movimientoEgresoOp);
+			}
 			LOGGER.info("Comprobante: " + comprobanteOp);
 			Session.setAbono(abonoOp);
 			Session.setCargo(cargoOp);
 			Session.setComprobante(comprobanteOp);
-			Session.setMovimientoEgreso(movimientoEgreso);
-			Session.setMovimientoIngreso(movimientoIngreso);
+			Session.setMovimientoEgreso(movimientoEgresoOp);
+			Session.setMovimientoIngreso(movimientoIngresoOp);
 			Session.getConfigDriver().waitForLoad();
 
 			// Aceptar

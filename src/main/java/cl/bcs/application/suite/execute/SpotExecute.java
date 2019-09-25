@@ -31,12 +31,12 @@ public class SpotExecute {
 			
 		}
 
-		@Test(priority=1)
-		public void variacion1() {
-			Session.getConfigDriver().logger = Session.getConfigDriver().extent.startTest(usuario.get(0).getVariacion());
-			Assert.assertTrue(Spot.suiteSpot(usuario.get(0)));
-			Session.getConfigDriver().logger.log(LogStatus.PASS, usuario.get(0).getVariacion()+" Completado");
-		}
+//		@Test(priority=1)
+//		public void variacion1() {
+//			Session.getConfigDriver().logger = Session.getConfigDriver().extent.startTest(usuario.get(0).getVariacion());
+//			Assert.assertTrue(Spot.suiteSpot(usuario.get(0)));
+//			Session.getConfigDriver().logger.log(LogStatus.PASS, usuario.get(0).getVariacion()+" Completado");
+//		}
 		
 //		@Test(priority=2)
 //		public void variacion2() {
@@ -59,12 +59,12 @@ public class SpotExecute {
 //			Session.getConfigDriver().logger.log(LogStatus.PASS, usuario.get(3).getVariacion()+" Completado");
 //		}
 //		
-//		@Test(priority=5)
-//		public void variacion5() {
-//			Session.getConfigDriver().logger = Session.getConfigDriver().extent.startTest(usuario.get(4).getVariacion());
-//			Assert.assertTrue(Spot.suiteSpot(usuario.get(4)));
-//			Session.getConfigDriver().logger.log(LogStatus.PASS, usuario.get(4).getVariacion()+" Completado");
-//		}
+		@Test(priority=5)
+		public void variacion5() {
+			Session.getConfigDriver().logger = Session.getConfigDriver().extent.startTest(usuario.get(4).getVariacion());
+			Assert.assertTrue(Spot.suiteSpot(usuario.get(4)));
+			Session.getConfigDriver().logger.log(LogStatus.PASS, usuario.get(4).getVariacion()+" Completado");
+		}
 //		
 //		@Test(priority=6)
 //		public void variacion6() {

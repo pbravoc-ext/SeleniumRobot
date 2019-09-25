@@ -10,6 +10,7 @@ import cl.bcs.spot.ConfirmacionOperacionesSpot;
 import cl.bcs.spot.IngresoOperacionSpot;
 import cl.bcs.spot.MantenedorPuntas;
 import cl.bcs.spot.SeleccionarSpot;
+import cl.bcs.tesoreria.Tesoreria;
 
 public class Spot {
 	public static boolean suiteSpot(SpotExcel usu) {
@@ -85,6 +86,24 @@ public class Spot {
 		result = SeleccionarSpot.seleccionarMenuCuentaInversion();
 		if(result == false) {
 			return result;
+		}
+		if(usu.getCuentaInversion().equals("NO")) {
+			result = SeleccionarSpot.seleccionarMenuTesoreria();
+			if(result == false) {
+				return result;
+			}
+			result = SeleccionarSpot.seleccionarGestionTesoreria();
+			if(result == false) {
+				return result;
+			}
+			result = Tesoreria.gestionTesoreria(usu);
+			if(result == false) {
+				return result;
+			}
+			result = SeleccionarSpot.seleccionarMenuTesoreria();
+			if(result == false) {
+				return result;
+			}
 		}
 		return result;
 	}

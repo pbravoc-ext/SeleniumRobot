@@ -1,9 +1,5 @@
 package cl.bcs.spot;
 
-import java.math.MathContext;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 
 import org.apache.log4j.Logger;
@@ -25,7 +21,6 @@ import cl.bcs.application.file.util.SpotUtiles;
 import cl.bcs.application.file.util.UtilesExtentReport;
 import cl.bcs.application.file.util.UtilesSelenium;
 import cl.bcs.application.spot.util.IngresoOperacionSpotUtil;
-import cl.bcs.application.spot.util.VariablesUtil;
 import cl.bcs.plataforma.CerrarVentana;
 
 public class IngresoOperacionSpot extends IngresoOperacionSpotUtil {
@@ -308,9 +303,6 @@ public class IngresoOperacionSpot extends IngresoOperacionSpotUtil {
 			Session.getConfigDriver().waitForLoad();
 			UtilesExtentReport.captura("Ingresar operacion spot - Forma de pago - Spot");
 
-			//
-			// *[@id="FORM_MesaSpot"]/div[2]/div/form/div[1]/div[3]/div/div[2]/div/div/div/bcs-forma-pago-mesa/div/div[3]/table/tbody/tr/td[3]
-//			/html/body/div[6]/div[2]/div[2]/div/form/div[1]/div[3]/div/div[2]/div/div/div/bcs-forma-pago-mesa/div/div[3]/table/tbody/tr/td[3]
 			
 			// Rescatar Fechas
 			String fechaEntregamos = UtilesSelenium.findElement(By.xpath(
@@ -319,6 +311,8 @@ public class IngresoOperacionSpot extends IngresoOperacionSpotUtil {
 			String fechaRecibimos = UtilesSelenium.findElement(By.xpath(
 					"//*[@id='FORM_MesaSpot']/div[2]/div/form/div[1]/div[3]/div/div[2]/div/div/div/bcs-forma-pago-mesa/div/div[4]/table/tbody/tr/td[3]"))
 					.getText();
+			Session.setFechaDesde(fechaEntregamos);
+			Session.setFechaHasta(fechaRecibimos);
 			comparar(fechaEntregamos, fechaRecibimos);
 			return true;
 			

@@ -10,7 +10,6 @@ import com.relevantcodes.extentreports.LogStatus;
 
 import cl.bcs.application.factory.util.Session;
 import cl.bcs.application.file.util.Log4jFactory;
-import cl.bcs.application.file.util.SpotUtiles;
 import cl.bcs.application.file.util.UtilesExtentReport;
 import cl.bcs.spot.MantenedorPuntas;
 

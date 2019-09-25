@@ -41,19 +41,21 @@ public class Tesoreria {
 					+ Ingreso + "')]";
 
 			// Ingreso socio
+			Session.getConfigDriver().waitForLoad();
 			UtilesSelenium.findElement(By.xpath(ConstantesTesoreria.XPATH_SOCIO_NEGOCIO_INPUT)).clear();
+			Session.getConfigDriver().waitForLoad();
 			UtilesSelenium.findElement(By.xpath(ConstantesTesoreria.XPATH_SOCIO_NEGOCIO_INPUT)).sendKeys(socio);
 			UtilesSelenium.findElement(By.xpath(ConstantesTesoreria.XPATH_SOCIO_NEGOCIO_INPUT)).sendKeys(Keys.ENTER);
 
 			// Fecha desde
 			UtilesSelenium.findElement(By.xpath(ConstantesTesoreria.XPATH_FECHA_DESDE_INPUT)).clear();
-			UtilesSelenium.findElement(By.xpath(ConstantesTesoreria.XPATH_FECHA_DESDE_INPUT)).sendKeys(""); // Fecha
+			UtilesSelenium.findElement(By.xpath(ConstantesTesoreria.XPATH_FECHA_DESDE_INPUT)).sendKeys(Session.getFechaDesde()); // Fecha
 																											// local
 			UtilesSelenium.findElement(By.xpath(ConstantesTesoreria.XPATH_FECHA_DESDE_INPUT)).sendKeys(Keys.TAB);
 
 			// Fecha hasta
 			UtilesSelenium.findElement(By.xpath(ConstantesTesoreria.XPATH_FECHA_HASTA_INPUT)).clear();
-			UtilesSelenium.findElement(By.xpath(ConstantesTesoreria.XPATH_FECHA_HASTA_INPUT)).sendKeys(""); // fecha local + 1 dia
+			UtilesSelenium.findElement(By.xpath(ConstantesTesoreria.XPATH_FECHA_HASTA_INPUT)).sendKeys(Session.getFechaHasta()); // fecha local + 1 dia
 			UtilesSelenium.findElement(By.xpath(ConstantesTesoreria.XPATH_FECHA_HASTA_INPUT)).sendKeys(Keys.TAB);
 
 			// Ingreso portafolio
@@ -63,9 +65,11 @@ public class Tesoreria {
 
 			// Limpiar estado
 			UtilesSelenium.findElement(By.xpath(ConstantesTesoreria.XPATH_ESTADO_INTPUT)).clear();
+			Session.getConfigDriver().waitForLoad();
 
 			// Boton buscar
 			UtilesSelenium.findElement(By.xpath(ConstantesTesoreria.XPATH_BTN_BUSCAR)).click();
+			Session.getConfigDriver().waitForLoad();
 
 			// Busqueda grilla por secuencia Folio1 //Engreso
 			UtilesSelenium.findElement(By.xpath(ConstantesTesoreria.XPATH_GRILLA_SECUENCIA_INPUT))

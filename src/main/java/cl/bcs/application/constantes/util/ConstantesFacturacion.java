@@ -17,9 +17,18 @@ public class ConstantesFacturacion {
 	public static final String XPATH_BTN_ACEPTARINFO = "/html/body/div[133]/div[2]/div[2]/div/div[2]/bcs-button/button";
 	public static final String XPATH_FOLIOINPUT = "/html/body/div[6]/div[2]/div[2]/div/div/div/div/div/div[1]/div/div/div[1]/div[2]/bcs-grid/span/div[2]/div[3]/div/table/thead/tr[2]/th[12]/span/span/span[1]/span/input[1]";
 
-	public static final String XPATH_LABEL1 = "/html/body/div[133]/div[2]/div[2]/div/div[1]/div/div[2]/div[1]/label";
-	public static final String XPATH_LABEL2 = "/html/body/div[133]/div[2]/div[2]/div/div[1]/div/div[2]/div[2]/label";
-	public static final String XPATH_LABEL3 = "/html/body/div[133]/div[2]/div[2]/div/div[1]/div/div[2]/div[3]/label";
+	public static final String XPATH_LABEL_ABONO = "/html/body/div[133]/div[2]/div[2]/div/div[1]/div/div[2]/div[1]/label";
+	
+	public static final String XPATH_LABEL_CARGO = "/html/body/div[133]/div[2]/div[2]/div/div[1]/div/div[2]/div[2]/label";
+	
+	public static final String XPATH_LABEL_COMPROBANTE_CCI = "/html/body/div[133]/div[2]/div[2]/div/div[1]/div/div[2]/div[3]/label";
+	
+														//  /html/body/div[133]/div[2]/div[2]/div/div[1]/div/div[2]/div[3]/label
+
+	public static final String XPATH_LABEL_INGRESO = "/html/body/div[133]/div[2]/div[2]/div/div[1]/div/div[2]/div[3]/label";
+	public static final String XPATH_LABEL_EGRESO = "/html/body/div[133]/div[2]/div[2]/div/div[1]/div/div[2]/div[4]/label";
+	public static final String XPATH_LABEL_COMPROBANTE_SCI = "/html/body/div[133]/div[2]/div[2]/div/div[1]/div/div[2]/div[5]/label";
+	
 	public static final String XPATH_BTN_ACEPTAR = "//*[@id='FORM_VentanaMensajeResultado']/div[2]/div/div[2]/bcs-button/button";
 
 	public static final String XPATH_TABLA = "//*[@id='grid-movimientos-facturar']/span/div[2]/div[4]/table";

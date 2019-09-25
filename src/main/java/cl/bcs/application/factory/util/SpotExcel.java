@@ -24,6 +24,7 @@ public class SpotExcel implements Serializable {
 	private String agente;
 	private String paridadCierre;
 	private String operacion;
+	private String cuentaInversion;
 	
 	public String getRut() {
 		return rut;
@@ -102,5 +103,11 @@ public class SpotExcel implements Serializable {
 	}
 	public void setOperacion(String operacion) {
 		this.operacion = operacion;
+	}
+	public String getCuentaInversion() {
+		return cuentaInversion;
+	}
+	public void setCuentaInversion(String cuentaInversion) {
+		this.cuentaInversion = cuentaInversion;
 	}
 }
