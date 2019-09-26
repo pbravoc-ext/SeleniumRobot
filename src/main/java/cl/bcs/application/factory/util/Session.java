@@ -21,10 +21,12 @@ public class Session {
 	private static String abono;
 	private static String cargo;
 	private static String comprobante;	
+	private static String comprobanteVenta;	
 	private static String movimientoEgreso;
 	private static String movimientoIngreso;
 	private static String fechaDesde;
 	private static String fechaHasta;
+	private static String montoEq;
 
 	private static FactoryWebDriver configDriver;
 	private static SpotExcel spotinfo;
@@ -116,6 +118,14 @@ public class Session {
 		Session.comprobante = comprobante;
 	}
 
+	public static String getComprobanteVenta() {
+		return comprobanteVenta;
+	}
+
+	public static void setComprobanteVenta(String comprobanteVenta) {
+		Session.comprobanteVenta = comprobanteVenta;
+	}
+
 	public static String getMovimientoEgreso() {
 		return movimientoEgreso;
 	}
@@ -146,6 +156,14 @@ public class Session {
 
 	public static void setFechaHasta(String fechaHasta) {
 		Session.fechaHasta = fechaHasta;
+	}
+
+	public static String getMontoEq() {
+		return montoEq;
+	}
+
+	public static void setMontoEq(String montoEq) {
+		Session.montoEq = montoEq;
 	}
 
 	public ExtentTest getLogger() {

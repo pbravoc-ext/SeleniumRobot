@@ -23,8 +23,8 @@ public class MantenedorUtil {
 	 * 
 	 * @return
 	 */
-	protected static String validarmoneda() {
-		String moneda = "usd";
+	protected static String validarmoneda(String moneda) {
+//		String moneda = "usd";
 		if (moneda.equalsIgnoreCase(ConstantesSpot.MONEDA_EUR)) {
 			return ConstantesSpot.MONEDA_EUR;
 		}else if (moneda.equalsIgnoreCase(ConstantesSpot.MONEDA_USD)) {
@@ -39,17 +39,17 @@ public class MantenedorUtil {
 	 * 
 	 * @return
 	 */
-	protected static boolean findEUR() {
-		boolean result = false;
-		try {
-			WebElement input = UtilesSelenium.findElement(By.xpath(ConstantesMantenedorPuntas.XPATH_SELECCIONAR_MONEDA));
-			input.clear();
-			input.sendKeys(validarmoneda());
-			input.sendKeys(Keys.ENTER);
-			return result = true;
-		} catch (Exception e) {
-			LOGGER.error(e.getMessage() + " - Spot");
-		}
-		return result;
-	}
+//	protected static boolean findEUR() {
+//		boolean result = false;
+//		try {
+//			WebElement input = UtilesSelenium.findElement(By.xpath(ConstantesMantenedorPuntas.XPATH_SELECCIONAR_MONEDA));
+//			input.clear();
+//			input.sendKeys(validarmoneda());
+//			input.sendKeys(Keys.ENTER);
+//			return result = true;
+//		} catch (Exception e) {
+//			LOGGER.error(e.getMessage() + " - Spot");
+//		}
+//		return result;
+//	}
 }

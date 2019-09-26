@@ -20,31 +20,34 @@ import cl.bcs.application.suite.Spot;
 import cl.bcs.plataforma.Login;
 
 public class SpotExecute {
-	public static class ExtentReportsClass extends FactoryExtentReport{
+	public static class ExtentReportsClass extends FactoryExtentReport {
 		List<SpotExcel> usuario = null;
+
 		@BeforeTest
 		public void startReport() {
 			UtilesSelenium.executeTest();
 			configuracionInicialER();
 			Login.login();
 			usuario = ReadExcelImpl.leerExcel();
-			
+
 		}
 
-//		@Test(priority=1)
+//		@Test(priority = 1)
 //		public void variacion1() {
-//			Session.getConfigDriver().logger = Session.getConfigDriver().extent.startTest(usuario.get(0).getVariacion());
+//			Session.getConfigDriver().logger = Session.getConfigDriver().extent
+//					.startTest(usuario.get(0).getVariacion());
 //			Assert.assertTrue(Spot.suiteSpot(usuario.get(0)));
-//			Session.getConfigDriver().logger.log(LogStatus.PASS, usuario.get(0).getVariacion()+" Completado");
+//			Session.getConfigDriver().logger.log(LogStatus.PASS, usuario.get(0).getVariacion() + " Completado");
 //		}
-		
-//		@Test(priority=2)
+//
+//		@Test(priority = 2)
 //		public void variacion2() {
-//			Session.getConfigDriver().logger = Session.getConfigDriver().extent.startTest(usuario.get(1).getVariacion());
+//			Session.getConfigDriver().logger = Session.getConfigDriver().extent
+//					.startTest(usuario.get(1).getVariacion());
 //			Assert.assertTrue(Spot.suiteSpot(usuario.get(1)));
-//			Session.getConfigDriver().logger.log(LogStatus.PASS, usuario.get(1).getVariacion()+" Completado");
+//			Session.getConfigDriver().logger.log(LogStatus.PASS, usuario.get(1).getVariacion() + " Completado");
 //		}
-//		
+//
 		@Test(priority=3)
 		public void variacion3() {
 			Session.getConfigDriver().logger = Session.getConfigDriver().extent.startTest(usuario.get(2).getVariacion());
@@ -92,29 +95,33 @@ public class SpotExecute {
 //			Assert.assertTrue(Spot.suiteSpot(usuario.get(8)));
 //			Session.getConfigDriver().logger.log(LogStatus.PASS, usuario.get(8).getVariacion()+" Completado");
 //		}
-//		@Test(priority=10)
+//
+//		@Test(priority = 10)
 //		public void variacion10() {
-//			Session.getConfigDriver().logger = Session.getConfigDriver().extent.startTest(usuario.get(9).getVariacion());
+//			Session.getConfigDriver().logger = Session.getConfigDriver().extent
+//					.startTest(usuario.get(9).getVariacion());
 //			Assert.assertTrue(Spot.suiteSpot(usuario.get(9)));
-//			Session.getConfigDriver().logger.log(LogStatus.PASS, usuario.get(9).getVariacion()+" Completado");
+//			Session.getConfigDriver().logger.log(LogStatus.PASS, usuario.get(9).getVariacion() + " Completado");
 //		}
-//		
-//		@Test(priority=11)
+//
+//		@Test(priority = 11)
 //		public void variacion11() {
-//			Session.getConfigDriver().logger = Session.getConfigDriver().extent.startTest(usuario.get(10).getVariacion());
+//			Session.getConfigDriver().logger = Session.getConfigDriver().extent
+//					.startTest(usuario.get(10).getVariacion());
 //			Assert.assertTrue(Spot.suiteSpot(usuario.get(10)));
-//			Session.getConfigDriver().logger.log(LogStatus.PASS, usuario.get(10).getVariacion()+" Completado");
+//			Session.getConfigDriver().logger.log(LogStatus.PASS, usuario.get(10).getVariacion() + " Completado");
 //		}
-//		
-//		@Test(priority=12)
+//
+//		@Test(priority = 12)
 //		public void variacion12() {
-//			Session.getConfigDriver().logger = Session.getConfigDriver().extent.startTest(usuario.get(11).getVariacion());
+//			Session.getConfigDriver().logger = Session.getConfigDriver().extent
+//					.startTest(usuario.get(11).getVariacion());
 //			Assert.assertTrue(Spot.suiteSpot(usuario.get(11)));
-//			Session.getConfigDriver().logger.log(LogStatus.PASS, usuario.get(11).getVariacion()+" Completado");
+//			Session.getConfigDriver().logger.log(LogStatus.PASS, usuario.get(11).getVariacion() + " Completado");
 //		}
-		
+
 		@AfterMethod
-		public void getResult(ITestResult result) throws Exception{
+		public void getResult(ITestResult result) throws Exception {
 			configuracionFinalER(result);
 		}
 

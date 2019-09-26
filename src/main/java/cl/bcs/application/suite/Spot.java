@@ -23,7 +23,7 @@ public class Spot {
 		if(result == false) {
 			return result;
 		}
-		result = MantenedorPuntas.mantenedorPuntas();
+		result = MantenedorPuntas.mantenedorPuntas(usu);
 		if(result == false) {
 			return result;
 		}

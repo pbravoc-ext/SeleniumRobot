@@ -10,6 +10,9 @@ import cl.bcs.application.factory.util.Session;
 public class ConstantesFacturacion {
 	static String monto = "2.222"; // Debe estar en formato 99.999.999
 
+	public static final String COMPRA = "COMPRA";
+	public static final String VENTA = "VENTA";
+
 	public static final String XPATH_CLIENTEMOV = "//*[@id='MovimientoFacturarCtrl_UI_SOCIO_NEGOCIO']/span/span/span/input";
 	public static final String XPATH_BTN_BUSCARMOV = "//*[@id='gridMovimientoComprobante']/div/div[1]/div[1]/div[2]/div[1]/bcs-button/button";
 	public static final String XPATH_BTN_GENERARMOV = "//*[@id='BlotterFacturacion_btnGenerarComprobante']/button";
@@ -23,7 +26,11 @@ public class ConstantesFacturacion {
 	
 	public static final String XPATH_LABEL_COMPROBANTE_CCI = "/html/body/div[133]/div[2]/div[2]/div/div[1]/div/div[2]/div[3]/label";
 	
-														//  /html/body/div[133]/div[2]/div[2]/div/div[1]/div/div[2]/div[3]/label
+	public static final String XPATH_LABEL_CARGO_ARB = "/html/body/div[133]/div[2]/div[2]/div/div[1]/div/div[2]/div[1]/label";
+	
+	public static final String XPATH_LABEL_ABONO_ARB = "/html/body/div[133]/div[2]/div[2]/div/div[1]/div/div[2]/div[1]/label";
+	
+	public static final String XPATH_LABEL_COMPROBANTE_ARB = "/html/body/div[133]/div[2]/div[2]/div/div[1]/div/div[2]/div[2]/label";
 
 	public static final String XPATH_LABEL_INGRESO = "/html/body/div[133]/div[2]/div[2]/div/div[1]/div/div[2]/div[3]/label";
 	public static final String XPATH_LABEL_EGRESO = "/html/body/div[133]/div[2]/div[2]/div/div[1]/div/div[2]/div[4]/label";
@@ -53,8 +60,8 @@ public class ConstantesFacturacion {
 
 	public static final String XPATH_COMPARARFOLIOFAC = "//*[@id='grid-comprobantes-facturacion']/span/div[2]/div[3]/table/tbody/tr/td[5]/span[@ng-bind='dataItem.IdComprobante' and contains(text(),";
 	public static final String XPATH_COMPARARFOLIOFA2C = ")]";
-	public static final String XPATHERE = "//*[@id='grid-movimientos-facturar']/span/div[2]/div[4]/table//span[@ng-bind='dataItem.FolioTransaccion' and contains(text(),"
-			+ Session.getFolio() + ")]";
+	
+	public static final String XPATH_BTN_LIMPIAR_SEC = "//*[@id='grid-comprobantes-facturacion']/span/div[2]/div[2]/div/table/thead/tr[2]/th[5]/span/span/button";
 	
 	public static final String XPATH_BTN_ERROR = "/html/body/div[133]/div[1]/div/a[2]";
 

@@ -7,6 +7,7 @@ import org.openqa.selenium.Keys;
 import com.relevantcodes.extentreports.LogStatus;
 
 import cl.bcs.application.constantes.util.ConstantesConfirmacionOperacionSpot;
+import cl.bcs.application.constantes.util.ConstantesSpot;
 import cl.bcs.application.factory.util.Session;
 import cl.bcs.application.factory.util.SpotExcel;
 import cl.bcs.application.file.util.Log4jFactory;
@@ -39,8 +40,8 @@ public class ConfirmacionOperacionesSpot {
 			SeleccionarSpot.seleccionarConfirmacionOperaciones();
 
 			UtilesSelenium.findElement(By.xpath(ConstantesConfirmacionOperacionSpot.XPATH_FOLIO_INPUT))
-					.sendKeys(Session.getFolio() + Keys.ENTER);
-			UtilesSelenium.findElement(By.xpath(ConstantesConfirmacionOperacionSpot.XPATH_THERE)).click();
+					.sendKeys(ConstantesSpot.SUB_ZEROS+Session.getFolio() + Keys.ENTER);
+			UtilesSelenium.findElement(By.xpath("//*[@id='grid-mov']/span/div[2]/div[4]/table//span[@ng-bind='dataItem.FolioOperacion' and contains(text(),"+Session.getFolio()+")]")).click();
 
 			UtilesExtentReport.captura("Confirmacion operacion spot - Buscar folio - Spot");
 

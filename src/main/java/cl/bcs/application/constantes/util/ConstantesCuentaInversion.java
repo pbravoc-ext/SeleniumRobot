@@ -18,5 +18,6 @@ public class ConstantesCuentaInversion {
 	public static final String XPATH_CARGO = "/html/body/div[6]/div[2]/div[2]/div/div/div[2]/div/div[3]/div/div[4]/bcs-grid/span/div[2]/div[3]/div/table/thead/tr[2]/th[6]/span/span/span[1]/span/input[1]";
 	public static final String XPATH_TRANSFERENCIA = "/html/body/div[6]/div[2]/div[2]/div/div/div[2]/div/div[3]/div/div[4]/bcs-grid/span/div[2]/div[3]/div/table/thead/tr[2]/th[5]/span/span/span[1]/input";
 	public static final String XPATH_ESTADO = "//*[@id='frmCtaCliente_gridMovimientosCuentaInversion']//span[@ng-bind='dataItem.NombreEstado' and contains(text(),'CERTIFICADO')]";
+	public static final String XPATH_BTN_LIMPIAR_FOLIO = "//*[@id='frmCtaCliente_gridMovimientosCuentaInversion']/span/div[2]/div[3]/div/table/thead/tr[2]/th[10]/span/span/button";
 
 }

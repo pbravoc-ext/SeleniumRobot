@@ -27,7 +27,7 @@ public class Facturacion {
 		PageFactory.initElements(webDriver, this);
 	}
 
-	private static final Logger LOGGER = Log4jFactory.getLogger(SeleccionarSpot.class);
+	private static final Logger LOGGER = Log4jFactory.getLogger(Facturacion.class);
 
 	public static boolean gestionFacturacion(SpotExcel datos) {
 		String cliente = datos.getRut() + " " + datos.getNombre() + " (" + datos.getPortafolio() + ")";
@@ -35,6 +35,21 @@ public class Facturacion {
 		// Datos Movimientos a Facturar
 
 		try {
+
+			// Instanciar Datos
+			String abono = null;
+			String cargo = null;
+			String comprobante = null;
+			String comprobanteVenta = null;
+			String movimientoEgreso = null;
+			String movimientoIngreso = null;
+			String abonoOp = null;
+			String cargoOp = null;
+			String comprobanteOp = null;
+			String comprobanteVentaOp = null;
+			String movimientoIngresoOp = null;
+			String movimientoEgresoOp = null;
+
 			// Movimientos a Facturar
 			UtilesSelenium.findElement(By.xpath(ConstantesFacturacion.XPATH_CLIENTEMOV)).sendKeys(cliente);
 			UtilesSelenium.findElement(By.xpath(ConstantesFacturacion.XPATH_CLIENTEMOV)).sendKeys(Keys.ENTER);
@@ -44,50 +59,121 @@ public class Facturacion {
 
 			UtilesSelenium.findElement(By.xpath(ConstantesFacturacion.XPATH_FOLIOINPUT))
 					.sendKeys(ConstantesSpot.SUB_ZEROS + Session.getFolio(), Keys.ENTER);
-			UtilesSelenium.findElement(By.xpath(ConstantesFacturacion.XPATHERE)).click();
 
-			// Generar
-			UtilesSelenium.findElement(By.xpath(ConstantesFacturacion.XPATH_BTN_GENERARMOV)).click();
-			Session.getConfigDriver().waitForLoad();
+			if (datos.getInstrumento().equals("ARBITRAJE INTERBANCARIO")) {
 
-			// Confirmar
-			UtilesSelenium.findElement(By.xpath(ConstantesFacturacion.XPATH_BTN_CONFIRMARMOV)).click();
-			Session.getConfigDriver().waitForLoad();
+				UtilesSelenium.findElement(By.xpath(
+						"//*[@id='grid-movimientos-facturar']/span/div[2]/div[4]/table//span[@ng-bind='dataItem.AccionTipoOperacion' and contains(text(),"
+								+ ConstantesFacturacion.COMPRA + ")]"))
+						.click();
 
-			// Rescatar Datos
-			String movimientoEgreso = null;
-			String movimientoIngreso = null;
-			String movimientoIngresoOp = null;
-			String movimientoEgresoOp = null;
-			String abono = UtilesSelenium.findElement(By.xpath(ConstantesFacturacion.XPATH_LABEL_ABONO)).getText();
-			String cargo = UtilesSelenium.findElement(By.xpath(ConstantesFacturacion.XPATH_LABEL_CARGO)).getText();
-			String comprobante = UtilesSelenium.findElement(By.xpath(ConstantesFacturacion.XPATH_LABEL_COMPROBANTE_CCI)).getText();
-			String abonoOp = SpotUtiles.folio(abono);
-			String cargoOp = SpotUtiles.folio(cargo);
-			String comprobanteOp = SpotUtiles.folio(comprobante);
-			LOGGER.info("Abono: " + abonoOp);
-			LOGGER.info("Cargo: " + cargoOp);
-			if(datos.getCuentaInversion().equals("NO")) {
-				movimientoIngreso = UtilesSelenium.findElement(By.xpath(ConstantesFacturacion.XPATH_LABEL_INGRESO)).getText();
-				movimientoEgreso = UtilesSelenium.findElement(By.xpath(ConstantesFacturacion.XPATH_LABEL_EGRESO)).getText();
-				comprobante = UtilesSelenium.findElement(By.xpath(ConstantesFacturacion.XPATH_LABEL_COMPROBANTE_SCI)).getText();
+				// Generar
+				UtilesSelenium.findElement(By.xpath(ConstantesFacturacion.XPATH_BTN_GENERARMOV)).click();
+				Session.getConfigDriver().waitForLoad();
+
+				// Confirmar
+				UtilesSelenium.findElement(By.xpath(ConstantesFacturacion.XPATH_BTN_CONFIRMARMOV)).click();
+				Session.getConfigDriver().waitForLoad();
+
+				// Abono
+				abono = UtilesSelenium.findElement(By.xpath(ConstantesFacturacion.XPATH_LABEL_ABONO_ARB)).getText();
+				comprobanteVenta = UtilesSelenium
+						.findElement(By.xpath(ConstantesFacturacion.XPATH_LABEL_COMPROBANTE_ARB)).getText();
+
+				abonoOp = SpotUtiles.folio(abono);
+				comprobanteVentaOp = SpotUtiles.folio(comprobanteVenta);
+				LOGGER.info("Abono: " + abonoOp);
+				LOGGER.info("Comprobante Venta: " + comprobanteVentaOp);
+
+				// Aceptar
+				UtilesSelenium.findElement(By.xpath(ConstantesFacturacion.XPATH_BTN_ACEPTARINFO)).click();
+				Session.getConfigDriver().waitForLoad();
+
+				UtilesSelenium.findElement(By.xpath(
+						"//*[@id='grid-movimientos-facturar']/span/div[2]/div[4]/table//span[@ng-bind='dataItem.AccionTipoOperacion' and contains(text(),"
+								+ ConstantesFacturacion.VENTA + ")]"))
+						.click();
+
+				// Generar
+				UtilesSelenium.findElement(By.xpath(ConstantesFacturacion.XPATH_BTN_GENERARMOV)).click();
+				Session.getConfigDriver().waitForLoad();
+
+				// Confirmar
+				UtilesSelenium.findElement(By.xpath(ConstantesFacturacion.XPATH_BTN_CONFIRMARMOV)).click();
+				Session.getConfigDriver().waitForLoad();
+
+				// Cargo
+				cargo = UtilesSelenium.findElement(By.xpath(ConstantesFacturacion.XPATH_LABEL_CARGO_ARB)).getText();
+				comprobante = UtilesSelenium.findElement(By.xpath(ConstantesFacturacion.XPATH_LABEL_COMPROBANTE_ARB))
+						.getText();
+
+				cargoOp = SpotUtiles.folio(abono);
 				comprobanteOp = SpotUtiles.folio(comprobante);
-				movimientoIngresoOp = SpotUtiles.folio(movimientoIngreso);
-				movimientoEgresoOp = SpotUtiles.folio(movimientoEgreso);
-				LOGGER.info("Movimiento Ingreso: " + movimientoIngresoOp);
-				LOGGER.info("Movimiento Egreso: " + movimientoEgresoOp);
-			}
-			LOGGER.info("Comprobante: " + comprobanteOp);
-			Session.setAbono(abonoOp);
-			Session.setCargo(cargoOp);
-			Session.setComprobante(comprobanteOp);
-			Session.setMovimientoEgreso(movimientoEgresoOp);
-			Session.setMovimientoIngreso(movimientoIngresoOp);
-			Session.getConfigDriver().waitForLoad();
+				LOGGER.info("Cargo: " + cargoOp);
+				LOGGER.info("Comprobante Compra: " + comprobanteOp);
 
-			// Aceptar
-			UtilesSelenium.findElement(By.xpath(ConstantesFacturacion.XPATH_BTN_ACEPTARINFO)).click();
-			Session.getConfigDriver().waitForLoad();
+				// Aceptar
+				UtilesSelenium.findElement(By.xpath(ConstantesFacturacion.XPATH_BTN_ACEPTARINFO)).click();
+				Session.getConfigDriver().waitForLoad();
+
+				Session.setAbono(abonoOp);
+				Session.setCargo(cargoOp);
+				Session.setComprobante(comprobanteOp);
+				Session.setComprobanteVenta(comprobanteVentaOp);
+				Session.setMovimientoEgreso(movimientoEgresoOp);
+				Session.setMovimientoIngreso(movimientoIngresoOp);
+				Session.getConfigDriver().waitForLoad();
+
+			} else {
+				UtilesSelenium.findElement(By.xpath(
+						"//*[@id='grid-movimientos-facturar']/span/div[2]/div[4]/table//span[@ng-bind='dataItem.FolioTransaccion' and contains(text(),"
+								+ Session.getFolio() + ")]"))
+						.click();
+
+				// Generar
+				UtilesSelenium.findElement(By.xpath(ConstantesFacturacion.XPATH_BTN_GENERARMOV)).click();
+				Session.getConfigDriver().waitForLoad();
+
+				// Confirmar
+				UtilesSelenium.findElement(By.xpath(ConstantesFacturacion.XPATH_BTN_CONFIRMARMOV)).click();
+				Session.getConfigDriver().waitForLoad();
+
+				// Rescatar Datos
+				abono = UtilesSelenium.findElement(By.xpath(ConstantesFacturacion.XPATH_LABEL_ABONO)).getText();
+				cargo = UtilesSelenium.findElement(By.xpath(ConstantesFacturacion.XPATH_LABEL_CARGO)).getText();
+				comprobante = UtilesSelenium.findElement(By.xpath(ConstantesFacturacion.XPATH_LABEL_COMPROBANTE_CCI))
+						.getText();
+				abonoOp = SpotUtiles.folio(abono);
+				cargoOp = SpotUtiles.folio(cargo);
+				comprobanteOp = SpotUtiles.folio(comprobante);
+				LOGGER.info("Abono: " + abonoOp);
+				LOGGER.info("Cargo: " + cargoOp);
+				if (datos.getCuentaInversion().equals("NO")) {
+					movimientoIngreso = UtilesSelenium.findElement(By.xpath(ConstantesFacturacion.XPATH_LABEL_INGRESO))
+							.getText();
+					movimientoEgreso = UtilesSelenium.findElement(By.xpath(ConstantesFacturacion.XPATH_LABEL_EGRESO))
+							.getText();
+					comprobante = UtilesSelenium
+							.findElement(By.xpath(ConstantesFacturacion.XPATH_LABEL_COMPROBANTE_SCI)).getText();
+					comprobanteOp = SpotUtiles.folio(comprobante);
+					movimientoIngresoOp = SpotUtiles.folio(movimientoIngreso);
+					movimientoEgresoOp = SpotUtiles.folio(movimientoEgreso);
+					LOGGER.info("Movimiento Ingreso: " + movimientoIngresoOp);
+					LOGGER.info("Movimiento Egreso: " + movimientoEgresoOp);
+				}
+				LOGGER.info("Comprobante: " + comprobanteOp);
+				Session.setAbono(abonoOp);
+				Session.setCargo(cargoOp);
+				Session.setComprobante(comprobanteOp);
+				Session.setMovimientoEgreso(movimientoEgresoOp);
+				Session.setMovimientoIngreso(movimientoIngresoOp);
+				Session.getConfigDriver().waitForLoad();
+
+				// Aceptar
+				UtilesSelenium.findElement(By.xpath(ConstantesFacturacion.XPATH_BTN_ACEPTARINFO)).click();
+				Session.getConfigDriver().waitForLoad();
+
+			}
 
 			// Comprobantes de Facturación
 			UtilesSelenium.findElement(By.xpath(ConstantesFacturacion.XPATH_TABCOMPROBANTEFACTURACION)).click();
@@ -96,38 +182,87 @@ public class Facturacion {
 			Session.getConfigDriver().waitForLoad();
 			UtilesSelenium.findElement(By.xpath(ConstantesFacturacion.XPATH_BTN_BUSCARFAC)).click();
 			Session.getConfigDriver().waitForLoad();
+			if (datos.getInstrumento().equals("ARBITRAJE INTERBANCARIO")) {
 
-			UtilesSelenium.findElement(By.xpath(ConstantesFacturacion.XPATH_SECUENCIA))
-					.sendKeys(ConstantesSpot.SUB_ZEROS + comprobanteOp + Keys.ENTER);
-			Session.getConfigDriver().waitForLoad();
+				// buscar comprobante Venta
+				UtilesSelenium.findElement(By.xpath(ConstantesFacturacion.XPATH_SECUENCIA))
+						.sendKeys(ConstantesSpot.SUB_ZEROS + comprobanteOp + Keys.ENTER);
+				Session.getConfigDriver().waitForLoad();
 
-			UtilesSelenium.findElement(By.xpath(ConstantesFacturacion.XPATH_COMPARARFOLIOFAC + comprobanteOp
-					+ ConstantesFacturacion.XPATH_COMPARARFOLIOFA2C)).click();
-			Session.getConfigDriver().waitForLoad();
+				UtilesSelenium.findElement(By.xpath(ConstantesFacturacion.XPATH_COMPARARFOLIOFAC + comprobanteOp
+						+ ConstantesFacturacion.XPATH_COMPARARFOLIOFA2C)).click();
+				Session.getConfigDriver().waitForLoad();
 
-//			//Enviar a DTE.
-			UtilesSelenium.findElement(By.xpath(ConstantesFacturacion.XPATH_BTN_ENVIARFAC)).click();
-			Session.getConfigDriver().waitForLoad();
+				// Enviar a DTE.
+				UtilesSelenium.findElement(By.xpath(ConstantesFacturacion.XPATH_BTN_ENVIARFAC)).click();
+				Session.getConfigDriver().waitForLoad();
 
-			// Confirmar
-			UtilesSelenium.findElement(By.xpath(ConstantesFacturacion.XPATH_BTN_CONFIRMARFAC)).click();
-			Session.getConfigDriver().waitForLoad(6000);
+				// Confirmar
+				UtilesSelenium.findElement(By.xpath(ConstantesFacturacion.XPATH_BTN_CONFIRMARFAC)).click();
+				Session.getConfigDriver().waitForLoad(6000);
 
-			// Aceptar
-			UtilesSelenium.findElement(By.xpath(ConstantesFacturacion.XPATH_BTN_ACEPTARFAC)).click();
-			Session.getConfigDriver().waitForLoad();
-			
+				// Aceptar
+				UtilesSelenium.findElement(By.xpath(ConstantesFacturacion.XPATH_BTN_ACEPTARFAC)).click();
+				Session.getConfigDriver().waitForLoad();
+
+				// buscar comprobante Compra
+				UtilesSelenium.findElement(By.xpath(ConstantesFacturacion.XPATH_BTN_LIMPIAR_SEC)).click();
+				UtilesSelenium.findElement(By.xpath(ConstantesFacturacion.XPATH_SECUENCIA))
+						.sendKeys(ConstantesSpot.SUB_ZEROS + comprobanteVentaOp + Keys.ENTER);
+				Session.getConfigDriver().waitForLoad();
+
+				UtilesSelenium.findElement(By.xpath(ConstantesFacturacion.XPATH_COMPARARFOLIOFAC + comprobanteVentaOp
+						+ ConstantesFacturacion.XPATH_COMPARARFOLIOFA2C)).click();
+				Session.getConfigDriver().waitForLoad();
+
+				// Enviar a DTE.
+				UtilesSelenium.findElement(By.xpath(ConstantesFacturacion.XPATH_BTN_ENVIARFAC)).click();
+				Session.getConfigDriver().waitForLoad();
+
+				// Confirmar
+				UtilesSelenium.findElement(By.xpath(ConstantesFacturacion.XPATH_BTN_CONFIRMARFAC)).click();
+				Session.getConfigDriver().waitForLoad(6000);
+
+				// Aceptar
+				UtilesSelenium.findElement(By.xpath(ConstantesFacturacion.XPATH_BTN_ACEPTARFAC)).click();
+				Session.getConfigDriver().waitForLoad();
+				
+			}else {
+
+				// buscar comprobante Venta
+				UtilesSelenium.findElement(By.xpath(ConstantesFacturacion.XPATH_SECUENCIA))
+						.sendKeys(ConstantesSpot.SUB_ZEROS + comprobanteOp + Keys.ENTER);
+				Session.getConfigDriver().waitForLoad();
+
+				UtilesSelenium.findElement(By.xpath(ConstantesFacturacion.XPATH_COMPARARFOLIOFAC + comprobanteOp
+						+ ConstantesFacturacion.XPATH_COMPARARFOLIOFA2C)).click();
+				Session.getConfigDriver().waitForLoad();
+
+				// Enviar a DTE.
+				UtilesSelenium.findElement(By.xpath(ConstantesFacturacion.XPATH_BTN_ENVIARFAC)).click();
+				Session.getConfigDriver().waitForLoad();
+
+				// Confirmar
+				UtilesSelenium.findElement(By.xpath(ConstantesFacturacion.XPATH_BTN_CONFIRMARFAC)).click();
+				Session.getConfigDriver().waitForLoad(6000);
+
+				// Aceptar
+				UtilesSelenium.findElement(By.xpath(ConstantesFacturacion.XPATH_BTN_ACEPTARFAC)).click();
+				Session.getConfigDriver().waitForLoad();
+				
+			}
+
 			Session.getConfigDriver().waitForLoad();
 			LOGGER.info("Gestion de facturacion - Datos enviados a DTE");
-			Session.getConfigDriver().logger.log(LogStatus.INFO, "Gestion de facturacion","Datos enviados a DTE");
+			Session.getConfigDriver().logger.log(LogStatus.INFO, "Gestion de facturacion", "Datos enviados a DTE");
 			UtilesExtentReport.captura("Gestion de facturacion - Datos enviados a DTE");
 			CerrarVentana.init();
 			return true;
 		} catch (Exception e) {
 			LOGGER.error(e.getMessage());
 			UtilesExtentReport.capturaError("Error: Gestion de Facturacion - Datos facturacion - Spot");
-			Session.getConfigDriver().logger.log(LogStatus.ERROR, "Error: Gestion de Facturacion - Datos facturacion - Spot",
-					"Datos: " + e.getMessage());
+			Session.getConfigDriver().logger.log(LogStatus.ERROR,
+					"Error: Gestion de Facturacion - Datos facturacion - Spot", "Datos: " + e.getMessage());
 			UtilesSelenium.findElement(By.xpath(ConstantesFacturacion.XPATH_BTN_ERROR)).click();
 			CerrarVentana.init();
 			SeleccionarSpot.seleccionarMenuFacturacion();
