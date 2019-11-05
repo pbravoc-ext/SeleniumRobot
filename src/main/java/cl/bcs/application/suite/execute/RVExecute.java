@@ -3,20 +3,15 @@ package cl.bcs.application.suite.execute;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 import org.testng.Assert;
 import org.testng.annotations.BeforeSuite;
-import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
-
 import com.relevantcodes.extentreports.ExtentTest;
 import com.relevantcodes.extentreports.LogStatus;
-
 import cl.bcs.application.driver.factory.FactoryExcel;
 import cl.bcs.application.driver.factory.FactoryExtentReport;
 import cl.bcs.application.factory.util.RVExcel;
 import cl.bcs.application.factory.util.Session;
-import cl.bcs.application.factory.util.SessionRV;
 import cl.bcs.application.file.util.DateUtil;
 import cl.bcs.application.file.util.ExtentReportUtiles;
 import cl.bcs.application.suite.RV;

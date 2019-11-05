@@ -14,7 +14,6 @@ import cl.bcs.application.constantes.util.ConstantesIngresarTransaccion;
 import cl.bcs.application.constantes.util.ConstantesRV;
 import cl.bcs.application.factory.util.RVExcel;
 import cl.bcs.application.factory.util.Session;
-import cl.bcs.application.factory.util.SessionRV;
 import cl.bcs.application.file.util.Log4jFactory;
 import cl.bcs.application.file.util.SpotUtiles;
 import cl.bcs.application.file.util.UtilesExtentReport;
@@ -76,7 +75,7 @@ public class IngresarTransaccion {
 			// folio
 			int iFolio = (int) (Math.random() * 2000000000) + 1;
 			String folio = Integer.toString(iFolio);
-			SessionRV.setFolioAleatorio(folio);
+			session.setFolioAleatorio(folio);
 			WebElement weFolio = UtilesSelenium.findInputNumber(ConstantesIngresarTransaccion.XPATH_FOLIO_ALEATORIO_INPUT_1,
 					ConstantesIngresarTransaccion.XPATH_FOLIO_ALEATORIO_INPUT_2, session.getConfigDriver());
 			weFolio.clear();
@@ -128,7 +127,7 @@ public class IngresarTransaccion {
 				String precioFinal = UtilesSelenium
 						.findElement(session.getConfigDriver(),By.xpath(ConstantesIngresarTransaccion.XPATH_PRECIO_INPUT_1))
 						.getAttribute(Constantes.TAG_TITLE);
-				if (validacion2(tipoOperacion, precioFinal, SessionRV.getPrecioOrden())) {
+				if (validacion2(tipoOperacion, precioFinal, session.getPrecioOrden())) {
 					LOGGER.info("Validacion Flujo Limite exitosa para operacion: " + tipoOperacion);
 					session.logger.log(LogStatus.PASS, "Validacion Flujo Limite", tipoOperacion);
 //					UtilesExtentReport.captura("Validacion exitosa");
@@ -149,9 +148,9 @@ public class IngresarTransaccion {
 
 			String ordeningresada = UtilesSelenium.findElement(session.getConfigDriver(),By.xpath(ConstantesIngresarTransaccion.XPATH_LABEL_INFO))
 					.getText();
-			SessionRV.setnTransaccion(SpotUtiles.onlyNumbers(ordeningresada));
+			session.setnTransaccion(SpotUtiles.onlyNumbers(ordeningresada));
 			LOGGER.info("Folio Transaccion: "+SpotUtiles.onlyNumbers(ordeningresada));
-			session.logger.log(LogStatus.INFO, "Folio Transaccion Rescatado: ", SessionRV.getnTransaccion());
+			session.logger.log(LogStatus.INFO, "Folio Transaccion Rescatado: ", session.getnTransaccion());
 			UtilesExtentReport.captura("Folio Transaccion Rescatado", session);
 			UtilesSelenium.waitForLoadMid(session.getConfigDriver());
 			UtilesSelenium.findElement(session.getConfigDriver(),By.xpath(ConstantesIngresarTransaccion.XPATH_BTN_ACEPTAR_INFO)).click();

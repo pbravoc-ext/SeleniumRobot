@@ -18,8 +18,6 @@ import cl.bcs.application.constantes.util.Constantes;
 import cl.bcs.application.constantes.util.ConstantesTesoreria;
 import cl.bcs.application.factory.util.RVExcel;
 import cl.bcs.application.factory.util.Session;
-import cl.bcs.application.factory.util.SessionRV;
-//import cl.bcs.application.factory.util.SpotExcel;
 import cl.bcs.application.file.util.Log4jFactory;
 import cl.bcs.application.file.util.UtilesExtentReport;
 import cl.bcs.application.file.util.UtilesSelenium;
@@ -49,8 +47,8 @@ public class Tesoreria {
 			String buscarIngreso = ConstantesTesoreria.XPATHERE_INGRESO + Ingreso + Constantes.XPATHERE_OUT;
 			
 			// RV
-			String fechaDesde = SessionRV.getFechaTransaccion();
-			String fechaHasta = SessionRV.getFechaLiquidacion();
+			String fechaDesde = session.getFechaTransaccion();
+			String fechaHasta = session.getFechaLiquidacion();
 			
 			// Ingreso socio
 			UtilesSelenium.waitForLoad(session.getConfigDriver());

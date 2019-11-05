@@ -14,7 +14,6 @@ import cl.bcs.application.constantes.util.ConstantesFacturacion;
 import cl.bcs.application.constantes.util.ConstantesRV;
 import cl.bcs.application.factory.util.RVExcel;
 import cl.bcs.application.factory.util.Session;
-import cl.bcs.application.factory.util.SessionRV;
 import cl.bcs.application.file.util.Log4jFactory;
 import cl.bcs.application.file.util.SpotUtiles;
 import cl.bcs.application.file.util.UtilesExtentReport;
@@ -53,7 +52,7 @@ public class Facturacion {
 					.click();
 			UtilesSelenium.waitForLoad(session.getConfigDriver());
 
-			String usarFolio = SessionRV.getFolioAleatorio();
+			String usarFolio = session.getFolioAleatorio();
 
 			UtilesSelenium.findElement(session.getConfigDriver(), By.xpath(ConstantesFacturacion.XPATH_FOLIOINPUT))
 					.sendKeys(Constantes.SUB_ZEROS + usarFolio, Keys.ENTER);
@@ -66,41 +65,41 @@ public class Facturacion {
 			String fechaTransaccion = UtilesSelenium.findElement(session.getConfigDriver(),
 					By.xpath(ConstantesFacturacion.FULL_XPATH_FECHA_TRANSACCION)).getText();
 			LOGGER.info("Fecha Transaccion: " + fechaTransaccion);
-			SessionRV.setFechaTransaccion(fechaTransaccion);
-			LOGGER.info("Fecha Transaccion: " + SessionRV.getFechaTransaccion());
+			session.setFechaTransaccion(fechaTransaccion);
+			LOGGER.info("Fecha Transaccion: " + session.getFechaTransaccion());
 
 			// Fecha Liquidacion Factura
 			String fechaLiquidacion = UtilesSelenium.findElement(session.getConfigDriver(),
 					By.xpath(ConstantesFacturacion.FULL_XPATH_FECHA_LIQUIDACION)).getText();
 			LOGGER.info("Fecha Liquidacion: " + fechaLiquidacion);
-			SessionRV.setFechaLiquidacion(fechaLiquidacion);
-			LOGGER.info("Fecha Liquidacion: " + SessionRV.getFechaLiquidacion());
+			session.setFechaLiquidacion(fechaLiquidacion);
+			LOGGER.info("Fecha Liquidacion: " + session.getFechaLiquidacion());
 
 			// Monto total local (para compara en cuenta de inversion con el cargo)
 			String montoTotalLocal = UtilesSelenium.findElement(session.getConfigDriver(),
 					By.xpath(ConstantesFacturacion.FULL_XPATH_MONTO_TOTAL_LOCAL)).getText();
 			LOGGER.info("Monto Total Local: " + montoTotalLocal);
-			SessionRV.setMontoTotalLocal(montoTotalLocal);
-			LOGGER.info("Monto Total Local: " + SessionRV.getMontoTotalLocal());
+			session.setMontoTotalLocal(montoTotalLocal);
+			LOGGER.info("Monto Total Local: " + session.getMontoTotalLocal());
 
 			// Monto factura
 			String montoFactura = UtilesSelenium
 					.findElement(session.getConfigDriver(), By.xpath(ConstantesFacturacion.XPATH_MONTO_FACTURA_RV))
 					.getText();
 			LOGGER.info("Monto Facturado: " + montoFactura);
-			SessionRV.setMontoFactura(montoFactura);
-			LOGGER.info("Monto Facturado: " + SessionRV.getMontoFactura());
+			session.setMontoFactura(montoFactura);
+			LOGGER.info("Monto Facturado: " + session.getMontoFactura());
 
-			if (validacionMontos(montoFactura, SessionRV.getMontoAsignacion())) {
+			if (validacionMontos(montoFactura, session.getMontoAsignacion())) {
 				LOGGER.info("Validacion exitosa - Monto facturado: " + montoFactura + " es igual al monto asignado: "
-						+ SessionRV.getMontoAsignacion());
+						+ session.getMontoAsignacion());
 				session.logger.log(LogStatus.PASS, "Validacion Monto Facturado", "Monto facturado " + montoFactura
-						+ " es igual al monto asignado " + SessionRV.getMontoAsignacion());
+						+ " es igual al monto asignado " + session.getMontoAsignacion());
 			} else {
 				LOGGER.info("Validacion errónea - Monto facturado: " + montoFactura
-						+ " debe ser igual al monto asignado: " + SessionRV.getMontoAsignacion());
+						+ " debe ser igual al monto asignado: " + session.getMontoAsignacion());
 				session.logger.log(LogStatus.WARNING, "Validacion Monto Facturado", "Monto facturado " + montoFactura
-						+ " debe ser igual al monto asignado " + SessionRV.getMontoAsignacion());
+						+ " debe ser igual al monto asignado " + session.getMontoAsignacion());
 			}
 
 			// Generar
@@ -455,14 +454,14 @@ public class Facturacion {
 				}
 			}
 
-			SessionRV.setFolioCartera(folioCarteraOp);
+			session.setFolioCartera(folioCarteraOp);
 			session.setAbono(abonoOp);
 			session.setCargo(cargoOp);
 			session.setComprobante(comprobanteOp);
 			session.setMovimientoEgreso(movimientoEgresoOp);
 			session.setMovimientoIngreso(movimientoIngresoOp);
-			SessionRV.setComprobanteIngreso(comprobanteIngresoOp);
-			SessionRV.setComprobanteEgreso(comprobanteEgresoOp);
+			session.setComprobanteIngreso(comprobanteIngresoOp);
+			session.setComprobanteEgreso(comprobanteEgresoOp);
 			UtilesSelenium.waitForLoad(session.getConfigDriver());
 
 			// Aceptar
@@ -532,7 +531,7 @@ public class Facturacion {
 
 			RVExcel datos = (RVExcel) dato;
 			String cliente = datos.getRut() + " " + datos.getNombre() + " (" + datos.getPortafolio() + ")";
-			String usarFolio = SessionRV.getFolioAleatorio();
+			String usarFolio = session.getFolioAleatorio();
 
 			// Movimientos a Facturar
 			WebElement weCliente = UtilesSelenium.findElement(session.getConfigDriver(),
@@ -560,41 +559,41 @@ public class Facturacion {
 			String fechaTransaccion = UtilesSelenium.findElement(session.getConfigDriver(),
 					By.xpath(ConstantesFacturacion.FULL_XPATH_FECHA_TRANSACCION)).getText();
 			LOGGER.info("Fecha Transaccion: " + fechaTransaccion);
-			SessionRV.setFechaTransaccion(fechaTransaccion);
-			LOGGER.info("Fecha Transaccion: " + SessionRV.getFechaTransaccion());
+			session.setFechaTransaccion(fechaTransaccion);
+			LOGGER.info("Fecha Transaccion: " + session.getFechaTransaccion());
 
 			// Fecha Liquidacion Factura
 			String fechaLiquidacion = UtilesSelenium.findElement(session.getConfigDriver(),
 					By.xpath(ConstantesFacturacion.FULL_XPATH_FECHA_LIQUIDACION)).getText();
 			LOGGER.info("Fecha Liquidacion: " + fechaLiquidacion);
-			SessionRV.setFechaLiquidacion(fechaLiquidacion);
-			LOGGER.info("Fecha Liquidacion: " + SessionRV.getFechaLiquidacion());
+			session.setFechaLiquidacion(fechaLiquidacion);
+			LOGGER.info("Fecha Liquidacion: " + session.getFechaLiquidacion());
 
 			// Monto total local (para compara en cuenta de inversion con el cargo)
 			String montoTotalLocal = UtilesSelenium.findElement(session.getConfigDriver(),
 					By.xpath(ConstantesFacturacion.FULL_XPATH_MONTO_TOTAL_LOCAL)).getText();
 			LOGGER.info("Monto Total Local: " + montoTotalLocal);
-			SessionRV.setMontoTotalLocal(montoTotalLocal);
-			LOGGER.info("Monto Total Local: " + SessionRV.getMontoTotalLocal());
+			session.setMontoTotalLocal(montoTotalLocal);
+			LOGGER.info("Monto Total Local: " + session.getMontoTotalLocal());
 
 			// Monto factura
 			String montoFactura = UtilesSelenium
 					.findElement(session.getConfigDriver(), By.xpath(ConstantesFacturacion.XPATH_MONTO_FACTURA_RV))
 					.getText();
 			LOGGER.info("Monto Facturado: " + montoFactura);
-			SessionRV.setMontoFactura(montoFactura);
-			LOGGER.info("Monto Facturado: " + SessionRV.getMontoFactura());
+			session.setMontoFactura(montoFactura);
+			LOGGER.info("Monto Facturado: " + session.getMontoFactura());
 
-			if (validacionMontos(montoFactura, SessionRV.getMontoAsignacion())) {
+			if (validacionMontos(montoFactura, session.getMontoAsignacion())) {
 				LOGGER.info("Validacion exitosa - Monto facturado: " + montoFactura + " es igual al monto asignado: "
-						+ SessionRV.getMontoAsignacion());
+						+ session.getMontoAsignacion());
 				session.logger.log(LogStatus.PASS, "Validacion Monto Facturado", "Monto facturado " + montoFactura
-						+ " es igual al monto asignado " + SessionRV.getMontoAsignacion());
+						+ " es igual al monto asignado " + session.getMontoAsignacion());
 			} else {
 				LOGGER.info("Validacion errónea - Monto facturado: " + montoFactura
-						+ " debe ser igual al monto asignado: " + SessionRV.getMontoAsignacion());
+						+ " debe ser igual al monto asignado: " + session.getMontoAsignacion());
 				session.logger.log(LogStatus.WARNING, "Validacion Monto Facturado", "Monto facturado " + montoFactura
-						+ " debe ser igual al monto asignado " + SessionRV.getMontoAsignacion());
+						+ " debe ser igual al monto asignado " + session.getMontoAsignacion());
 			}
 
 			// Generar
@@ -718,14 +717,14 @@ public class Facturacion {
 
 			}
 
-			SessionRV.setFolioCartera(folioCarteraOp);
+			session.setFolioCartera(folioCarteraOp);
 			session.setAbono(abonoOp);
 			session.setCargo(cargoOp);
 			session.setComprobante(comprobanteOp);
 			session.setMovimientoEgreso(movimientoEgresoOp);
 			session.setMovimientoIngreso(movimientoIngresoOp);
-			SessionRV.setComprobanteIngreso(comprobanteIngresoOp);
-			SessionRV.setComprobanteEgreso(comprobanteEgresoOp);
+			session.setComprobanteIngreso(comprobanteIngresoOp);
+			session.setComprobanteEgreso(comprobanteEgresoOp);
 			UtilesSelenium.waitForLoad(session.getConfigDriver());
 
 			// Aceptar

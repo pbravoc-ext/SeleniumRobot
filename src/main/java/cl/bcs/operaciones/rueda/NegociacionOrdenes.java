@@ -10,7 +10,6 @@ import com.relevantcodes.extentreports.LogStatus;
 import cl.bcs.application.constantes.util.ConstantesNegociacionOrdenes;
 import cl.bcs.application.factory.util.RVExcel;
 import cl.bcs.application.factory.util.Session;
-import cl.bcs.application.factory.util.SessionRV;
 import cl.bcs.application.file.util.Log4jFactory;
 import cl.bcs.application.file.util.UtilesExtentReport;
 import cl.bcs.application.file.util.UtilesSelenium;
@@ -87,7 +86,7 @@ public class NegociacionOrdenes {
 
 			// Folio
 			UtilesSelenium.waitForLoad(session.getConfigDriver());
-			String folio = SessionRV.getFolio();
+			String folio = session.getFolio();
 //			LOGGER.info(folio);
 			UtilesSelenium.waitForLoad(session.getConfigDriver());
 			WebElement weFolio = UtilesSelenium.findInputNumber(ConstantesNegociacionOrdenes.XPATH_FOLIO_INPUT_1,

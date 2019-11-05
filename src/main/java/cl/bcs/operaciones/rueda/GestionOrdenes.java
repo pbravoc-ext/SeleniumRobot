@@ -15,7 +15,7 @@ import cl.bcs.application.constantes.util.ConstantesGesionOrdenes;
 import cl.bcs.application.factory.util.RVExcel;
 //import cl.bcs.application.constantes.util.ConstantesIngresoOperacionSpot;
 import cl.bcs.application.factory.util.Session;
-import cl.bcs.application.factory.util.SessionRV;
+
 import cl.bcs.application.file.util.Log4jFactory;
 import cl.bcs.application.file.util.UtilesSelenium;
 import cl.bcs.plataforma.CerrarVentana;
@@ -25,7 +25,7 @@ public class GestionOrdenes {
 
 	public static boolean asignaciones(RVExcel usu, Session session) {
 		try {
-			String folio = SessionRV.getFolio();
+			String folio = session.getFolio();
 			UtilesSelenium.waitForLoad(session.getConfigDriver());
 
 			// ASIGNACIONES
@@ -73,11 +73,11 @@ public class GestionOrdenes {
 			LOGGER.info(informacion);
 			ArrayList<String> valores = numeros(informacion);
 
-			SessionRV.setAsignacion(valores.get(0).toString());
-			SessionRV.setMovimientoGenerado(valores.get(1).toString());
+			session.setAsignacion(valores.get(0).toString());
+			session.setMovimientoGenerado(valores.get(1).toString());
 
-			LOGGER.info("Asignación: " + SessionRV.getAsignacion());
-			LOGGER.info("Movimiento: " + SessionRV.getMovimientoGenerado());
+			LOGGER.info("Asignación: " + session.getAsignacion());
+			LOGGER.info("Movimiento: " + session.getMovimientoGenerado());
 			UtilesSelenium.waitForLoadMid(session.getConfigDriver());
 
 			// btn aceptar info

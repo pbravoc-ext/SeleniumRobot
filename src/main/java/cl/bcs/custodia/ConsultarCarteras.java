@@ -12,7 +12,6 @@ import com.relevantcodes.extentreports.LogStatus;
 import cl.bcs.application.constantes.util.ConstantesConsultarCarteras;
 import cl.bcs.application.factory.util.RVExcel;
 import cl.bcs.application.factory.util.Session;
-import cl.bcs.application.factory.util.SessionRV;
 import cl.bcs.application.file.util.Log4jFactory;
 import cl.bcs.application.file.util.UtilesExtentReport;
 //import cl.bcs.application.file.util.UtilesExtentReport;
@@ -31,7 +30,7 @@ public class ConsultarCarteras {
 			String mercado = datos.getMercado();
 			String portafolio = "(" + datos.getPortafolio() + ") - PROPGENERALES";
 			String instrumento = datos.getInstrumento();
-			String folioCartera = SessionRV.getFolioCartera();
+			String folioCartera = session.getFolioCartera();
 //			String valorComparar = null;
 
 			UtilesSelenium.waitForLoadLong(session.getConfigDriver());
@@ -40,7 +39,7 @@ public class ConsultarCarteras {
 
 			// Ingresar Cliente
 			WebElement weCliente = UtilesSelenium.findElement(
-					null, By.xpath(ConstantesConsultarCarteras.XPATH_CLIENTE_INPUT));
+					session.getConfigDriver(), By.xpath(ConstantesConsultarCarteras.XPATH_CLIENTE_INPUT));
 			weCliente.clear();
 			weCliente.sendKeys(cliente);
 			UtilesSelenium.waitForLoad(session.getConfigDriver());
@@ -61,7 +60,7 @@ public class ConsultarCarteras {
 			session.logger.log(LogStatus.INFO, "Portafolio Ingresado", portafolio);
 
 			// Ingresar Mercado
-			WebElement weMercado = UtilesSelenium.findElement(null, By.xpath(ConstantesConsultarCarteras.XPATH_MERCADO_INPUT));
+			WebElement weMercado = UtilesSelenium.findElement(session.getConfigDriver(), By.xpath(ConstantesConsultarCarteras.XPATH_MERCADO_INPUT));
 			weMercado.clear();
 			weMercado.sendKeys(mercado);
 			UtilesSelenium.waitForLoad(session.getConfigDriver());
@@ -72,14 +71,14 @@ public class ConsultarCarteras {
 
 			// Ingresar Instrumento
 			WebElement weInstrumento = UtilesSelenium
-					.findElement(null, By.xpath(ConstantesConsultarCarteras.XPATH_INSTRUMENTO_INPUT));
+					.findElement(session.getConfigDriver(), By.xpath(ConstantesConsultarCarteras.XPATH_INSTRUMENTO_INPUT));
 			weInstrumento.sendKeys(instrumento, Keys.TAB);
 			UtilesSelenium.waitForLoad(session.getConfigDriver());
 			LOGGER.info("Instrumento: " + instrumento);
 			session.logger.log(LogStatus.INFO, "Instrumento Ingresado", instrumento);
 
 			// BTN Buscar
-			UtilesSelenium.findElement(null, By.xpath(ConstantesConsultarCarteras.XPATH_BTN_BUSCAR)).click();
+			UtilesSelenium.findElement(session.getConfigDriver(), By.xpath(ConstantesConsultarCarteras.XPATH_BTN_BUSCAR)).click();
 			UtilesSelenium.waitForLoadMid(session.getConfigDriver());
 
 			// Folio cartera
@@ -95,35 +94,35 @@ public class ConsultarCarteras {
 			session.logger.log(LogStatus.INFO, "Folio Cartera Ingresado", folioCartera);
 
 			// Monto Asignacion (Usar luego el rescatado en facturacion)
-//				String montoFactura = SessionRV.getMontoAsignacion();
+//				String montoFactura = session.getMontoAsignacion();
 
 			// Fecha Ingreso
 			String fechaIngreso = UtilesSelenium
 					.findElement(session.getConfigDriver(), By.xpath(ConstantesConsultarCarteras.FULL_XPATH_FECHA_INGRESO)).getText();
 			LOGGER.info("Fecha Transaccion Cartera: " + fechaIngreso);
-			LOGGER.info("Fecha Transaccion Factura: " + SessionRV.getFechaTransaccion());
+			LOGGER.info("Fecha Transaccion Factura: " + session.getFechaTransaccion());
 			session.logger.log(LogStatus.INFO, "Fecha Transaccion Cartera Rescatada", fechaIngreso);
 
 			// Fecha Liquidacion Factura
 			String fechaLiquidacion = UtilesSelenium
 					.findElement(session.getConfigDriver(),By.xpath(ConstantesConsultarCarteras.FULL_XPATH_FECHA_LIQUIDACION)).getText();
 			LOGGER.info("Fecha Liquidacion Cartera: " + fechaLiquidacion);
-			LOGGER.info("Fecha Transaccion Factura: " + SessionRV.getFechaLiquidacion());
+			LOGGER.info("Fecha Transaccion Factura: " + session.getFechaLiquidacion());
 			session.logger.log(LogStatus.INFO, "Fecha Liquidacion Cartera Rescatada", fechaLiquidacion);
 
-			if (validacionFechas(SessionRV.getFechaLiquidacion(), fechaLiquidacion)) {
+			if (validacionFechas(session.getFechaLiquidacion(), fechaLiquidacion)) {
 				session.logger.log(LogStatus.PASS,
 						"Fecha 'Liquidacion' factura es igual a Fecha 'Liquidacion' Cartera",
-						"Fecha 'Liquidacion' factura: " + SessionRV.getFechaLiquidacion()
+						"Fecha 'Liquidacion' factura: " + session.getFechaLiquidacion()
 								+ " y Fecha 'Liquidacion' Cartera: " + fechaLiquidacion);
-				LOGGER.info("Fecha 'Liquidacion' factura: " + SessionRV.getFechaLiquidacion()
+				LOGGER.info("Fecha 'Liquidacion' factura: " + session.getFechaLiquidacion()
 						+ " es igual a Fecha 'Liquidacion' Cartera: " + fechaLiquidacion);
 			} else {
 				session.logger.log(LogStatus.WARNING,
 						"Fecha 'Liquidacion' factura es distinta a Fecha 'Liquidacion' Cartera",
-						"Fecha 'Liquidacion' factura: " + SessionRV.getFechaLiquidacion()
+						"Fecha 'Liquidacion' factura: " + session.getFechaLiquidacion()
 								+ " y Fecha 'Liquidacion' Cartera: " + fechaLiquidacion);
-				LOGGER.error("Fecha 'Liquidacion' factura: " + SessionRV.getFechaLiquidacion()
+				LOGGER.error("Fecha 'Liquidacion' factura: " + session.getFechaLiquidacion()
 						+ " debe ser igual a Fecha 'Liquidacion' de cartera: " + fechaLiquidacion);
 			}
 //			String montoCompraCartera = UtilesSelenium
@@ -132,7 +131,7 @@ public class ConsultarCarteras {
 					.findElement(session.getConfigDriver(),By.xpath(ConstantesConsultarCarteras.XPATH_VALOR_COMPRA)).getText();
 			LOGGER.info("Valor Compra Cartera: " + valorCompraCartera);
 //			LOGGER.info("Monto Compra Cartera: " + montoCompraCartera);
-			LOGGER.info("Monto Compra Factura: " + SessionRV.getMontoAsignacion());
+			LOGGER.info("Monto Compra Factura: " + session.getMontoAsignacion());
 
 			String valorCompraFinal = valorCompraCartera.replaceAll("[a-zA-Z]", "");
 			LOGGER.info("Valor Compra Cartera: " + valorCompraFinal);
@@ -145,23 +144,23 @@ public class ConsultarCarteras {
 //			
 			session.logger.log(LogStatus.INFO, "Valor Compra Cartera Rescatado", valorCompraCartera);
 
-			if (validacionMontos(valorCompraCartera, SessionRV.getMontoFactura())) {
+			if (validacionMontos(valorCompraCartera, session.getMontoFactura())) {
 				session.logger.log(LogStatus.PASS, "Valor Cartera es igual a Monto Facturado",
-						"Valor Cartera: " + valorCompraCartera + " y Monto Facturado: " + SessionRV.getMontoFactura());
+						"Valor Cartera: " + valorCompraCartera + " y Monto Facturado: " + session.getMontoFactura());
 				LOGGER.info("Validacion exitosa - Valor cartera: " + valorCompraCartera
-						+ " es igual al monto facturado: " + SessionRV.getMontoFactura());
+						+ " es igual al monto facturado: " + session.getMontoFactura());
 			} else {
 				session.logger.log(LogStatus.WARNING, "Valor Cartera es distinto a Monto Facturado",
-						"Valor Cartera: " + valorCompraCartera + " y Monto Facturado: " + SessionRV.getMontoFactura());
+						"Valor Cartera: " + valorCompraCartera + " y Monto Facturado: " + session.getMontoFactura());
 				LOGGER.error("Validacion errónea - Valor cartera: " + valorCompraCartera
-						+ " debe ser igual al monto facturado: " + SessionRV.getMontoFactura());
+						+ " debe ser igual al monto facturado: " + session.getMontoFactura());
 			}
 
 			UtilesExtentReport.captura("Datos Rescatados", session);
 			UtilesSelenium.waitForLoad(session.getConfigDriver());
 			LOGGER.info("== Cerrar Consultar Carteras ==");
 			CerrarVentana.init(session);
-			SessionRV.setEstadoFlujo(1);
+			session.setEstadoFlujo(1);
 			return true;
 		} catch (Exception e) {
 			LOGGER.error(e.getMessage());
@@ -175,7 +174,7 @@ public class ConsultarCarteras {
 		String cliente = datos.getRut() + " " + datos.getNombre();
 		String mercado = datos.getMercado();
 		String portafolio = "(" + datos.getPortafolio() + ") - PROPGENERALES";
-		String folioCartera = SessionRV.getFolioCartera();
+		String folioCartera = session.getFolioCartera();
 
 		UtilesSelenium.waitForLoadLong(session.getConfigDriver());
 		LOGGER.info("Consultar Movimientos - Operaciones de Rueda");
@@ -265,7 +264,7 @@ public class ConsultarCarteras {
 		UtilesSelenium.waitForLoad(session.getConfigDriver());
 		LOGGER.info("== Cerrar Consultar Carteras ==");
 		CerrarVentana.init(session);
-		SessionRV.setEstadoFlujo(1);
+		session.setEstadoFlujo(1);
 		try {
 			return true;
 		} catch (Exception e) {

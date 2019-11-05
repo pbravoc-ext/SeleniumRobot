@@ -14,7 +14,6 @@ import cl.bcs.application.constantes.util.ConstantesIngresarOrden;
 import cl.bcs.application.constantes.util.ConstantesRV;
 import cl.bcs.application.factory.util.RVExcel;
 import cl.bcs.application.factory.util.Session;
-import cl.bcs.application.factory.util.SessionRV;
 import cl.bcs.application.file.util.Log4jFactory;
 import cl.bcs.application.file.util.SpotUtiles;
 import cl.bcs.application.file.util.UtilesExtentReport;
@@ -82,7 +81,7 @@ public class IngresarOrden {
 			UtilesSelenium.waitForLoadMid(session.getConfigDriver());
 
 			// Ingreso Cantidad //100
-			SessionRV.setCantidad(cantidad);
+			session.setCantidad(cantidad);
 			WebElement weCantidadFinal = UtilesSelenium.findInputNumber(ConstantesIngresarOrden.XPATH_CANTIDAD_INPUT_1,
 					ConstantesIngresarOrden.XPATH_CANTIDAD_INPUT_2, session.getConfigDriver());
 			weCantidadFinal.sendKeys(cantidad);
@@ -132,7 +131,7 @@ public class IngresarOrden {
 			String montoTotal = UtilesSelenium.findElement(session.getConfigDriver(),By.xpath(ConstantesIngresarOrden.XPATH_MONTO_TOTAL_INPUT))
 					.getText();
 			LOGGER.info("Monto Total: " + montoTotal);
-			SessionRV.setMontoTotal(montoTotal);
+			session.setMontoTotal(montoTotal);
 
 			String montoOperacion = UtilesSelenium
 					.findElement(session.getConfigDriver(),By.xpath(ConstantesIngresarOrden.XPATH_MONTO_OPERACION_INPUT)).getText();
@@ -140,7 +139,7 @@ public class IngresarOrden {
 					.getAttribute(Constantes.TAG_TITLE);
 			String precioFinal = UtilesSelenium.findElement(session.getConfigDriver(),By.xpath(ConstantesIngresarOrden.XPATH_PRECIO_INPUT))
 					.getAttribute(Constantes.TAG_TITLE);
-			SessionRV.setPrecioOrden(precioFinal);
+			session.setPrecioOrden(precioFinal);
 			if (validacionMontoOperacion(montoOperacion, precioFinal, cantidadFinal)) {
 				LOGGER.info("Validacion Monto Operacion correcta: " + montoOperacion);
 				session.logger.log(LogStatus.PASS, "Validacion Monto Operacion",
@@ -184,8 +183,8 @@ public class IngresarOrden {
 			// Rescatar Folio
 			String ordeningresada = UtilesSelenium.findElement(session.getConfigDriver(),By.xpath(ConstantesIngresarOrden.FULL_XPATH_LABEL_INFO))
 					.getText();
-			SessionRV.setFolio(SpotUtiles.onlyNumbers(ordeningresada));
-			session.logger.log(LogStatus.INFO, "Folio rescatado", "Folio: " + SessionRV.getFolio());
+			session.setFolio(SpotUtiles.onlyNumbers(ordeningresada));
+			session.logger.log(LogStatus.INFO, "Folio rescatado", "Folio: " + session.getFolio());
 			UtilesExtentReport.captura("Folio rescatado - Ingresar Orden - Operaciones de Rueda", session);
 			LOGGER.info("Folio Ingreso Orden: " + SpotUtiles.onlyNumbers(ordeningresada));
 

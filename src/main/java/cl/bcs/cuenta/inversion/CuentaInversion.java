@@ -19,7 +19,6 @@ import cl.bcs.application.constantes.util.ConstantesCuentaInversion;
 import cl.bcs.application.constantes.util.ConstantesRV;
 import cl.bcs.application.factory.util.RVExcel;
 import cl.bcs.application.factory.util.Session;
-import cl.bcs.application.factory.util.SessionRV;
 import cl.bcs.application.file.util.Log4jFactory;
 import cl.bcs.application.file.util.UtilesExtentReport;
 import cl.bcs.application.file.util.UtilesSelenium;
@@ -77,9 +76,9 @@ public class CuentaInversion {
 			String montoAbono = UtilesSelenium.findElement(session.getConfigDriver(),By.xpath(ConstantesCuentaInversion.FULL_XPATH_ABONO))
 					.getText();
 //			if (datos.getTipoInstrumento().equalsIgnoreCase(ConstantesRV.INSTRUMENTO_ACX)) {
-//				valorComparar = SessionRV.getMontoTotal();
+//				valorComparar = session.getMontoTotal();
 //			} else {
-//				valorComparar = SessionRV.getMontoTotalLocal();
+//				valorComparar = session.getMontoTotalLocal();
 //			}
 
 			if (datos.getOperacion().equalsIgnoreCase(Constantes.COMPRA)) {
@@ -87,7 +86,7 @@ public class CuentaInversion {
 					LOGGER.info("Validacion exitosa, se creo un cargo de " + montoCargo);
 					session.logger.log(LogStatus.PASS, "Validacion Cargo",
 							"Se creó un cargo de " + montoCargo);
-					validacionMontoAbonoCargo(montoCargo, SessionRV.getMontoTotal(), ConstantesRV.CARGO, session);
+					validacionMontoAbonoCargo(montoCargo, session.getMontoTotal(), ConstantesRV.CARGO, session);
 				} else {
 					LOGGER.info("Validacion erronea, se debe crear un cargo");
 					session.logger.log(LogStatus.WARNING, "Validacion Cargo",
@@ -99,7 +98,7 @@ public class CuentaInversion {
 					session.logger.log(LogStatus.PASS, "Validacion Abono",
 							"Se creó un abono de " + montoAbono);
 
-					validacionMontoAbonoCargo(montoAbono, SessionRV.getMontoTotal(), ConstantesRV.ABONO, session);
+					validacionMontoAbonoCargo(montoAbono, session.getMontoTotal(), ConstantesRV.ABONO, session);
 				} else {
 					LOGGER.info("Validacion erronea, se debe crear un abono");
 					session.logger.log(LogStatus.WARNING, "Validacion Abono",
