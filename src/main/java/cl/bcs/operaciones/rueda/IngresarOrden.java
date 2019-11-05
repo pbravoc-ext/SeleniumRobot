@@ -12,7 +12,6 @@ import com.relevantcodes.extentreports.LogStatus;
 import cl.bcs.application.constantes.util.Constantes;
 import cl.bcs.application.constantes.util.ConstantesIngresarOrden;
 import cl.bcs.application.constantes.util.ConstantesRV;
-import cl.bcs.application.constantes.util.ConstantesSpotTags;
 import cl.bcs.application.factory.util.RVExcel;
 import cl.bcs.application.factory.util.Session;
 import cl.bcs.application.factory.util.SessionRV;
@@ -138,9 +137,9 @@ public class IngresarOrden {
 			String montoOperacion = UtilesSelenium
 					.findElement(session.getConfigDriver(),By.xpath(ConstantesIngresarOrden.XPATH_MONTO_OPERACION_INPUT)).getText();
 			String cantidadFinal = UtilesSelenium.findElement(session.getConfigDriver(),By.xpath(ConstantesIngresarOrden.XPATH_CANTIDAD_INPUT))
-					.getAttribute(ConstantesSpotTags.TAG_TITLE);
+					.getAttribute(Constantes.TAG_TITLE);
 			String precioFinal = UtilesSelenium.findElement(session.getConfigDriver(),By.xpath(ConstantesIngresarOrden.XPATH_PRECIO_INPUT))
-					.getAttribute(ConstantesSpotTags.TAG_TITLE);
+					.getAttribute(Constantes.TAG_TITLE);
 			SessionRV.setPrecioOrden(precioFinal);
 			if (validacionMontoOperacion(montoOperacion, precioFinal, cantidadFinal)) {
 				LOGGER.info("Validacion Monto Operacion correcta: " + montoOperacion);
@@ -158,7 +157,7 @@ public class IngresarOrden {
 			UtilesSelenium.findElement(session.getConfigDriver(),By.xpath(ConstantesIngresarOrden.XPATH_TAB_MAS_DATOS)).click();
 			WebElement weFormaDePago = UtilesSelenium
 					.findElement(session.getConfigDriver(),By.xpath(ConstantesIngresarOrden.XPATH_FORMA_DE_PAGO));
-			String condicion = weFormaDePago.getAttribute(ConstantesSpotTags.TAG_DISABLE);
+			String condicion = weFormaDePago.getAttribute(Constantes.TAG_DISABLE);
 			if (datos.getTransferencia().equalsIgnoreCase(Constantes.SI)) {
 				if (condicion.equalsIgnoreCase(Constantes.TRUE)) {
 					UtilesSelenium.findElement(session.getConfigDriver(), By.xpath(ConstantesIngresarOrden.XPATH_CHECKBOX_MAS_DATOS)).click();

@@ -14,7 +14,6 @@ import cl.bcs.application.constantes.util.Constantes;
 import cl.bcs.application.constantes.util.ConstantesConsultarCustodia;
 import cl.bcs.application.factory.util.RVExcel;
 import cl.bcs.application.factory.util.Session;
-import cl.bcs.application.factory.util.SessionRV;
 import cl.bcs.application.file.util.Log4jFactory;
 import cl.bcs.application.file.util.UtilesExtentReport;
 import cl.bcs.application.file.util.UtilesSelenium;
@@ -25,7 +24,7 @@ public class ConsultarCustodia {
 	private static final Logger LOGGER = Log4jFactory.getLogger(ConsultarCustodia.class);
 
 	public static boolean custodia(Object dato, Session session) {
-//		try {
+		try {
 			RVExcel datos = (RVExcel) dato;
 			String cliente = datos.getRut() + " " + datos.getNombre();
 			String mercado = datos.getMercado();
@@ -46,17 +45,17 @@ public class ConsultarCustodia {
 			weCliente.sendKeys(Keys.TAB);
 			UtilesSelenium.waitForLoad(session.getConfigDriver());
 			System.out.println("kshbdkjns");
-//			session.logger.log(LogStatus.INFO, "Ingresando cliente: ", cliente);
+			session.logger.log(LogStatus.INFO, "Ingresando cliente: ", cliente);
 
-//			// Ingresar Portafolio
-//			WebElement wePortafolio = UtilesSelenium
-//					.findElement(session.getConfigDriver(),By.xpath(ConstantesConsultarCustodia.XPATH_PORTAFOLIO_INPUT));
-//			wePortafolio.clear();
-//			wePortafolio.sendKeys(portafolio);
-//			UtilesSelenium.waitForLoad(session.getConfigDriver());
-//			wePortafolio.sendKeys(Keys.ENTER);
-//			UtilesSelenium.waitForLoad(session.getConfigDriver());
-//			session.logger.log(LogStatus.INFO, "Ingresando portafolio: ", portafolio);
+			// Ingresar Portafolio
+			WebElement wePortafolio = UtilesSelenium
+					.findElement(session.getConfigDriver(),By.xpath(ConstantesConsultarCustodia.XPATH_PORTAFOLIO_INPUT));
+			wePortafolio.clear();
+			wePortafolio.sendKeys(portafolio);
+			UtilesSelenium.waitForLoad(session.getConfigDriver());
+			wePortafolio.sendKeys(Keys.ENTER);
+			UtilesSelenium.waitForLoad(session.getConfigDriver());
+			session.logger.log(LogStatus.INFO, "Ingresando portafolio: ", portafolio);
 
 			// Ingresar Mercado
 			WebElement weMercado = UtilesSelenium.findElement(session.getConfigDriver(),By.xpath(ConstantesConsultarCustodia.XPATH_MERCADO_INPUT));
@@ -97,14 +96,14 @@ public class ConsultarCustodia {
 			UtilesSelenium.waitForLoad(session.getConfigDriver());
 			LOGGER.info("== Cerrar Consultar Custodia ==");
 			CerrarVentana.init(session);
-			SessionRV.setEstadoFlujo(1);
+			session.setEstadoFlujo(1);
 			return true;
-//		} catch (Exception e) {
-//			LOGGER.error(e.getMessage());
-//			LOGGER.error(e.getCause());
-//			LOGGER.error(e.getLocalizedMessage());
-//			return false;
-//		}
+		} catch (Exception e) {
+			LOGGER.error(e.getMessage());
+			LOGGER.error(e.getCause());
+			LOGGER.error(e.getLocalizedMessage());
+			return false;
+		}
 	}
 
 	/**
@@ -134,22 +133,22 @@ public class ConsultarCustodia {
 				.findElement(session.getConfigDriver(), By.xpath(ConstantesConsultarCustodia.XPATH_CUSTODIA_DISPONIBLE_GRILLA)).getText();
 		LOGGER.info("Total Custodia Disponible: " + totalCustodia);
 		UtilesSelenium.waitForLoad(session.getConfigDriver());
-		if (SessionRV.getEstadoFlujo() == 0) {
+		if (session.getEstadoFlujo() == 0) {
 			LOGGER.info("Inicio del flujo");
-			SessionRV.setCustodiaInicial(totalCustodia);
-			LOGGER.info("Custodia Disponible: " + SessionRV.getCustodiaInicial());
+			session.setCustodiaInicial(totalCustodia);
+			LOGGER.info("Custodia Disponible: " + session.getCustodiaInicial());
 			session.logger.log(LogStatus.INFO, "Rescatando custodia inicial disponible: ",
-					SessionRV.getCustodiaInicial());
+					session.getCustodiaInicial());
 			UtilesExtentReport.captura("Rescatando custodia inicial disponible", session);
 		} else {
 			LOGGER.info("Final del flujo");
-			LOGGER.info("Custodia Disponible Inicial: " + SessionRV.getCustodiaInicial());
+			LOGGER.info("Custodia Disponible Inicial: " + session.getCustodiaInicial());
 			LOGGER.info("Custodia Disponible Final: " + totalCustodia);
 			session.logger.log(LogStatus.INFO, "Rescatando custodia final disponible: ",
 					totalCustodia);
 			UtilesExtentReport.captura("Rescatando custodia final disponible", session);
-			validacionCustodiaCantidad(operacion, SessionRV.getCustodiaInicial(), totalCustodia,
-					SessionRV.getCantidad(), session);
+			validacionCustodiaCantidad(operacion, session.getCustodiaInicial(), totalCustodia,
+					session.getCantidad(), session);
 		}
 
 	}

@@ -15,7 +15,6 @@ import org.openqa.selenium.support.PageFactory;
 import com.relevantcodes.extentreports.LogStatus;
 
 import cl.bcs.application.constantes.util.Constantes;
-import cl.bcs.application.constantes.util.ConstantesSpot;
 import cl.bcs.application.constantes.util.ConstantesTesoreria;
 import cl.bcs.application.factory.util.RVExcel;
 import cl.bcs.application.factory.util.Session;
@@ -90,7 +89,7 @@ public class Tesoreria {
 			if (datos.getOperacion().equalsIgnoreCase(Constantes.COMPRA)) {
 				// Busqueda grilla por secuencia - Ingreso
 				UtilesSelenium.findElement(session.getConfigDriver(),By.xpath(ConstantesTesoreria.XPATH_GRILLA_SECUENCIA_INPUT))
-						.sendKeys(ConstantesSpot.SUB_ZEROS + Ingreso, Keys.ENTER);
+						.sendKeys(Constantes.SUB_ZEROS + Ingreso, Keys.ENTER);
 				UtilesSelenium.waitForLoad(session.getConfigDriver());
 				UtilesSelenium.findElement(session.getConfigDriver(),By.xpath(buscarIngreso)).click();
 				LOGGER.info("Seleccionado" + " " + Ingreso);
@@ -99,7 +98,7 @@ public class Tesoreria {
 			} else {
 				// Busqueda grilla por secuencia - Engreso
 				UtilesSelenium.findElement(session.getConfigDriver(),By.xpath(ConstantesTesoreria.XPATH_GRILLA_SECUENCIA_INPUT))
-						.sendKeys(ConstantesSpot.SUB_ZEROS + Egreso, Keys.ENTER);
+						.sendKeys(Constantes.SUB_ZEROS + Egreso, Keys.ENTER);
 				UtilesSelenium.waitForLoad(session.getConfigDriver());
 				UtilesSelenium.findElement(session.getConfigDriver(),By.xpath(buscarEgreso)).click();
 				LOGGER.info("Seleccionado" + " " + Egreso);

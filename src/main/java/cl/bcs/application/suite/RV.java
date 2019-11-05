@@ -5,6 +5,7 @@ import org.apache.log4j.Logger;
 import cl.bcs.application.constantes.util.Constantes;
 import cl.bcs.application.factory.util.RVExcel;
 import cl.bcs.application.factory.util.Session;
+import cl.bcs.application.factory.util.SessionRV;
 import cl.bcs.application.file.util.Log4jFactory;
 import cl.bcs.application.file.util.UtilesSelenium;
 import cl.bcs.cuenta.inversion.CuentaInversion;

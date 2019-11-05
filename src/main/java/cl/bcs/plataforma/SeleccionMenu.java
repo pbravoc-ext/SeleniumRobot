@@ -4,8 +4,8 @@ package cl.bcs.plataforma;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 
+import cl.bcs.application.constantes.util.Constantes;
 import cl.bcs.application.constantes.util.ConstantesSelecionMenu;
-import cl.bcs.application.constantes.util.ConstantesSpotTags;
 import cl.bcs.application.factory.util.RVExcel;
 import cl.bcs.application.factory.util.Session;
 import cl.bcs.application.file.util.Log4jFactory;
@@ -34,7 +34,7 @@ public class SeleccionMenu {
 	public static boolean seleccionarMenuSpot(Session session) {
 		try {
 			UtilesSelenium.waitForLoad(session.getConfigDriver());
-			String condicion = UtilesSelenium.findElement(session.getConfigDriver(), By.xpath(spot)).getAttribute(ConstantesSpotTags.TAG_CLASS);
+			String condicion = UtilesSelenium.findElement(session.getConfigDriver(), By.xpath(spot)).getAttribute(Constantes.TAG_CLASS);
 			UtilesSelenium.findElement(session.getConfigDriver(), By.id(ConstantesSelecionMenu.ID_MENU_SPOT)).click();
 			if(condicion.equalsIgnoreCase("dropdown keep-open ng-scope open")) {
 				LOGGER.info("===================================");				
@@ -117,7 +117,7 @@ public class SeleccionMenu {
 	public static boolean seleccionarMenuFacturacion( Session session) {
 		try {
 			UtilesSelenium.waitForLoad(session.getConfigDriver());
-			String condicion = UtilesSelenium.findElement(session.getConfigDriver(), By.xpath(facturacion)).getAttribute(ConstantesSpotTags.TAG_CLASS);
+			String condicion = UtilesSelenium.findElement(session.getConfigDriver(), By.xpath(facturacion)).getAttribute(Constantes.TAG_CLASS);
 			UtilesSelenium.findElement(session.getConfigDriver(), By.id(ConstantesSelecionMenu.ID_SPOT_MODULO_FACTURACION_SPOT)).click();
 			if(condicion.equalsIgnoreCase("dropdown keep-open ng-scope open")) {
 				LOGGER.info("===================================");			
@@ -152,7 +152,7 @@ public class SeleccionMenu {
 	public static boolean seleccionarMenuTesoreria(RVExcel usu, Session session) {
 		try {
 			UtilesSelenium.waitForLoad(session.getConfigDriver());
-			String condicion = UtilesSelenium.findElement(session.getConfigDriver(), By.xpath(tesoreria)).getAttribute(ConstantesSpotTags.TAG_CLASS);
+			String condicion = UtilesSelenium.findElement(session.getConfigDriver(), By.xpath(tesoreria)).getAttribute(Constantes.TAG_CLASS);
 			UtilesSelenium.findElement(session.getConfigDriver(), By.id(ConstantesSelecionMenu.ID_MENU_TESORERIA)).click();
 			if(condicion.equalsIgnoreCase("dropdown keep-open ng-scope open")) {
 				LOGGER.info("===================================");			
@@ -187,7 +187,7 @@ public class SeleccionMenu {
 	public static boolean seleccionarMenuCuentaInversion(Session session) {
 		try {
 			UtilesSelenium.waitForLoad(session.getConfigDriver());
-			String condicion = UtilesSelenium.findElement(session.getConfigDriver(), By.xpath(cuentaInversion)).getAttribute(ConstantesSpotTags.TAG_CLASS);
+			String condicion = UtilesSelenium.findElement(session.getConfigDriver(), By.xpath(cuentaInversion)).getAttribute(Constantes.TAG_CLASS);
 			UtilesSelenium.findElement(session.getConfigDriver(), By.id(ConstantesSelecionMenu.ID_SPOT_MENU_CUENTA_INVERSION)).click();
 			if(condicion.equalsIgnoreCase("dropdown keep-open ng-scope open")) {
 				LOGGER.info("===================================");			
@@ -222,7 +222,7 @@ public class SeleccionMenu {
 	public static boolean seleccionarMenuOperacionesRueda(Session session) {
 		try {
 			UtilesSelenium.waitForLoad(session.getConfigDriver());
-			String condicion = UtilesSelenium.findElement(session.getConfigDriver(), By.xpath(operacionRueda)).getAttribute(ConstantesSpotTags.TAG_CLASS);
+			String condicion = UtilesSelenium.findElement(session.getConfigDriver(), By.xpath(operacionRueda)).getAttribute(Constantes.TAG_CLASS);
 			UtilesSelenium.findElement(session.getConfigDriver(), By.id(ConstantesSelecionMenu.ID_MENU_OPERACIONESRUEDA)).click();
 			if(condicion.equalsIgnoreCase("dropdown keep-open ng-scope open")) {
 				LOGGER.info("===================================");			
@@ -310,7 +310,7 @@ public class SeleccionMenu {
 	public static boolean seleccionarMenuCustodia(Session session) {
 		try {
 			UtilesSelenium.waitForLoad(session.getConfigDriver());
-			String condicion = UtilesSelenium.findElement(session.getConfigDriver(), By.xpath(custodia)).getAttribute(ConstantesSpotTags.TAG_CLASS);
+			String condicion = UtilesSelenium.findElement(session.getConfigDriver(), By.xpath(custodia)).getAttribute(Constantes.TAG_CLASS);
 			UtilesSelenium.findElement(session.getConfigDriver(), By.id(ConstantesSelecionMenu.ID_MENU_CUSTODIA)).click();
 			if(condicion.equalsIgnoreCase("dropdown keep-open ng-scope open")) {
 				LOGGER.info("===================================");			

@@ -17,11 +17,9 @@ import com.relevantcodes.extentreports.LogStatus;
 import cl.bcs.application.constantes.util.Constantes;
 import cl.bcs.application.constantes.util.ConstantesCuentaInversion;
 import cl.bcs.application.constantes.util.ConstantesRV;
-import cl.bcs.application.constantes.util.ConstantesSpot;
 import cl.bcs.application.factory.util.RVExcel;
 import cl.bcs.application.factory.util.Session;
 import cl.bcs.application.factory.util.SessionRV;
-//import cl.bcs.application.factory.util.SpotExcel;
 import cl.bcs.application.file.util.Log4jFactory;
 import cl.bcs.application.file.util.UtilesExtentReport;
 import cl.bcs.application.file.util.UtilesSelenium;
@@ -69,7 +67,7 @@ public class CuentaInversion {
 //			String big = ConstantesCuentaInversion.XPATH_FOLIO_COMPROBANTE;
 //			String xpath = ConstantesCuentaInversion.XPATH_FOLIO_COMPROBANTE_INPUT;
 			UtilesSelenium.findElement(session.getConfigDriver(),By.xpath(ConstantesCuentaInversion.XPATH_INPUT_FOLIO_GRILLA))
-					.sendKeys(ConstantesSpot.SUB_ZEROS + session.getComprobante(), Keys.ENTER);
+					.sendKeys(Constantes.SUB_ZEROS + session.getComprobante(), Keys.ENTER);
 //			UtilesSelenium.findElement(By.xpath(XPATH_INPUT_FOLIO_GRILLA)).sendKeys(Keys.ENTER);
 			UtilesSelenium.waitForLoadMid(session.getConfigDriver());
 			LOGGER.info("Folio Comprobante: " + session.getComprobante());

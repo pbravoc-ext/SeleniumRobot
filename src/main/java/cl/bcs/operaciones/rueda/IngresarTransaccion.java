@@ -9,9 +9,9 @@ import org.openqa.selenium.WebElement;
 
 import com.relevantcodes.extentreports.LogStatus;
 
+import cl.bcs.application.constantes.util.Constantes;
 import cl.bcs.application.constantes.util.ConstantesIngresarTransaccion;
 import cl.bcs.application.constantes.util.ConstantesRV;
-import cl.bcs.application.constantes.util.ConstantesSpotTags;
 import cl.bcs.application.factory.util.RVExcel;
 import cl.bcs.application.factory.util.Session;
 import cl.bcs.application.factory.util.SessionRV;
@@ -127,7 +127,7 @@ public class IngresarTransaccion {
 			if(tipoPrecio.equalsIgnoreCase(ConstantesRV.PRECIO_LIMITE)) {
 				String precioFinal = UtilesSelenium
 						.findElement(session.getConfigDriver(),By.xpath(ConstantesIngresarTransaccion.XPATH_PRECIO_INPUT_1))
-						.getAttribute(ConstantesSpotTags.TAG_TITLE);
+						.getAttribute(Constantes.TAG_TITLE);
 				if (validacion2(tipoOperacion, precioFinal, SessionRV.getPrecioOrden())) {
 					LOGGER.info("Validacion Flujo Limite exitosa para operacion: " + tipoOperacion);
 					session.logger.log(LogStatus.PASS, "Validacion Flujo Limite", tipoOperacion);

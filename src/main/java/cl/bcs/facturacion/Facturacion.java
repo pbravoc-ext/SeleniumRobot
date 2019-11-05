@@ -12,7 +12,6 @@ import com.relevantcodes.extentreports.LogStatus;
 import cl.bcs.application.constantes.util.Constantes;
 import cl.bcs.application.constantes.util.ConstantesFacturacion;
 import cl.bcs.application.constantes.util.ConstantesRV;
-import cl.bcs.application.constantes.util.ConstantesSpot;
 import cl.bcs.application.factory.util.RVExcel;
 import cl.bcs.application.factory.util.Session;
 import cl.bcs.application.factory.util.SessionRV;
@@ -57,7 +56,7 @@ public class Facturacion {
 			String usarFolio = SessionRV.getFolioAleatorio();
 
 			UtilesSelenium.findElement(session.getConfigDriver(), By.xpath(ConstantesFacturacion.XPATH_FOLIOINPUT))
-					.sendKeys(ConstantesSpot.SUB_ZEROS + usarFolio, Keys.ENTER);
+					.sendKeys(Constantes.SUB_ZEROS + usarFolio, Keys.ENTER);
 			UtilesSelenium.waitForLoadLong(session.getConfigDriver());
 			UtilesSelenium.findElement(session.getConfigDriver(),
 					By.xpath(ConstantesFacturacion.XPATHERE + usarFolio + Constantes.XPATHERE_OUT)).click();
@@ -486,7 +485,7 @@ public class Facturacion {
 			UtilesSelenium.waitForLoad(session.getConfigDriver());
 
 			UtilesSelenium.findElement(session.getConfigDriver(), By.xpath(ConstantesFacturacion.XPATH_SECUENCIA))
-					.sendKeys(ConstantesSpot.SUB_ZEROS + comprobanteOp + Keys.ENTER);
+					.sendKeys(Constantes.SUB_ZEROS + comprobanteOp + Keys.ENTER);
 			UtilesSelenium.waitForLoadMid(session.getConfigDriver());
 
 			UtilesSelenium
@@ -549,7 +548,7 @@ public class Facturacion {
 
 			// Ingresar folio
 			UtilesSelenium.findElement(session.getConfigDriver(), By.xpath(ConstantesFacturacion.XPATH_FOLIOINPUT))
-					.sendKeys(ConstantesSpot.SUB_ZEROS + usarFolio, Keys.ENTER);
+					.sendKeys(Constantes.SUB_ZEROS + usarFolio, Keys.ENTER);
 			UtilesSelenium.waitForLoadLong(session.getConfigDriver());
 
 			// Click en la grilla
@@ -775,7 +774,7 @@ public class Facturacion {
 
 			// Ingresar folio
 			UtilesSelenium.findElement(session.getConfigDriver(), By.xpath(ConstantesFacturacion.XPATH_SECUENCIA))
-					.sendKeys(ConstantesSpot.SUB_ZEROS + comprobante + Keys.ENTER);
+					.sendKeys(Constantes.SUB_ZEROS + comprobante + Keys.ENTER);
 			UtilesSelenium.waitForLoadMid(session.getConfigDriver());
 
 			// Click en la grilla

@@ -13,17 +13,17 @@ import com.relevantcodes.extentreports.LogStatus;
 
 import cl.bcs.application.factory.util.Session;
 import cl.bcs.application.file.util.DateUtil;
-import cl.bcs.application.suite.execute.ExtentReportUtiles;
+import cl.bcs.application.file.util.ExtentReportUtiles;
 
 public class FactoryExtentReport {
 	
-	public static void configuracionInicialER( ExtentReports extentReport) {
-		extentReport = new ExtentReports(
-				System.getProperty("user.dir") + "/test-output/OptimusER-"+DateUtil.fecha()+".html", true);
-		extentReport.addSystemInfo("Encoding", "UTF-8");
-		extentReport.addSystemInfo("Host Name", "Automatización OPTIMUS")
+	public static void configuracionInicialER(String nombreReporte) {
+		ExtentReportUtiles.extentReport = new ExtentReports(
+				System.getProperty("user.dir") + "/test-output/OptimusER"+nombreReporte+DateUtil.fecha()+".html", true);
+		ExtentReportUtiles.extentReport.addSystemInfo("Encoding", "UTF-8");
+		ExtentReportUtiles.extentReport.addSystemInfo("Host Name", "Automatización OPTIMUS")
 				.addSystemInfo("Environment", "http://bolsa.optimuscb.cl:9045").addSystemInfo("User Name", "Narveider");
-		extentReport.loadConfig(new File(System.getProperty("user.dir") + "/extent-config.xml"));
+		ExtentReportUtiles.extentReport.loadConfig(new File(System.getProperty("user.dir") + "/extent-config.xml"));
 	}
 
 	public static void configuracionFinalER(ITestResult result,  Session session) throws Exception {

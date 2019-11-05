@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.testng.Assert;
+import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
@@ -17,32 +18,33 @@ import cl.bcs.application.factory.util.RVExcel;
 import cl.bcs.application.factory.util.Session;
 import cl.bcs.application.factory.util.SessionRV;
 import cl.bcs.application.file.util.DateUtil;
+import cl.bcs.application.file.util.ExtentReportUtiles;
 import cl.bcs.application.suite.RV;
 
 public class RVExecute {
-	public class ExtentReportsClass {
-		List<RVExcel> rve = null;
+	List<RVExcel> rve = null;
 
-		@SuppressWarnings({ "unchecked" })
+	@SuppressWarnings({ "unchecked" })
 
-		@BeforeTest
-		public void startReport() {
-			DateUtil.fecha();
-			FactoryExtentReport.configuracionInicialER(ExtentReportUtiles.extentReport);
-			FactoryExcel fe = new FactoryExcel();
-			rve = (List<RVExcel>) fe.getReadExcel("rv");
-			if (rve.isEmpty() || rve.size() == 0) {
-				System.out.println("Datos Vacios");
-			}
+	@BeforeSuite
+	public void startReport() {
+		DateUtil.fecha();
+		FactoryExtentReport.configuracionInicialER("RV");
+		FactoryExcel fe = new FactoryExcel();
+		rve = (List<RVExcel>) fe.getReadExcel("rv");
+		if (rve.isEmpty() || rve.size() == 0) {
+			System.out.println("Datos Vacios");
 		}
+	}
 
-		@Test(priority = 1)
-		public void variacion1() {
-			Session session = new Session();
-			SessionRV.setEstadoFlujo(0);
-			Assert.assertTrue(RV.suiteRV(rve.get(0), session));
-			session.logger.log(LogStatus.PASS, rve.get(0).getVariacion() + " Completado", "");
-		}
+	@Test(priority = 1)
+	public void variacion1() {
+		ExtentTest test = ExtentTestManager.startTest(rve.get(0).getVariacion());
+		Session session = new Session(0,test);
+		System.out.println(session.getEstadoFlujo());
+		Assert.assertTrue(RV.suiteRV(rve.get(0), session));
+		session.logger.log(LogStatus.PASS, rve.get(0).getVariacion() + " Completado", "");
+	}
 //
 //		@Test(priority = 2)
 //		public void variacion2() {
@@ -206,30 +208,29 @@ public class RVExecute {
 //
 //		}
 
+}
+
+class ExtentTestManager { // new
+	static Map<Integer, ExtentTest> extentTestMap = new HashMap<Integer, ExtentTest>();
+
+	public static synchronized ExtentTest getTest() {
+		return (ExtentTest) extentTestMap.get((int) (long) (Thread.currentThread().getId()));
 	}
 
-	class ExtentTestManager { // new
-		Map<Integer, ExtentTest> extentTestMap = new HashMap<Integer, ExtentTest>();
+	public static synchronized void endTest() {
+		ExtentReportUtiles.extentReport
+				.endTest((ExtentTest) extentTestMap.get((int) (long) (Thread.currentThread().getId())));
 
-		public synchronized ExtentTest getTest() {
-			return (ExtentTest) extentTestMap.get((int) (long) (Thread.currentThread().getId()));
-		}
+	}
 
-		public synchronized void endTest() {
-			ExtentReportUtiles.extentReport
-					.endTest((ExtentTest) extentTestMap.get((int) (long) (Thread.currentThread().getId())));
+	public static synchronized ExtentTest startTest(String testName) {
+		return startTest(testName, "");
+	}
 
-		}
+	public static synchronized ExtentTest startTest(String testName, String desc) {
+		ExtentTest test = ExtentReportUtiles.extentReport.startTest(testName, desc);
+		extentTestMap.put((int) (long) (Thread.currentThread().getId()), test);
 
-		public synchronized ExtentTest startTest(String testName) {
-			return startTest(testName, "");
-		}
-
-		public synchronized ExtentTest startTest(String testName, String desc) {
-			ExtentTest test = ExtentReportUtiles.extentReport.startTest(testName, desc);
-			extentTestMap.put((int) (long) (Thread.currentThread().getId()), test);
-
-			return test;
-		}
+		return test;
 	}
 }

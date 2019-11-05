@@ -1,5 +1,6 @@
 package cl.bcs.application.factory.util;
 
+import com.relevantcodes.extentreports.ExtentTest;
 
 public class SessionRV {
 
@@ -22,6 +23,7 @@ public class SessionRV {
 	private static String comprobanteEgreso;
 	private static String comprobanteIngreso;
 	private static String montoTotal;
+
 
 	private static RVExcel rvinfo;
 
