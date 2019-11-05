@@ -3,14 +3,25 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test name="Default test(failed)">
     <classes>
-      <class name="cl.bcs.application.suite.execute.SpotExecute$ExtentReportsClass">
+      <class name="cl.bcs.application.suite.execute.RVExecute$ExtentReportsClass">
         <methods>
-          <include name="variacion3"/>
           <include name="endReport"/>
           <include name="startReport"/>
+          <include name="variacion16"/>
+          <include name="variacion9"/>
+          <include name="variacion15"/>
+          <include name="variacion8"/>
+          <include name="variacion5"/>
+          <include name="variacion6"/>
+          <include name="variacion10"/>
           <include name="getResult"/>
+          <include name="variacion14"/>
+          <include name="variacion7"/>
+          <include name="variacion12"/>
+          <include name="variacion13"/>
+          <include name="variacion11"/>
         </methods>
-      </class> <!-- cl.bcs.application.suite.execute.SpotExecute$ExtentReportsClass -->
+      </class> <!-- cl.bcs.application.suite.execute.RVExecute$ExtentReportsClass -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->
