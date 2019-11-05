@@ -1,13 +1,13 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <extentreports>
   <configuration>
     <!-- report theme -->
     <!-- standard, dark -->
-    <theme>standard</theme>
+    <theme>dark</theme>
   
     <!-- document encoding -->
     <!-- defaults to UTF-8 -->
-    <encoding>UTF-8</encoding>
+    <encoding>ISO-8859-1</encoding>
     
     <!-- protocol for script and stylesheets -->
     <!-- defaults to https -->
