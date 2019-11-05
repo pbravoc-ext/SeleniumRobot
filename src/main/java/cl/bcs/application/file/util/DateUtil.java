@@ -1,11 +1,13 @@
 package cl.bcs.application.file.util;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class DateUtil {
-	
+
 	public static String fecha() {
-		LocalDate localDate = LocalDate.now();
-		return localDate.toString();
+		LocalDateTime hora = LocalDateTime.now();
+		DateTimeFormatter f = DateTimeFormatter.ofPattern("ddMMYYYYhhmm");
+		return hora.format(f);
 	}
 }

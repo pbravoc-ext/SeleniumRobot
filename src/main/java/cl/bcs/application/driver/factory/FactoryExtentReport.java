@@ -13,30 +13,31 @@ import com.relevantcodes.extentreports.LogStatus;
 
 import cl.bcs.application.factory.util.Session;
 import cl.bcs.application.file.util.DateUtil;
+import cl.bcs.application.suite.execute.ExtentReportUtiles;
 
 public class FactoryExtentReport {
 	
-	protected void configuracionInicialER() {
-		Session.getConfigDriver().extent = new ExtentReports(
+	public static void configuracionInicialER( ExtentReports extentReport) {
+		extentReport = new ExtentReports(
 				System.getProperty("user.dir") + "/test-output/OptimusER-"+DateUtil.fecha()+".html", true);
-		Session.getConfigDriver().extent.addSystemInfo("Encoding", "UTF-8");
-		Session.getConfigDriver().extent.addSystemInfo("Host Name", "Automatización OPTIMUS")
+		extentReport.addSystemInfo("Encoding", "UTF-8");
+		extentReport.addSystemInfo("Host Name", "Automatización OPTIMUS")
 				.addSystemInfo("Environment", "http://bolsa.optimuscb.cl:9045").addSystemInfo("User Name", "Narveider");
-		Session.getConfigDriver().extent.loadConfig(new File(System.getProperty("user.dir") + "/extent-config.xml"));
+		extentReport.loadConfig(new File(System.getProperty("user.dir") + "/extent-config.xml"));
 	}
 
-	public static void configuracionFinalER(ITestResult result) throws Exception {
+	public static void configuracionFinalER(ITestResult result,  Session session) throws Exception {
 		if (result.getStatus() == ITestResult.FAILURE) {
-			Session.getConfigDriver().logger.log(LogStatus.FAIL, "Caso fallado: " + result.getName());
-			Session.getConfigDriver().logger.log(LogStatus.FAIL, "Caso fallado: " + result.getThrowable());
-			String screenshotPath = getScreenshot(Session.getConfigDriver().getWebDriver(),
+			session.logger.log(LogStatus.FAIL, "Caso fallado: " + result.getName());
+			session.logger.log(LogStatus.FAIL, "Caso fallado: " + result.getThrowable());
+			String screenshotPath = getScreenshot(session.getConfigDriver(),
 					result.getName());
-			Session.getConfigDriver().logger.log(LogStatus.FAIL,
-					Session.getConfigDriver().logger.addScreenCapture(screenshotPath));
+			session.logger.log(LogStatus.FAIL,
+					session.logger.addScreenCapture(screenshotPath));
 		} else if (result.getStatus() == ITestResult.SKIP) {
-			Session.getConfigDriver().logger.log(LogStatus.SKIP, "Test saltado: " + result.getName());
+			session.logger.log(LogStatus.SKIP, "Test saltado: " + result.getName());
 		}
-		Session.getConfigDriver().extent.endTest(Session.getConfigDriver().logger);
+		ExtentReportUtiles.extentReport.endTest(session.logger);
 	}
 	
 	public static String getScreenshot(WebDriver driver, String screenshotName) throws Exception {

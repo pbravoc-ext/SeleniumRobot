@@ -12,25 +12,26 @@ import cl.bcs.application.factory.util.Session;
  */
 public class UtilesExtentReport {
 
-	public static void captura(String descripcion) {
+	public static void captura(String descripcion, Session session) {
 		String screenshotPath;
 		try {
-			screenshotPath = FactoryExtentReport.getScreenshot(Session.getConfigDriver().getWebDriver(),
+			screenshotPath = FactoryExtentReport.getScreenshot(session.getConfigDriver(),
 					descripcion + "-" + DateUtil.fecha());
-			Session.getConfigDriver().logger.log(LogStatus.PASS, descripcion,
-					Session.getConfigDriver().logger.addScreenCapture(screenshotPath));
+			
+			session.logger.log(LogStatus.PASS, descripcion,
+					session.logger.addScreenCapture(screenshotPath));
 		} catch (Exception e) {
 			e.getMessage();
 		}
 	}
 
-	public static void capturaError(String descripcion) {
+	public static void capturaError(String descripcion,  Session session) {
 		String screenshotPath;
 		try {
-			screenshotPath = FactoryExtentReport.getScreenshot(Session.getConfigDriver().getWebDriver(),
+			screenshotPath = FactoryExtentReport.getScreenshot(session.getConfigDriver(),
 					descripcion + "-" + DateUtil.fecha());
-			Session.getConfigDriver().logger.log(LogStatus.ERROR, descripcion,
-					Session.getConfigDriver().logger.addScreenCapture(screenshotPath));
+			session.logger.log(LogStatus.ERROR, descripcion,
+					session.logger.addScreenCapture(screenshotPath));
 		} catch (Exception e) {
 			e.getMessage();
 		}

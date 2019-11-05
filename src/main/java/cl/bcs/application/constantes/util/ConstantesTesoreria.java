@@ -8,9 +8,6 @@ package cl.bcs.application.constantes.util;
 
 public class ConstantesTesoreria {
 
-	public static final String ID_MENU_TESORERIA = "MENU_MODULO_TESORERIA";
-	public static final String ID_GESTION_TESORERIA = "MENU_BlotterComprobantesTesoreria";
-
 	public static final String XPATH_TAB_MOVIMIENTOS = "//*[@id='blotterComprobantes']/div/div/div/ul/li[1]/a";
 	public static final String XPATH_TAB_COMPROBANTES = "//*[@id='blotterComprobantes']/div/div/div/ul/li[2]/a";
 	public static final String XPATH_TAB_FORMA_PAGO = "//*[@id='blotterComprobantes']/div/div/div/ul/li[3]/a";
@@ -25,6 +22,9 @@ public class ConstantesTesoreria {
 	public static final String XPATH_BTN_BUSCAR = "//*[@id='ConsultarIngresoEgreso']/div[1]/div[1]/div[2]/div[1]/bcs-button/button";
 	public static final String XPATH_GRILLA_SECUENCIA_INPUT = "//*[@id='grid-ingreso-egreso']/span/div[2]/div[3]/div/table/thead/tr[3]/th[2]/span/span/span[1]/span/input[1]";
 	public static final String XPATH_BTN_SCN = "//*[@id='grid-ingreso-egreso']/span/div[2]/div[3]/div/table/thead/tr[3]/th[2]/span/span/button";
+	
+	public static final String XPATHERE_EGRESO = "//*[@id='grid-ingreso-egreso']//span[@ng-bind='dataItem.IdIngresoEgreso' and contains(text(),'";
+	public static final String XPATHERE_INGRESO = "//*[@id='grid-ingreso-egreso']//span[@ng-bind='dataItem.IdIngresoEgreso' and contains(text(),'";
 	
 	
 }

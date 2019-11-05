@@ -1,10 +1,11 @@
-package cl.bcs.application.factory.util;
+	package cl.bcs.application.factory.util;
+
+import org.openqa.selenium.WebDriver;
 
 import com.relevantcodes.extentreports.ExtentReports;
 import com.relevantcodes.extentreports.ExtentTest;
 
 import cl.bcs.application.driver.factory.FactoryWebDriver;
-import cl.bcs.application.file.util.Resource;
 import cl.bcs.application.spot.util.VariablesUtil;
 
 /**
@@ -14,46 +15,34 @@ import cl.bcs.application.spot.util.VariablesUtil;
  */
 public class Session {
 
-	private String navegador;
-	private ExtentReports extent;
-	private ExtentTest logger;
-	private static String folio;
-	private static String abono;
-	private static String cargo;
-	private static String comprobante;	
-	private static String comprobanteVenta;	
-	private static String movimientoEgreso;
-	private static String movimientoIngreso;
-	private static String fechaDesde;
-	private static String fechaHasta;
-	private static String montoEq;
+	public ExtentTest logger;
+	private String folio;
+	private String abono;
+	private String cargo;
+	private String comprobanteVenta;
+	private String comprobante;
+	private String movimientoEgreso;
+	private String movimientoIngreso;
+	private String fechaDesde;
+	private String fechaHasta;
+	private String montoEq;
+	private String montoSecundario;
+	private String montoPrincipal;
+	private int variacion;
+	private WebDriver configDriver;
+	private SpotExcel spotinfo;
+	private VariablesUtil variables;
 
-	private static FactoryWebDriver configDriver;
-	private static SpotExcel spotinfo;
-	private static VariablesUtil variables;
 
-	/**
-	 * 
-	 * @param builder
-	 */
-	public Session(SessionBuilder builder) {
-		navegador = builder.navegador;
-		extent = builder.extent;
-		logger = builder.logger;
-
-		configDriver = new FactoryWebDriver(navegador,
-				Resource.getProperty("url.optimus"));
+	public Session() {
+		this.configDriver = FactoryWebDriver.createDriverReturn();
 	}
 
 	/**
 	 * 
 	 * @return
 	 */
-	public static FactoryWebDriver getConfigDriver() {
-		return configDriver;
-	}
-
-	public FactoryWebDriver getConfig() {
+	public WebDriver getConfigDriver() {
 		return configDriver;
 	}
 
@@ -62,121 +51,123 @@ public class Session {
 	 * @return
 	 */
 
-	public static SpotExcel getSpot() {
+	public SpotExcel getSpot() {
 		return spotinfo;
 	}
 
-	public static void setSpot(SpotExcel spot) {
+	public void setSpot(SpotExcel spot) {
 		spotinfo = spot;
 	}
 
-	public ExtentReports getExtent() {
-		return extent;
-	}
-
-	public void setExtent(ExtentReports extent) {
-		this.extent = extent;
-	}
-
-	public static String getFolio() {
+	public String getFolio() {
 		return folio;
 	}
 
-	public static void setFolio(String folio) {
-		Session.folio = folio;
+	public void setFolio(String folio) {
+		this.folio = folio;
 	}
 
-	public static VariablesUtil getVariables() {
+	public VariablesUtil getVariables() {
 		return variables;
 	}
 
-	public static void setVariables(VariablesUtil variablesUtil) {
+	public void setVariables(VariablesUtil variablesUtil) {
 		variables = variablesUtil;
 	}
 
-	public static String getAbono() {
+	public String getAbono() {
 		return abono;
 	}
 
-	public static void setAbono(String abono) {
-		Session.abono = abono;
+	public void setAbono(String abono) {
+		this.abono = abono;
 	}
 
-	public static String getCargo() {
+	public String getCargo() {
 		return cargo;
 	}
 
-	public static void setCargo(String cargo) {
-		Session.cargo = cargo;
+	public void setCargo(String cargo) {
+		this.cargo = cargo;
 	}
 
-	public static String getComprobante() {
+	public String getComprobante() {
 		return comprobante;
 	}
 
-	public static void setComprobante(String comprobante) {
-		Session.comprobante = comprobante;
+	public void setComprobante(String comprobante) {
+		this.comprobante = comprobante;
 	}
 
-	public static String getComprobanteVenta() {
-		return comprobanteVenta;
-	}
-
-	public static void setComprobanteVenta(String comprobanteVenta) {
-		Session.comprobanteVenta = comprobanteVenta;
-	}
-
-	public static String getMovimientoEgreso() {
+	public String getMovimientoEgreso() {
 		return movimientoEgreso;
 	}
 
-	public static void setMovimientoEgreso(String movimientoEgreso) {
-		Session.movimientoEgreso = movimientoEgreso;
+	public void setMovimientoEgreso(String movimientoEgreso) {
+		this.movimientoEgreso = movimientoEgreso;
 	}
 
-	public static String getMovimientoIngreso() {
+	public String getMovimientoIngreso() {
 		return movimientoIngreso;
 	}
 
-	public static void setMovimientoIngreso(String movimientoIngreso) {
-		Session.movimientoIngreso = movimientoIngreso;
+	public void setMovimientoIngreso(String movimientoIngreso) {
+		this.movimientoIngreso = movimientoIngreso;
 	}
 
-	public static String getFechaDesde() {
+	public String getFechaDesde() {
 		return fechaDesde;
 	}
 
-	public static void setFechaDesde(String fechaDesde) {
-		Session.fechaDesde = fechaDesde;
+	public void setFechaDesde(String fechaDesde) {
+		this.fechaDesde = fechaDesde;
 	}
 
-	public static String getFechaHasta() {
+	public String getFechaHasta() {
 		return fechaHasta;
 	}
 
-	public static void setFechaHasta(String fechaHasta) {
-		Session.fechaHasta = fechaHasta;
+	public void setFechaHasta(String fechaHasta) {
+		this.fechaHasta = fechaHasta;
 	}
 
-	public static String getMontoEq() {
+	public String getMontoEq() {
 		return montoEq;
 	}
 
-	public static void setMontoEq(String montoEq) {
-		Session.montoEq = montoEq;
+	public void setMontoEq(String montoEq) {
+		this.montoEq = montoEq;
 	}
 
-	public ExtentTest getLogger() {
-		return logger;
+	public String getMontoSecundario() {
+		return montoSecundario;
 	}
 
-	public void setLogger(ExtentTest logger) {
-		this.logger = logger;
+	public void setMontoSecundario(String montoSecundario) {
+		this.montoSecundario = montoSecundario;
 	}
 
-	public void destroy() {
-		if (configDriver != null) {
-			configDriver.getWebDriver().quit();
-		}
+	public String getMontoPrincipal() {
+		return montoPrincipal;
+	}
+
+	public void setMontoPrincipal(String montoPrincipal) {
+		this.montoPrincipal = montoPrincipal;
+	}
+
+	public int getVariacion() {
+		return variacion;
+	}
+
+	public void setVariacion(int variacion) {
+		this.variacion = variacion;
+	}
+
+	public String getComprobanteVenta() {
+		return comprobanteVenta;
+	}
+
+	public void setComprobanteVenta(String comprobanteVenta) {
+		this.comprobanteVenta = comprobanteVenta;
 	}
 }

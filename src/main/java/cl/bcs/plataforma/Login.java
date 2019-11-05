@@ -16,13 +16,14 @@ import cl.bcs.application.file.util.UtilesSelenium;
 public class Login {
 	private static final Logger LOGGER = Log4jFactory.getLogger(Login.class);
 	
-	public static boolean login() {
+	public static boolean login(Session session) {
 		boolean isLogin = false;
-			Session.getConfigDriver().waitForLoad();
-			UtilesSelenium.findElement(By.id(ConstantesSpot.ID_USUARIO)).sendKeys("fmettroz");
-			UtilesSelenium.findElement(By.id(ConstantesSpot.ID_PASSWORD)).sendKeys("1");
-			UtilesExtentReport.captura("Ingreso de Usuario");
-			UtilesSelenium.findElement(By.id(ConstantesSpot.ID_BTN_LOGIN)).click();
+			UtilesSelenium.waitForLoad(session.getConfigDriver());
+			System.out.println(session.getConfigDriver().getTitle());
+			UtilesSelenium.findElement(session.getConfigDriver(), By.id(ConstantesSpot.ID_USUARIO)).sendKeys("fmettroz");
+			UtilesSelenium.findElement(session.getConfigDriver(), By.id(ConstantesSpot.ID_PASSWORD)).sendKeys("1");
+			UtilesExtentReport.captura("Ingreso de Usuario", session);
+			UtilesSelenium.findElement(session.getConfigDriver(), By.id(ConstantesSpot.ID_BTN_LOGIN)).click();
 			LOGGER.info("Login Exitoso");
 			isLogin = true;
 		return isLogin;

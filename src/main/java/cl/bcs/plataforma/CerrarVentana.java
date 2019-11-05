@@ -11,10 +11,10 @@ import cl.bcs.application.file.util.UtilesSelenium;
 public class CerrarVentana {
 	private static final Logger LOGGER = Log4jFactory.getLogger(CerrarVentana.class);
 	
-	public static boolean init(){
+	public static boolean init( Session session){
 		boolean isLogin = false;
-		Session.getConfigDriver().waitForLoad();
-		UtilesSelenium.findElement(By.xpath(ConstantesSpot.XPATH_CERRARVENTANA_SPOT)).click();
+		UtilesSelenium.waitForLoad(session.getConfigDriver());
+		UtilesSelenium.findElement(session.getConfigDriver(),By.xpath(ConstantesSpot.XPATH_CERRARVENTANA_SPOT)).click();
 		LOGGER.info("Cerrar ventana");
 		isLogin = true;
 	return isLogin;
