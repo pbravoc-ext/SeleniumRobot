@@ -102,7 +102,7 @@
                     <div class="method-list-content failed suite-Suite">
                       <span>
                         <img src="failed.png" width="3%"/>
-                        <a href="#" panel-name="suite-Suite" title="cl.bcs.application.suite.execute.RVExecute$ExtentReportsClass" class="method navigator-link" hash-for-method="variacion1">variacion1</a> <!-- method navigator-link -->
+                        <a href="#" panel-name="suite-Suite" title="cl.bcs.application.suite.execute.RVExecute" class="method navigator-link" hash-for-method="variacion1">variacion1</a> <!-- method navigator-link -->
                       </span>
                       <br/>
                     </div> <!-- method-list-content failed suite-Suite -->
@@ -120,7 +120,7 @@
           <div class="suite-Suite-class-failed">
             <div class="main-panel-header rounded-window-top">
               <img src="failed.png"/>
-              <span class="class-name">cl.bcs.application.suite.execute.RVExecute$ExtentReportsClass</span>
+              <span class="class-name">cl.bcs.application.suite.execute.RVExecute</span>
             </div> <!-- main-panel-header rounded-window-top -->
             <div class="main-panel-content rounded-window-bottom">
               <div class="method">
@@ -128,14 +128,12 @@
                   <a name="variacion1">
                   </a> <!-- variacion1 -->
                   <span class="method-name">variacion1</span>
-                  <div class="stack-trace">java.lang.NullPointerException
-	at cl.bcs.custodia.ConsultarCustodia.custodia(ConsultarCustodia.java:68)
-	at cl.bcs.application.suite.RV.suiteRV(RV.java:42)
-	at cl.bcs.application.suite.execute.RVExecute$ExtentReportsClass.variacion1(RVExecute.java:43)
+                  <div class="stack-trace">java.lang.AssertionError: did not expect to find [true] but found [false]
+	at cl.bcs.application.suite.execute.RVExecute.variacion1(RVExecute.java:40)
 	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
 	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
 	at java.base/java.lang.Thread.run(Thread.java:834)
-... Removed 12 stack frames
+... Removed 16 stack frames
 </div> <!-- stack-trace -->
                 </div> <!-- method-content -->
               </div> <!-- method -->
@@ -196,13 +194,13 @@ data.addColumn('number', 'Time (ms)');
 data.addRows(1);
 data.setCell(0, 0, 0)
 data.setCell(0, 1, 'variacion1')
-data.setCell(0, 2, 'cl.bcs.application.suite.execute.RVExecute$ExtentReportsClass')
-data.setCell(0, 3, 49897);
+data.setCell(0, 2, 'cl.bcs.application.suite.execute.RVExecute')
+data.setCell(0, 3, 269934);
 window.suiteTableData['Suite']= { tableData: data, tableDiv: 'times-div-Suite'}
 return data;
 }
               </script>
-              <span class="suite-total-time">Total running time: 49 seconds</span>
+              <span class="suite-total-time">Total running time: 4 minutes</span>
               <div id="times-div-Suite">
               </div> <!-- times-div-Suite -->
             </div> <!-- times-div -->
@@ -228,16 +226,16 @@ return data;
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
             <div class="chronological-class">
-              <div class="chronological-class-name">cl.bcs.application.suite.execute.RVExecute$ExtentReportsClass</div> <!-- chronological-class-name -->
-              <div class="configuration-test before">
+              <div class="chronological-class-name">cl.bcs.application.suite.execute.RVExecute</div> <!-- chronological-class-name -->
+              <div class="configuration-suite before">
                 <span class="method-name">startReport</span>
                 <span class="method-start">0 ms</span>
-              </div> <!-- configuration-test before -->
+              </div> <!-- configuration-suite before -->
               <div class="test-method">
                 <img src="failed.png">
                 </img>
                 <span class="method-name">variacion1</span>
-                <span class="method-start">700 ms</span>
+                <span class="method-start">636 ms</span>
               </div> <!-- test-method -->
           </div> <!-- main-panel-content rounded-window-bottom -->
         </div> <!-- panel -->

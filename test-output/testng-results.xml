@@ -2,22 +2,27 @@
 <testng-results ignored="0" total="1" passed="0" failed="1" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2019-11-05T12:40:46 CLST" name="Suite" finished-at="2019-11-05T12:41:36 CLST" duration-ms="50610">
+  <suite started-at="2019-11-05T15:52:53 CLST" name="Suite" finished-at="2019-11-05T15:57:23 CLST" duration-ms="269950">
     <groups>
     </groups>
-    <test started-at="2019-11-05T12:40:46 CLST" name="Test" finished-at="2019-11-05T12:41:36 CLST" duration-ms="50610">
-      <class name="cl.bcs.application.suite.execute.RVExecute$ExtentReportsClass">
-        <test-method is-config="true" signature="startReport()[pri:0, instance:cl.bcs.application.suite.execute.RVExecute$ExtentReportsClass@1ed6388a]" started-at="2019-11-05T12:40:46 CLST" name="startReport" finished-at="2019-11-05T12:40:46 CLST" duration-ms="681" status="PASS">
+    <test started-at="2019-11-05T15:52:53 CLST" name="Test" finished-at="2019-11-05T15:57:23 CLST" duration-ms="269950">
+      <class name="cl.bcs.application.suite.execute.RVExecute">
+        <test-method is-config="true" signature="startReport()[pri:0, instance:cl.bcs.application.suite.execute.RVExecute@428640fa]" started-at="2019-11-05T15:52:52 CLST" name="startReport" finished-at="2019-11-05T15:52:53 CLST" duration-ms="604" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- startReport -->
-        <test-method signature="variacion1()[pri:1, instance:cl.bcs.application.suite.execute.RVExecute$ExtentReportsClass@1ed6388a]" started-at="2019-11-05T12:40:46 CLST" name="variacion1" finished-at="2019-11-05T12:41:36 CLST" duration-ms="49897" status="FAIL">
-          <exception class="java.lang.NullPointerException">
+        <test-method signature="variacion1()[pri:1, instance:cl.bcs.application.suite.execute.RVExecute@428640fa]" started-at="2019-11-05T15:52:53 CLST" name="variacion1" finished-at="2019-11-05T15:57:23 CLST" duration-ms="269934" status="FAIL">
+          <exception class="java.lang.AssertionError">
+            <message>
+              <![CDATA[did not expect to find [true] but found [false]]]>
+            </message>
             <full-stacktrace>
-              <![CDATA[java.lang.NullPointerException
-at cl.bcs.custodia.ConsultarCustodia.custodia(ConsultarCustodia.java:68)
-at cl.bcs.application.suite.RV.suiteRV(RV.java:42)
-at cl.bcs.application.suite.execute.RVExecute$ExtentReportsClass.variacion1(RVExecute.java:43)
+              <![CDATA[java.lang.AssertionError: did not expect to find [true] but found [false]
+at org.testng.Assert.fail(Assert.java:97)
+at org.testng.Assert.failNotEquals(Assert.java:969)
+at org.testng.Assert.assertTrue(Assert.java:43)
+at org.testng.Assert.assertTrue(Assert.java:53)
+at cl.bcs.application.suite.execute.RVExecute.variacion1(RVExecute.java:40)
 at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
 at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -35,11 +40,11 @@ at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecut
 at java.base/java.lang.Thread.run(Thread.java:834)
 ]]>
             </full-stacktrace>
-          </exception> <!-- java.lang.NullPointerException -->
+          </exception> <!-- java.lang.AssertionError -->
           <reporter-output>
           </reporter-output>
         </test-method> <!-- variacion1 -->
-      </class> <!-- cl.bcs.application.suite.execute.RVExecute$ExtentReportsClass -->
+      </class> <!-- cl.bcs.application.suite.execute.RVExecute -->
     </test> <!-- Test -->
   </suite> <!-- Suite -->
 </testng-results>

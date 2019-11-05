@@ -1,27 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
-  <test name="Default test(failed)">
+  <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="cl.bcs.application.suite.execute.RVExecute$ExtentReportsClass">
+      <class name="cl.bcs.application.suite.execute.RVExecute">
         <methods>
-          <include name="endReport"/>
           <include name="startReport"/>
-          <include name="variacion16"/>
-          <include name="variacion9"/>
-          <include name="variacion15"/>
-          <include name="variacion8"/>
-          <include name="variacion5"/>
-          <include name="variacion6"/>
-          <include name="variacion10"/>
-          <include name="getResult"/>
-          <include name="variacion14"/>
-          <include name="variacion7"/>
-          <include name="variacion12"/>
-          <include name="variacion13"/>
-          <include name="variacion11"/>
+          <include name="variacion1"/>
         </methods>
-      </class> <!-- cl.bcs.application.suite.execute.RVExecute$ExtentReportsClass -->
+      </class> <!-- cl.bcs.application.suite.execute.RVExecute -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->
